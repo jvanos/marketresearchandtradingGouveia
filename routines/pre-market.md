@@ -78,7 +78,7 @@ buyback, or a symbol looks halted/illiquid).
 STEP 6 — COMMIT AND PUSH (mandatory):
   git add memory/RESEARCH-LOG.md
   git commit -m "pre-market drift check $DATE"
-  git remote set-url origin "https://x-access-token:${GITHUB_TOKEN}@github.com/jvanos/marktetresearchandtrading.git"
+  git remote set-url origin "https://x-access-token:${GITHUB_TOKEN}@github.com/jvanos/marketresearchandtradingGouveia.git"
   git push origin main
 On push failure: git pull --rebase origin main, then push again.
 Never force-push.

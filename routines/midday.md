@@ -76,6 +76,6 @@ STEP 6 — Notification: only if action was taken.
 STEP 7 — COMMIT AND PUSH (if any memory files changed):
   git add memory/TRADE-LOG.md
   git commit -m "midday stop-loss scan $DATE"
-  git remote set-url origin "https://x-access-token:${GITHUB_TOKEN}@github.com/jvanos/marktetresearchandtrading.git"
+  git remote set-url origin "https://x-access-token:${GITHUB_TOKEN}@github.com/jvanos/marketresearchandtradingGouveia.git"
   git push origin main
 Skip commit if no-op. On push failure: rebase and retry.

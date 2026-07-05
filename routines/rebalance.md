@@ -105,7 +105,7 @@ daily one — silence here is a bigger red flag than on a daily routine):
 STEP 9 — COMMIT AND PUSH (mandatory):
   git add memory/REBALANCE-LOG.md memory/TRADE-LOG.md
   git commit -m "quarterly rebalance $DATE"
-  git remote set-url origin "https://x-access-token:${GITHUB_TOKEN}@github.com/jvanos/marktetresearchandtrading.git"
+  git remote set-url origin "https://x-access-token:${GITHUB_TOKEN}@github.com/jvanos/marketresearchandtradingGouveia.git"
   git push origin main
 On push failure: git pull --rebase origin main, then push again. Never
 force-push.

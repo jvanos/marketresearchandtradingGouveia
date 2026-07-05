@@ -96,6 +96,6 @@ rejected by the wrapper — that's worth a one-line note too).
 STEP 8 — COMMIT AND PUSH (mandatory if any trades executed or rejected):
   git add memory/TRADE-LOG.md
   git commit -m "market-open buildout $DATE"
-  git remote set-url origin "https://x-access-token:${GITHUB_TOKEN}@github.com/jvanos/marktetresearchandtrading.git"
+  git remote set-url origin "https://x-access-token:${GITHUB_TOKEN}@github.com/jvanos/marketresearchandtradingGouveia.git"
   git push origin main
 Skip commit if nothing happened. On push failure: rebase and retry.

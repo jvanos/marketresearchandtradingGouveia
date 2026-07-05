@@ -83,6 +83,6 @@ STEP 6 — Send ONE ClickUp message. <= 15 lines:
 STEP 7 — COMMIT AND PUSH (mandatory):
   git add memory/WEEKLY-REVIEW.md
   git commit -m "weekly review $DATE"
-  git remote set-url origin "https://x-access-token:${GITHUB_TOKEN}@github.com/jvanos/marktetresearchandtrading.git"
+  git remote set-url origin "https://x-access-token:${GITHUB_TOKEN}@github.com/jvanos/marketresearchandtradingGouveia.git"
   git push origin main
 On push failure: rebase and retry.

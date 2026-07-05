@@ -79,6 +79,6 @@ STEP 6 — COMMIT AND PUSH (mandatory — tomorrow's Day P&L label depends on
 this, though nothing safety-critical does):
   git add memory/TRADE-LOG.md
   git commit -m "EOD snapshot $DATE"
-  git remote set-url origin "https://x-access-token:${GITHUB_TOKEN}@github.com/jvanos/marktetresearchandtrading.git"
+  git remote set-url origin "https://x-access-token:${GITHUB_TOKEN}@github.com/jvanos/marketresearchandtradingGouveia.git"
   git push origin main
 On push failure: rebase and retry.
