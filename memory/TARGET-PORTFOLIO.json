@@ -1,0 +1,47 @@
+{
+  "schema_version": 1,
+  "updated": "2026-07-05",
+  "notes": "Passive target-weight tracking portfolio (not a swing-trading watchlist). The bot's job is to build the account toward these weights and hold them, rebalancing quarterly via routines/rebalance.md. 'ramp': true means target_pct >= 2% -- buildout is paced at <=1% of equity/day by scripts/alpaca.sh (hardcoded, not env-configurable). 'ramp': false means the position is bought to full target in one order. If a stop-loss closes a position, its weight drops to zero and it re-enters the buildout queue from scratch (ramp symbols resume ramping, non-ramp symbols re-buy in full) -- this is not a special case. Crypto exposure is via spot-ETF proxies traded as normal equities, not native crypto orders: BTC and ETH are themselves the tickers for the Grayscale Bitcoin Mini Trust ETF and Grayscale Ethereum Mini Trust ETF (confirmed on NYSE Arca) -- they are NOT crypto orders, just equity tickers that happen to be named after the coin. GXRP is the Grayscale XRP Trust ETF (there is no ETF trading under the ticker 'XRP' itself). ADA has no live spot ETF yet -- Grayscale is converting its private Cardano Trust into a spot ETF under ticker GADA, targeting launch around Q4 2026 (SEC review window opens 2026-08-09, earliest realistic trading ~October 2026). Until GADA lists and trades, ADA's original 0.3% target is left as uninvested cash_target_pct rather than reassigned -- when GADA lists, add it here at 0.3% and reduce cash_target_pct back to 0. No options, ever. No real estate. No native crypto orders.",
+  "future_additions": [
+    {
+      "symbol": "GADA",
+      "planned_target_pct": 0.3,
+      "status": "not yet listed",
+      "note": "Grayscale Cardano Trust ETF conversion, targeting Q4 2026 launch. Do not add to positions[] until it is actually trading -- check before wiring in."
+    }
+  ],
+  "cash_target_pct": 0.3,
+  "positions": [
+    { "symbol": "VOO",   "target_pct": 23.8,   "ramp": true,  "note": "core US equity" },
+    { "symbol": "SCHD",  "target_pct": 19.9,   "ramp": true,  "note": "dividend equity" },
+    { "symbol": "BTC",   "target_pct": 11.1,   "ramp": true,  "note": "Grayscale Bitcoin Mini Trust ETF -- equity ticker, not a crypto order" },
+    { "symbol": "SGOV",  "target_pct": 9.3,    "ramp": true,  "note": "T-bill / cash-like" },
+    { "symbol": "QQQM",  "target_pct": 7.8,    "ramp": true },
+    { "symbol": "SCHG",  "target_pct": 7.4,    "ramp": true },
+    { "symbol": "SPMO",  "target_pct": 5.6,    "ramp": true },
+    { "symbol": "VTV",   "target_pct": 2.6,    "ramp": true },
+    { "symbol": "BRK.B", "target_pct": 2.6,    "ramp": true,  "note": "literal period in symbol -- see wrapper regex" },
+    { "symbol": "MSFT",  "target_pct": 1.7,    "ramp": false },
+    { "symbol": "VGT",   "target_pct": 1.3,    "ramp": false },
+    { "symbol": "ETH",   "target_pct": 1.2,    "ramp": false, "note": "Grayscale Ethereum Mini Trust ETF -- equity ticker, not a crypto order" },
+    { "symbol": "GOOGL", "target_pct": 1.1,    "ramp": false },
+    { "symbol": "VXUS",  "target_pct": 0.9,    "ramp": false },
+    { "symbol": "SOFI",  "target_pct": 0.6,    "ramp": false },
+    { "symbol": "PLTR",  "target_pct": 0.4,    "ramp": false },
+    { "symbol": "GXRP",  "target_pct": 0.3,    "ramp": false, "note": "Grayscale XRP Trust ETF (XRP proxy)" },
+    { "symbol": "APLD",  "target_pct": 0.2,    "ramp": false },
+    { "symbol": "IREN",  "target_pct": 0.2,    "ramp": false },
+    { "symbol": "NBIS",  "target_pct": 0.2,    "ramp": false },
+    { "symbol": "AMZN",  "target_pct": 0.2,    "ramp": false },
+    { "symbol": "META",  "target_pct": 0.2,    "ramp": false },
+    { "symbol": "IONQ",  "target_pct": 0.1222, "ramp": false, "basket": "speculative" },
+    { "symbol": "RGTI",  "target_pct": 0.1222, "ramp": false, "basket": "speculative" },
+    { "symbol": "QBTS",  "target_pct": 0.1222, "ramp": false, "basket": "speculative" },
+    { "symbol": "UNH",   "target_pct": 0.1222, "ramp": false, "basket": "speculative" },
+    { "symbol": "DRAM",  "target_pct": 0.1222, "ramp": false, "basket": "speculative" },
+    { "symbol": "WULF",  "target_pct": 0.1222, "ramp": false, "basket": "speculative" },
+    { "symbol": "CIFR",  "target_pct": 0.1222, "ramp": false, "basket": "speculative" },
+    { "symbol": "GLXY",  "target_pct": 0.1222, "ramp": false, "basket": "speculative" },
+    { "symbol": "RIOT",  "target_pct": 0.1222, "ramp": false, "basket": "speculative" }
+  ]
+}

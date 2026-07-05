@@ -1,6 +1,8 @@
 # Weekly Review
 
-Friday reviews appended here.
+Friday health checks appended here. This is no longer a win/loss grading
+exercise — there are no discrete discretionary trades to grade. It's a
+periodic check on drift, stop-loss activity, and buildout/ramp progress.
 Template for each entry:
 
 ## Week ending YYYY-MM-DD
@@ -11,34 +13,33 @@ Template for each entry:
 | Starting portfolio | $X |
 | Ending portfolio | $X |
 | Week return | ±$X (±X%) |
-| S&P 500 week | ±X% |
-| Bot vs S&P | ±X% |
-| Trades | N (W:X / L:Y / open:Z) |
-| Win rate | X% |
-| Best trade | SYM +X% |
-| Worst trade | SYM -X% |
-| Profit factor | X.XX |
+| Cash % | X% |
+| Symbols still ramping | N of 9 |
+| Est. days to full buildout | N |
 
-### Closed Trades
-| Ticker | Entry | Exit | P&L | Notes |
+### Drift Table
+| Ticker | Target % | Actual % | Gap |
+|---|---|---|---|
+(list only names with a meaningful gap — full drift lives in the daily
+RESEARCH-LOG entries)
 
-### Open Positions at Week End
-| Ticker | Entry | Close | Unrealized | Stop |
+### Stop-Loss Activity This Week
+| Ticker | Trigger | Realized P&L | Buyback Status |
+|---|---|---|---|
+(or "None")
 
-### What Worked
-- ...
-
-### What Didn't Work
-- ...
-
-### Key Lessons
+### What Worked / What Didn't
 - ...
 
 ### Adjustments for Next Week
 - ...
 
 ### Proposed Strategy Changes
-(Optional — see TRADING-STRATEGY.md "Enforcement note". Propose changes
-here for human review; do not edit TRADING-STRATEGY.md directly.)
+(Optional — see TRADING-STRATEGY.md "Enforcement Note". Propose changes
+here for human review; do not edit TRADING-STRATEGY.md or
+TARGET-PORTFOLIO.json's gate math directly. Adding/removing a target
+symbol in TARGET-PORTFOLIO.json's `positions` list is a normal editable
+action, not a hard-rule change — the gate math around it is what requires
+a human wrapper edit.)
 
-### Overall Grade: X
+### Drift Health: On-track / Needs Rebalance / Alert
