@@ -13,27 +13,49 @@ the commit-and-push step are all load-bearing.
 | Weekly review | `weekly-review.md` | `0 16 * * 5` |
 | Quarterly rebalance | `rebalance.md` | `0 16 1-7 1,4,7,10 1` (first Monday of Jan/Apr/Jul/Oct) |
 
-## One-time prerequisites (per the setup guide, Part 7)
+## One-time prerequisites
 
-1. Install the Claude GitHub App on this repo (or run `/web-setup` to sync
-   your `gh` CLI token).
-2. On each routine's environment: enable **"Allow unrestricted branch
-   pushes"**. Without this, `git push origin main` silently fails with a
-   proxy error.
-3. At [claude.ai/code/environments](https://claude.ai/code/environments),
-   open the environment your routines use and paste these into the
-   environment variable field in `.env` format (set once — all routines
-   on that environment inherit them automatically; never use a `.env` file
-   in the cloud):
+Routines are managed at [claude.ai/code/routines](https://claude.ai/code/routines)
+(there is no separate `/environments` page — "environment" is a
+sub-setting reached from inside a routine's own edit form). See the
+[official routines docs](https://code.claude.com/docs/en/routines) for
+the full reference; this section covers only what's specific to this repo.
+
+1. Make sure GitHub is connected to your claude.ai account (`/web-setup`
+   in the CLI, or connect it under claude.ai account settings) so routines
+   can clone and push to this repo. The Claude GitHub App install is only
+   needed for GitHub-*event* triggers — these six routines are all
+   schedule-triggered, so it's not required here.
+2. **Per routine**, after creating it: open it for editing (pencil icon),
+   go to the **Permissions** tab, and enable **"Allow unrestricted branch
+   pushes"** for this repository. Without this, Claude can only push to
+   auto-generated `claude/`-prefixed branches — `git push origin main` in
+   the routine's Step 8/9 gets silently redirected instead of landing on
+   `main`. This is the fix for a routine that appears to run successfully
+   but never actually updates `main`.
+3. Environment variables: in a routine's edit form, click the environment
+   selector (the cloud icon below the Instructions box — shows "Default"
+   or a named environment). Hover over the environment in the list and
+   click the settings icon that appears, which opens **"Update cloud
+   environment"** — add these there:
    `ALPACA_API_KEY`, `ALPACA_SECRET_KEY`, `ALPACA_ENDPOINT`,
    `ALPACA_DATA_ENDPOINT`, `MAX_DAILY_LOSS_PCT`, `PERPLEXITY_API_KEY`,
    `PERPLEXITY_MODEL`, `CLICKUP_API_KEY`, `CLICKUP_WORKSPACE_ID`,
    `CLICKUP_CHANNEL_ID`, `GITHUB_TOKEN`.
-   The "visible to anyone" warning refers to other members of a shared
-   team environment — for a personal account it's just you.
-4. Select branch `main`, set the cron + timezone, paste the routine's
-   prompt verbatim, save, then click **"Run now"** once to confirm it
-   works before trusting the schedule.
+   Use the *same* named environment across all six routines (not each
+   left on its own separate "Default") so they all inherit the same
+   variables from one place.
+4. Create each routine: name it, paste the prompt from the matching
+   `routines/*.md` file verbatim into Instructions, select this
+   repository, select the shared environment from step 3, and add a
+   Schedule trigger. The web form only offers hourly/daily/weekdays/weekly
+   presets — for the exact cron expressions in the table above (the
+   quarterly rebalance in particular doesn't fit any preset), pick the
+   closest preset when creating the routine, then run `/schedule update`
+   in the CLI afterward to set the precise cron expression.
+5. Click **"Run now"** once per routine and confirm in the run's session
+   that a commit actually landed on `main` (not a `claude/...` branch)
+   before trusting the schedule.
 
 ## The HALT kill switch
 
