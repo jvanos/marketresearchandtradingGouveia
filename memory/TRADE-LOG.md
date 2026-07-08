@@ -63,41 +63,28 @@ are unprotected (negligible $).
 | IONQ  | 0.1222% | no  | ~5.0% spread at open |
 | GLXY  | 0.1222% | no  | ~5.2% spread at open |
 
-## 2026-07-08 — Market-Open Buildout (Day 2)
+## 2026-07-08 — Midday Stop-Loss Scan
 
-Day-2 buildout. Ramp symbols took next 1% allowance ($495 each). VOO
-crossed 1 whole share this run → 10% trailing stop finally placed. Two
-zero-position retries (GLXY, UNH) filled after spreads normalized; UNH
-still <1 sh so no stop yet (0.14 sh @ ~$426). WULF re-bought to full
-target ($42 top-up) after yesterday's trailing-stop cut → new 10% stop
-set. Four names skipped again on still-wide top-of-book spreads: QQQM
-(3.5% — stale bid, thin 100-sh book), BRK.B (4.8%), META (7.5%), IONQ
-(7.4%). QQQM notable — normally liquid; skipped out of caution on the
-crossed book, retry midday/next open.
+Cut 3 losers at the -7% rule (market SELL, wrapper cancelled each symbol's
+trailing stop first). No winners at the +15%/+20% tighten tiers. Positions
+now zeroed re-enter the buildout queue at the NEXT market-open per the
+normal buildout/ramp rule — no rebuy this session (avoid whipsaw).
 
-### Trades
+### Exits (cut at -7% per rule)
+| Date | Ticker | Side | Shares | Exit | Realized P&L | Note |
+|---|---|---|---|---|---|---|
+| 2026-07-08 | APLD | sell | 3.056269113 | $30.27 | -$7.48 (-7.5%)  | cut at -7% per rule; spec/small buildout name, refill next open |
+| 2026-07-08 | QBTS | sell | 2.786952554 | $20.30 | -$4.51 (-7.4%)  | cut at -7% per rule; spec basket, refill next open |
+| 2026-07-08 | RIOT | sell | 2.749324932 | $20.61 | -$4.43 (-7.3%)  | cut at -7% per rule; spec basket, refill next open |
 
-| Date | Ticker | Side | Shares/Notional | Entry | Stop | Target Weight | Ramp? | Note |
-|---|---|---|---|---|---|---|---|---|
-| 2026-07-08 | VOO   | buy | $495     | 683.55 | 10% trail @~614.9 (hwm 683.19) | 23.8%   | yes | ramp top-up; crossed 1 sh, stop now set |
-| 2026-07-08 | SCHD  | buy | $495     | 32.34  | (existing 10% trail)            | 19.9%   | yes | ramp top-up |
-| 2026-07-08 | BTC   | buy | $495     | 27.41  | (existing 10% trail)            | 11.1%   | yes | ramp top-up; GBTC-mini equity ETF |
-| 2026-07-08 | SGOV  | buy | $495     | 100.49 | (existing 10% trail)            | 9.3%    | yes | ramp top-up |
-| 2026-07-08 | SCHG  | buy | $495     | 34.07  | (existing 10% trail)            | 7.4%    | yes | ramp top-up |
-| 2026-07-08 | SPMO  | buy | $495     | 150.10 | (existing 10% trail)            | 5.6%    | yes | ramp top-up |
-| 2026-07-08 | VTV   | buy | $495     | 218.40 | (existing 10% trail)            | 2.6%    | yes | ramp top-up |
-| 2026-07-08 | UNH   | buy | $61      | 425.73 | ⚠ NONE (<1 sh)                  | 0.1222% | no  | gap-fill (was zero — spread retry); stop blocked <1 sh |
-| 2026-07-08 | GLXY  | buy | $61      | 24.50  | 10% trail @~21.7 (hwm 24.1)     | 0.1222% | no  | gap-fill (was zero — spread retry) |
-| 2026-07-08 | WULF  | buy | $42      | 22.24  | 10% trail @~20.1 (hwm 22.345)   | 0.1222% | no  | gap-fill top-up to target; re-entered after stop cut |
-
-### Skipped this run (wide spread at open — retry next buildout)
-| Ticker | Target  | Ramp? | Reason |
-|---|---|---|---|
-| QQQM  | 7.8%    | yes | ~3.5% spread, stale bid on thin 100-sh book |
-| BRK.B | 2.6%    | yes | ~4.8% top-of-book spread (thin 40-sh book) |
-| META  | 0.2%    | no  | ~7.5% spread |
-| IONQ  | 0.1222% | no  | ~7.4% spread |
-
-Still-unstopped <1-sh positions carried: AMZN (0.41 sh), NBIS (0.50 sh),
-UNH (0.14 sh) — trailing stop needs >=1 whole share; monitor for -7%
-manual cut.
+### ⚠ Stop-integrity flag — sub-1-share positions cannot hold a GTC stop
+AMZN, NBIS, UNH each hold <1 whole share (0.41 / 0.50 / 0.14 sh). Alpaca
+rejects fractional GTC/trailing-stop orders (422 "fractional orders must be
+DAY orders"), so a 10% GTC trailing stop is PERMANENTLY impossible at these
+target weights (AMZN 0.2% @ ~$242/sh, NBIS 0.2% @ ~$207/sh, UNH 0.1222% @
+~$429/sh — none will ever reach 1 whole share). This is structural, not a
+"set tomorrow AM" retry. These 3 positions (~$262 total, ~0.5% of equity)
+are protected only by the daily -7% manual-cut scan (this routine), not by
+a resting stop. Needs a human decision: accept scan-only coverage, or drop
+these sub-1-share names from the target list. All other positions retain
+their whole-share 10% GTC trailing stops (verified live).
