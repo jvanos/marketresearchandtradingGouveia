@@ -122,3 +122,78 @@ allowance unused for all ramp symbols.
 
 ### Decision
 BUILDOUT — begin first buildout at today's market-open per the ramp rule.
+
+---
+
+## 2026-07-08 — Pre-market Drift Check
+
+### Account
+- Equity: $49,820.12 | Cash: $41,552.39 | Buying power: $188,943.14
+- Positions: 26 held | Open orders: 22 trailing stops
+- Equity -0.36% vs prior day (unrealized drawdown on spec basket); not
+  near daily-loss breaker.
+
+### Drift vs. Target
+| Ticker | Target % | Actual % | Gap | Ramp? | Today's Allowance Used |
+|---|---|---|---|---|---|
+| VOO   | 23.8   | 0.992 | 22.808 | yes | no |
+| SCHD  | 19.9   | 0.990 | 18.910 | yes | no |
+| BTC   | 11.1   | 0.979 | 10.121 | yes | no |
+| SGOV  | 9.3    | 1.004 | 8.296  | yes | no |
+| QQQM  | 7.8    | 0.976 | 6.824  | yes | no |
+| SCHG  | 7.4    | 0.981 | 6.419  | yes | no |
+| SPMO  | 5.6    | 0.981 | 4.619  | yes | no |
+| VTV   | 2.6    | 0.987 | 1.613  | yes | no |
+| BRK.B | 2.6    | 0     | 2.6    | yes | no (zero — spread skip) |
+| MSFT  | 1.7    | 1.662 | 0.038  | no  | — |
+| VGT   | 1.3    | 1.282 | 0.018  | no  | — |
+| ETH   | 1.2    | 1.184 | 0.016  | no  | — |
+| GOOGL | 1.1    | 1.084 | 0.016  | no  | — |
+| VXUS  | 0.9    | 0.886 | 0.014  | no  | — |
+| SOFI  | 0.6    | 0.559 | 0.041  | no  | — |
+| PLTR  | 0.4    | 0.388 | 0.012  | no  | — |
+| GXRP  | 0.3    | 0.301 | -0.001 | no  | — (at target) |
+| APLD  | 0.2    | 0.183 | 0.017  | no  | — |
+| IREN  | 0.2    | 0.187 | 0.013  | no  | — |
+| NBIS  | 0.2    | 0.185 | 0.015  | no  | — |
+| AMZN  | 0.2    | 0.197 | 0.003  | no  | — |
+| META  | 0.2    | 0     | 0.2    | no  | (zero — spread skip) |
+| IONQ  | 0.1222 | 0     | 0.1222 | no  | (zero — spread skip) |
+| RGTI  | 0.1222 | 0.114 | 0.008  | no  | — |
+| QBTS  | 0.1222 | 0.114 | 0.008  | no  | — |
+| UNH   | 0.1222 | 0     | 0.1222 | no  | (zero — spread skip) |
+| DRAM  | 0.1222 | 0.118 | 0.004  | no  | — |
+| WULF  | 0.1222 | 0.034 | 0.088  | no  | (stop triggered — remnant) |
+| CIFR  | 0.1222 | 0.116 | 0.006  | no  | — |
+| GLXY  | 0.1222 | 0     | 0.1222 | no  | (zero — spread skip) |
+| RIOT  | 0.1222 | 0.113 | 0.009  | no  | — |
+
+(ADA target held as 0.3% cash until GADA lists — see TARGET-PORTFOLIO.json.)
+
+### Gaps Needing Attention
+- **5 symbols at zero position** (BRK.B, META, UNH, IONQ, GLXY) — all
+  yesterday's wide-spread open-skips, NOT stop-loss closes. Retry at
+  market-open once spread has normalized; skip again if still >~2%.
+- **WULF stop triggered** — the whole-share slice (~2 sh) of yesterday's
+  buildout sold on its 10% trailing stop, leaving a 0.868-sh remnant
+  ($17.19, 0.034% vs 0.1222% target). Re-enters buildout per rule; top up
+  to full target at open.
+- **Stopless <1-share positions**: VOO (0.726 sh), NBIS (0.498 sh),
+  AMZN (0.405 sh), WULF (0.868 sh) — Alpaca trailing stops require ≥1
+  whole share, so none can be set yet. VOO will cross 1 sh with today's
+  ramp buy → set its stop then. NBIS/AMZN/WULF sit at/near full target
+  under 1 sh and cannot hold a trailing stop at current size (known
+  structural limit); monitor manually for the -7% manual-cut rule.
+
+### Planned Action for Market-Open
+- Ramp (buy up to 1% equity ≈ $498 each toward target): VOO, SCHD, BTC,
+  SGOV, QQQM, SCHG, SPMO, VTV.
+- BRK.B: retry ramp buy up to 1% (~$498) if spread normalized.
+- Missing non-ramp retries (full target, if spread OK): META $100,
+  UNH ~$61, IONQ ~$61, GLXY ~$61.
+- WULF: top up to full target (~$44 more to reach ~$61).
+- Set trailing stop on VOO once today's ramp buy pushes it ≥1 whole share.
+
+### Decision
+BUILDOUT — Day-2 buildout continues: ramp symbols take next 1% allowance,
+5 spread-skipped names retried, WULF re-bought to target.
