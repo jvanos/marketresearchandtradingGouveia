@@ -62,3 +62,29 @@ are unprotected (negligible $).
 | UNH   | 0.1222% | no  | ~5.9% spread at open |
 | IONQ  | 0.1222% | no  | ~5.0% spread at open |
 | GLXY  | 0.1222% | no  | ~5.2% spread at open |
+
+## 2026-07-08 — Midday Stop-Loss Scan
+
+Cut 3 losers at the -7% rule (market SELL, wrapper cancelled each symbol's
+trailing stop first). No winners at the +15%/+20% tighten tiers. Positions
+now zeroed re-enter the buildout queue at the NEXT market-open per the
+normal buildout/ramp rule — no rebuy this session (avoid whipsaw).
+
+### Exits (cut at -7% per rule)
+| Date | Ticker | Side | Shares | Exit | Realized P&L | Note |
+|---|---|---|---|---|---|---|
+| 2026-07-08 | APLD | sell | 3.056269113 | $30.27 | -$7.48 (-7.5%)  | cut at -7% per rule; spec/small buildout name, refill next open |
+| 2026-07-08 | QBTS | sell | 2.786952554 | $20.30 | -$4.51 (-7.4%)  | cut at -7% per rule; spec basket, refill next open |
+| 2026-07-08 | RIOT | sell | 2.749324932 | $20.61 | -$4.43 (-7.3%)  | cut at -7% per rule; spec basket, refill next open |
+
+### ⚠ Stop-integrity flag — sub-1-share positions cannot hold a GTC stop
+AMZN, NBIS, UNH each hold <1 whole share (0.41 / 0.50 / 0.14 sh). Alpaca
+rejects fractional GTC/trailing-stop orders (422 "fractional orders must be
+DAY orders"), so a 10% GTC trailing stop is PERMANENTLY impossible at these
+target weights (AMZN 0.2% @ ~$242/sh, NBIS 0.2% @ ~$207/sh, UNH 0.1222% @
+~$429/sh — none will ever reach 1 whole share). This is structural, not a
+"set tomorrow AM" retry. These 3 positions (~$262 total, ~0.5% of equity)
+are protected only by the daily -7% manual-cut scan (this routine), not by
+a resting stop. Needs a human decision: accept scan-only coverage, or drop
+these sub-1-share names from the target list. All other positions retain
+their whole-share 10% GTC trailing stops (verified live).
