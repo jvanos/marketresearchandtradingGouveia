@@ -62,3 +62,42 @@ are unprotected (negligible $).
 | UNH   | 0.1222% | no  | ~5.9% spread at open |
 | IONQ  | 0.1222% | no  | ~5.0% spread at open |
 | GLXY  | 0.1222% | no  | ~5.2% spread at open |
+
+## 2026-07-08 — Market-Open Buildout (Day 2)
+
+Day-2 buildout. Ramp symbols took next 1% allowance ($495 each). VOO
+crossed 1 whole share this run → 10% trailing stop finally placed. Two
+zero-position retries (GLXY, UNH) filled after spreads normalized; UNH
+still <1 sh so no stop yet (0.14 sh @ ~$426). WULF re-bought to full
+target ($42 top-up) after yesterday's trailing-stop cut → new 10% stop
+set. Four names skipped again on still-wide top-of-book spreads: QQQM
+(3.5% — stale bid, thin 100-sh book), BRK.B (4.8%), META (7.5%), IONQ
+(7.4%). QQQM notable — normally liquid; skipped out of caution on the
+crossed book, retry midday/next open.
+
+### Trades
+
+| Date | Ticker | Side | Shares/Notional | Entry | Stop | Target Weight | Ramp? | Note |
+|---|---|---|---|---|---|---|---|---|
+| 2026-07-08 | VOO   | buy | $495     | 683.55 | 10% trail @~614.9 (hwm 683.19) | 23.8%   | yes | ramp top-up; crossed 1 sh, stop now set |
+| 2026-07-08 | SCHD  | buy | $495     | 32.34  | (existing 10% trail)            | 19.9%   | yes | ramp top-up |
+| 2026-07-08 | BTC   | buy | $495     | 27.41  | (existing 10% trail)            | 11.1%   | yes | ramp top-up; GBTC-mini equity ETF |
+| 2026-07-08 | SGOV  | buy | $495     | 100.49 | (existing 10% trail)            | 9.3%    | yes | ramp top-up |
+| 2026-07-08 | SCHG  | buy | $495     | 34.07  | (existing 10% trail)            | 7.4%    | yes | ramp top-up |
+| 2026-07-08 | SPMO  | buy | $495     | 150.10 | (existing 10% trail)            | 5.6%    | yes | ramp top-up |
+| 2026-07-08 | VTV   | buy | $495     | 218.40 | (existing 10% trail)            | 2.6%    | yes | ramp top-up |
+| 2026-07-08 | UNH   | buy | $61      | 425.73 | ⚠ NONE (<1 sh)                  | 0.1222% | no  | gap-fill (was zero — spread retry); stop blocked <1 sh |
+| 2026-07-08 | GLXY  | buy | $61      | 24.50  | 10% trail @~21.7 (hwm 24.1)     | 0.1222% | no  | gap-fill (was zero — spread retry) |
+| 2026-07-08 | WULF  | buy | $42      | 22.24  | 10% trail @~20.1 (hwm 22.345)   | 0.1222% | no  | gap-fill top-up to target; re-entered after stop cut |
+
+### Skipped this run (wide spread at open — retry next buildout)
+| Ticker | Target  | Ramp? | Reason |
+|---|---|---|---|
+| QQQM  | 7.8%    | yes | ~3.5% spread, stale bid on thin 100-sh book |
+| BRK.B | 2.6%    | yes | ~4.8% top-of-book spread (thin 40-sh book) |
+| META  | 0.2%    | no  | ~7.5% spread |
+| IONQ  | 0.1222% | no  | ~7.4% spread |
+
+Still-unstopped <1-sh positions carried: AMZN (0.41 sh), NBIS (0.50 sh),
+UNH (0.14 sh) — trailing stop needs >=1 whole share; monitor for -7%
+manual cut.
