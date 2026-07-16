@@ -88,3 +88,36 @@ are protected only by the daily -7% manual-cut scan (this routine), not by
 a resting stop. Needs a human decision: accept scan-only coverage, or drop
 these sub-1-share names from the target list. All other positions retain
 their whole-share 10% GTC trailing stops (verified live).
+
+## 2026-07-16 — Market-Open Buildout
+
+Day-N buildout. Ramp symbols took next 1% allowance ($495 each; SPMO $99
+to close its small gap). Rebuilt zeroed/remnant non-ramp names to full
+target. BRK.B skipped — 3.0% top-of-book spread (ap 500 / bp 485, thin
+40-sh book), retry later. Trivial gaps (<$10: VXUS, NBIS, RGTI, QBTS,
+RIOT, GXRP, VTV) left as noise. Trailing stops placed for each position's
+net-new whole shares (added as fresh 10% GTC layers over existing
+partitioned coverage — no existing stop moved). VOO reached 5 whole shares,
+now fully covered by its 5 resting qty-1 stops.
+
+| Date | Ticker | Side | Shares/Notional | Entry | Stop | Target Weight | Ramp? | Note |
+|---|---|---|---|---|---|---|---|---|
+| 2026-07-16 | VOO   | buy | $495     | 691.24  | covered (5 sh, existing stops) | 23.8%   | yes | ramp top-up |
+| 2026-07-16 | SCHD  | buy | $495     | 32.84   | 10% trail (+15 sh)  | 19.9%   | yes | ramp top-up |
+| 2026-07-16 | BTC   | buy | $495     | 28.43   | 10% trail (+18 sh)  | 11.1%   | yes | ramp top-up |
+| 2026-07-16 | SGOV  | buy | $495     | 100.55  | 10% trail (+5 sh)   | 9.3%    | yes | ramp top-up |
+| 2026-07-16 | QQQM  | buy | $495     | 292.66  | 10% trail (+2 sh)   | 7.8%    | yes | ramp top-up |
+| 2026-07-16 | SCHG  | buy | $495     | 34.74   | 10% trail (+14 sh)  | 7.4%    | yes | ramp top-up |
+| 2026-07-16 | SPMO  | buy | $99      | 147.28  | 10% trail (+1 sh)   | 5.6%    | yes | ramp gap-close |
+| 2026-07-16 | SOFI  | buy | $297     | 17.81   | 10% trail @16.03    | 0.6%    | no  | rebuild (was remnant) |
+| 2026-07-16 | APLD  | buy | $99.90   | 27.78   | 10% trail @25.00    | 0.2%    | no  | gap-fill (was zero) |
+| 2026-07-16 | IREN  | buy | $79.80   | 37.05   | 10% trail @33.35    | 0.2%    | no  | top-up (was remnant) |
+| 2026-07-16 | IONQ  | buy | $61      | 36.47   | 10% trail @32.82    | 0.1222% | no  | gap-fill (was zero) |
+| 2026-07-16 | DRAM  | buy | $61      | 54.19   | 10% trail @48.77    | 0.1222% | no  | gap-fill (was zero) |
+| 2026-07-16 | WULF  | buy | $61      | 18.62   | 10% trail @16.76    | 0.1222% | no  | gap-fill (was zero) |
+| 2026-07-16 | CIFR  | buy | $60      | 19.08   | 10% trail @17.17    | 0.1222% | no  | rebuild (was remnant) |
+
+### Skipped this run
+| Ticker | Target | Reason |
+|---|---|---|
+| BRK.B | 2.6% | 3.0% top-of-book spread at open (thin 40-sh book) — retry later |
