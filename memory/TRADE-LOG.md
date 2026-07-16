@@ -121,3 +121,46 @@ now fully covered by its 5 resting qty-1 stops.
 | Ticker | Target | Reason |
 |---|---|---|
 | BRK.B | 2.6% | 3.0% top-of-book spread at open (thin 40-sh book) — retry later |
+
+## Jul 16 — EOD Snapshot (Day 8, Thursday)
+**Portfolio:** $49,854.14 | **Cash:** $21,381.33 (42.9%) | **Day P&L:** -$245.36 (-0.49%) | **Phase P&L:** -$145.86 (-0.29%)
+
+| Ticker | Shares | Entry | Close | Day Chg | Unrealized P&L | Stop |
+|---|---|---|---|---|---|---|
+| SCHD | 107.085 | 32.48 | 33.04 | +2.16% | +60.16 (+1.73%) | $29.74 |
+| BTC | 124.392 | 27.96 | 28.41 | -1.08% | +56.10 (+1.61%) | $26.09 |
+| SCHG | 100.980 | 34.44 | 34.63 | -0.77% | +19.08 (+0.55%) | $31.43 |
+| SGOV | 34.654 | 100.50 | 100.54 | +0.00% | +1.29 (+0.04%) | $90.50 |
+| VOO | 5.053 | 689.27 | 689.46 | -0.63% | +0.95 (+0.03%) | $625.00 |
+| SPMO | 19.000 | 151.31 | 145.28 | -3.15% | -114.48 (-3.98%) | $139.62 |
+| QQQM | 8.435 | 294.96 | 290.39 | -1.75% | -38.55 (-1.55%) | $269.14 |
+| VTV | 5.944 | 219.21 | 218.86 | +0.63% | -2.08 (-0.16%) | $198.63 |
+| MSFT | 2.197 | 393.50 | 401.42 | +1.46% | +17.41 (+2.01%) | 10% trail |
+| VGT | 5.693 | 114.17 | 114.24 | -1.94% | +0.38 (+0.06%) | $106.45 |
+| ETH | 35.650 | 16.83 | 17.85 | -2.57% | +36.36 (+6.06%) | 10% trail |
+| GOOGL | 1.550 | 368.43 | 355.28 | -4.22% | -20.37 (-3.57%) | 10% trail |
+| VXUS | 5.277 | 85.28 | 84.23 | -0.89% | -5.55 (-1.23%) | $76.93 |
+| SOFI | 16.833 | 17.82 | 17.37 | -2.80% | -7.56 (-2.52%) | $16.05 |
+| PLTR | 1.540 | 131.51 | 133.88 | +0.09% | +3.66 (+1.81%) | $122.23 |
+| GXRP | 6.912 | 21.70 | 21.26 | -1.12% | -3.05 (-2.03%) | 10% trail |
+| META | 0.172 | 581.77 | 664.50 | -2.47% | +14.21 (+14.22%) | scan-only* |
+| AMZN | 0.405 | 246.86 | 249.69 | -2.07% | +1.15 (+1.15%) | scan-only* |
+| APLD | 3.596 | 27.78 | 26.55 | -4.43% | -4.42 (-4.43%) | $25.17 |
+| UNH | 0.143 | 425.73 | 422.84 | +1.03% | -0.41 (-0.68%) | scan-only* |
+| IONQ | 1.673 | 36.47 | 35.33 | -3.12% | -1.90 (-3.12%) | $32.90 |
+| WULF | 3.276 | 18.62 | 17.94 | -3.65% | -2.23 (-3.65%) | $16.81 |
+| DRAM | 1.126 | 54.18 | 52.17 | -3.71% | -2.26 (-3.71%) | $49.09 |
+| CIFR | 3.199 | 19.10 | 17.64 | -11.22% | -4.66 (-7.62%) | $17.23 |
+| GLXY | 0.571 | 23.93 | 22.12 | -10.01% | -1.04 (-7.58%) | scan-only* |
+
+**Notes:** Quiet down day, -0.49%, driven by broad small pullback across
+crypto proxies (BTC/ETH day -1 to -2.6%) and spec/quantum names; SCHD and
+MSFT the only real green. Today's 14 market-open buildout buys ($3.3k
+deployed) settled — buildout continues on schedule, cash now 42.9%. Two
+names closed past the -7% manual-cut line and warrant a look at tomorrow's
+midday scan: CIFR -7.62% (day -11.2%, near its $17.23 stop) and GLXY -7.58%
+(sub-1-share, scan-only). *scan-only = sub-1-share position that cannot
+hold a GTC trailing stop (Alpaca rejects fractional stops); protected by
+the daily -7% manual scan only — pending the human decision flagged Jul 8.
+BRK.B still unheld (skipped at open on a 3% spread), retry next buildout.
+Trades today: 14. Trades this week (Mon-Thu): 14.
