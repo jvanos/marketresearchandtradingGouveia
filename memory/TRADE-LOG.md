@@ -197,3 +197,47 @@ hold a GTC trailing stop (Alpaca rejects fractional stops); protected by
 the daily -7% manual scan only — pending the human decision flagged Jul 8.
 BRK.B still unheld (skipped at open on a 3% spread), retry next buildout.
 Trades today: 14. Trades this week (Mon-Thu): 14.
+
+### Jul 17 — EOD Snapshot (Day 9, Friday)
+**Portfolio:** $49,626.12 | **Cash:** $18,787.99 (37.9%) | **Day P&L:** -$228.02 (-0.46%) | **Phase P&L:** -$373.88 (-0.75%)
+
+| Ticker | Shares | Entry | Close | Day Chg | Unrealized P&L | Stop |
+|---|---|---|---|---|---|---|
+| BTC | 142.222 | 27.93 | 28.38 | -0.11% | +64.40 (+1.62%) | 10% trail |
+| SCHD | 121.968 | 32.56 | 32.91 | -0.39% | +42.12 (+1.06%) | 10% trail |
+| SGOV | 39.566 | 100.51 | 100.58 | +0.03% | +2.68 (+0.07%) | 10% trail |
+| VOO | 5.778 | 688.26 | 683.17 | -1.01% | -29.40 (-0.74%) | 10% trail |
+| SCHG | 107.442 | 34.42 | 34.14 | -1.43% | -30.22 (-0.82%) | 10% trail |
+| QQQM | 10.173 | 293.12 | 285.99 | -1.61% | -72.55 (-2.43%) | 10% trail |
+| SPMO | 19.000 | 151.31 | 143.89 | -0.96% | -140.89 (-4.90%) | 10% trail |
+| VTV | 5.944 | 219.21 | 217.92 | -0.43% | -7.67 (-0.59%) | 10% trail |
+| MSFT | 2.197 | 393.50 | 393.35 | -1.93% | -0.33 (-0.04%) | 10% trail |
+| VGT | 5.693 | 114.17 | 113.10 | -1.00% | -6.11 (-0.94%) | 10% trail |
+| ETH | 35.650 | 16.83 | 17.55 | -1.68% | +25.67 (+4.28%) | 10% trail |
+| GOOGL | 1.550 | 368.43 | 345.93 | -2.41% | -34.86 (-6.11%) | 10% trail |
+| VXUS | 5.277 | 85.28 | 83.38 | -0.81% | -10.03 (-2.23%) | 10% trail |
+| SOFI | 16.833 | 17.82 | 17.28 | -0.23% | -9.08 (-3.03%) | 10% trail |
+| PLTR | 1.540 | 131.51 | 131.68 | -2.05% | +0.27 (+0.13%) | 10% trail |
+| GXRP | 6.912 | 21.70 | 21.14 | -0.56% | -3.88 (-2.59%) | 10% trail |
+| META | 0.172 | 581.77 | 644.79 | -2.97% | +10.82 (+10.83%) | scan-only |
+| IREN | 3.012 | 32.83 | 33.64 | -3.42% | +2.43 (+2.46%) | 10% trail |
+| AMZN | 0.405 | 246.86 | 246.90 | -1.20% | +0.02 (+0.02%) | scan-only |
+| QBTS | 3.736 | 16.17 | 16.67 | -1.51% | +1.85 (+3.06%) | 10% trail |
+| UNH | 0.143 | 425.73 | 426.09 | +0.64% | +0.05 (+0.09%) | scan-only |
+| IONQ | 1.673 | 36.47 | 34.73 | -1.05% | -2.90 (-4.76%) | 10% trail |
+| DRAM | 0.126 | 54.18 | 52.24 | -0.19% | -0.24 (-3.57%) | scan-only |
+| WULF | 0.276 | 18.62 | 18.20 | +1.22% | -0.12 (-2.26%) | scan-only |
+
+**Notes:** Quiet down day, -0.46%, broad shallow pullback — nearly every
+name red on the day but all small; crypto proxies held up (BTC -0.11%,
+ETH -1.68%). Today's 8 market-open buildout buys (~$2.8k: VOO/SCHD/BTC/
+SGOV/QQQM/SCHG ramp top-ups plus IREN/QBTS gap-fills of names liquidated
+07-16) settled; cash down to 37.9%, buildout on schedule. The -7% names
+flagged Jul 16 were cut per strategy — CIFR, GLXY and APLD fully exited,
+WULF trimmed to a 0.276-sh remnant. Watch item for Monday midday: GOOGL
+now -6.11%, closing on the -7% manual-cut line. Stop coverage clean — all
+whole-share positions carry live 10% GTC trailing stops (verified against
+full 58-order open book, not the truncated 50 the wrapper returns); the
+five sub-1-share remnants (AMZN/META/UNH/DRAM/WULF) are scan-only, can't
+hold fractional GTC stops. BRK.B still unheld (retry next buildout).
+Trades today: 8 buys. Trades this week (Mon-Fri): 22.
