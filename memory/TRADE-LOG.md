@@ -122,6 +122,39 @@ now fully covered by its 5 resting qty-1 stops.
 |---|---|---|
 | BRK.B | 2.6% | 3.0% top-of-book spread at open (thin 40-sh book) — retry later |
 
+## 2026-07-17 — Market-Open Buildout
+
+Day-N buildout. Ramp symbols took next 1% allowance ($494 each; SCHG $220
+gap-capped). Rebuilt two liquidated non-ramp names (IREN, QBTS) to full
+target — the other three (NBIS, RGTI, RIOT) and the GLXY remnant skipped on
+wide open spreads. BRK.B skipped again (3.0% spread, ap 500 / bp 485).
+Trailing stops placed for each position's net-new whole shares (fresh 10%
+GTC layers over existing partitioned coverage — no existing stop moved).
+VOO already fully covered by its resting qty-1 stops. Note: 07-16 10%
+trailing stops on WULF/APLD/CIFR (created 07-16) triggered at today's open
+on a down morning — legitimate stop fills, NOT a repeat of the 07-16
+after-hours liquidation anomaly.
+
+| Date | Ticker | Side | Shares/Notional | Entry | Stop | Target Weight | Ramp? | Note |
+|---|---|---|---|---|---|---|---|---|
+| 2026-07-17 | VOO   | buy | $494 / 0.7252 sh   | 681.19  | covered (5 sh, existing stops) | 23.8%   | yes | ramp top-up |
+| 2026-07-17 | SCHD  | buy | $494 / 14.884 sh   | 33.19   | 10% trail (+14 sh)  | 19.9%   | yes | ramp top-up |
+| 2026-07-17 | BTC   | buy | $494 / 17.830 sh   | 27.705  | 10% trail (+18 sh)  | 11.1%   | yes | ramp top-up |
+| 2026-07-17 | SGOV  | buy | $494 / 4.911 sh    | 100.58  | 10% trail (+5 sh)   | 9.3%    | yes | ramp top-up |
+| 2026-07-17 | QQQM  | buy | $494 / 1.738 sh    | 284.19  | 10% trail (+2 sh)   | 7.8%    | yes | ramp top-up |
+| 2026-07-17 | SCHG  | buy | $220 / 6.462 sh    | 34.044  | 10% trail (+7 sh)   | 7.4%    | yes | ramp gap-close |
+| 2026-07-17 | IREN  | buy | $98.89 / 3.012 sh  | 32.833  | 10% trail (+3 sh)   | 0.2%    | no  | gap-fill (was zero, liquidated 07-16) |
+| 2026-07-17 | QBTS  | buy | $60.42 / 3.736 sh  | 16.17   | 10% trail (+3 sh)   | 0.1222% | no  | gap-fill (was zero, liquidated 07-16) |
+
+### Skipped this run (wide spread at open — retry next buildout)
+| Ticker | Target | Reason |
+|---|---|---|
+| BRK.B | 2.6%    | 3.0% spread (ap 500 / bp 485, thin 40-sh book) |
+| NBIS  | 0.2%    | 12.4% spread (ap 187.83 / bp 164.50) — was zero, rebuy deferred |
+| RGTI  | 0.1222% | 13.3% spread (ap 13.53 / bp 11.73) — was zero, rebuy deferred |
+| RIOT  | 0.1222% | 12.6% spread (ap 17.72 / bp 15.48) — was zero, rebuy deferred |
+| GLXY  | 0.1222% | 5.3% spread (ap 21.41 / bp 20.28) — remnant top-up deferred |
+
 ## Jul 16 — EOD Snapshot (Day 8, Thursday)
 **Portfolio:** $49,854.14 | **Cash:** $21,381.33 (42.9%) | **Day P&L:** -$245.36 (-0.49%) | **Phase P&L:** -$145.86 (-0.29%)
 
