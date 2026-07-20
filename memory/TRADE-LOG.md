@@ -241,3 +241,55 @@ full 58-order open book, not the truncated 50 the wrapper returns); the
 five sub-1-share remnants (AMZN/META/UNH/DRAM/WULF) are scan-only, can't
 hold fractional GTC stops. BRK.B still unheld (retry next buildout).
 Trades today: 8 buys. Trades this week (Mon-Fri): 22.
+
+### Jul 20 — EOD Snapshot (Day 10, Monday)
+**Portfolio:** $49,739.28 | **Cash:** $15,843.02 (31.9%) | **Day P&L:** +$113.16 (+0.23%) | **Phase P&L:** -$260.72 (-0.52%)
+
+| Ticker | Shares | Entry | Close | Day Chg | Unrealized P&L | Stop |
+|---|---|---|---|---|---|---|
+| BTC | 159.654 | 28.00 | 28.80 | +1.48% | +127.77 (+2.86%) | 10% trail |
+| SCHD | 137.159 | 32.59 | 32.75 | -0.49% | +21.69 (+0.48%) | 10% trail |
+| SGOV | 44.521 | 100.52 | 100.59 | +0.01% | +3.07 (+0.07%) | 10% trail |
+| VOO | 6.503 | 688.19 | 682.21 | -0.14% | -38.90 (-0.87%) | 10% trail |
+| SCHG | 107.442 | 34.42 | 34.15 | -0.09% | -28.71 (-0.78%) | 10% trail |
+| QQQM | 11.891 | 292.67 | 286.55 | +0.08% | -72.82 (-2.09%) | 10% trail |
+| SPMO | 19.000 | 151.31 | 144.52 | +0.44% | -128.92 (-4.48%) | 10% trail |
+| VTV | 5.944 | 219.21 | 216.95 | -0.45% | -13.43 (-1.03%) | 10% trail |
+| MSFT | 2.197 | 393.50 | 401.95 | +2.06% | +18.57 (+2.15%) | 10% trail |
+| ETH | 35.650 | 16.83 | 18.09 | +3.08% | +44.92 (+7.49%) | 10% trail |
+| VGT | 5.693 | 114.17 | 113.23 | +0.11% | -5.37 (-0.83%) | 10% trail |
+| GOOGL | 1.550 | 368.43 | 352.39 | +1.62% | -24.85 (-4.35%) | 10% trail |
+| VXUS | 5.277 | 85.28 | 83.07 | -0.36% | -11.67 (-2.59%) | 10% trail |
+| SOFI | 16.833 | 17.82 | 17.01 | -1.56% | -13.62 (-4.54%) | 10% trail |
+| PLTR | 1.540 | 131.51 | 134.20 | +1.38% | +4.15 (+2.05%) | 10% trail |
+| GXRP | 6.912 | 21.70 | 21.65 | +2.41% | -0.36 (-0.24%) | 10% trail |
+| IREN | 3.012 | 32.83 | 40.36 | +20.04% | +22.66 (+22.92%) | 10% trail |
+| META | 0.172 | 581.77 | 645.85 | -0.03% | +11.00 (+11.02%) | scan-only |
+| AMZN | 0.405 | 246.86 | 249.78 | +1.03% | +1.19 (+1.19%) | scan-only |
+| APLD | 3.537 | 28.18 | 27.93 | -0.89% | -0.88 (-0.89%) | 10% trail |
+| GLXY | 2.671 | 22.80 | 23.72 | +4.04% | +2.46 (+4.04%) | 10% trail |
+| CIFR | 3.084 | 19.75 | 20.50 | +3.80% | +2.31 (+3.80%) | 10% trail |
+| RIOT | 3.167 | 19.23 | 19.86 | +3.28% | +2.00 (+3.28%) | 10% trail |
+| QBTS | 3.736 | 16.17 | 16.72 | -0.06% | +2.05 (+3.40%) | 10% trail |
+| UNH | 0.143 | 425.73 | 421.55 | -1.07% | -0.60 (-0.98%) | scan-only |
+| RGTI | 4.182 | 14.56 | 14.26 | -2.07% | -1.26 (-2.07%) | 10% trail |
+| DRAM | 1.115 | 54.55 | 53.11 | +0.74% | -1.61 (-2.64%) | 10% trail |
+| WULF | 3.114 | 19.50 | 18.89 | +4.01% | -1.92 (-3.15%) | 10% trail |
+| IONQ | 1.673 | 36.47 | 34.24 | -1.55% | -3.72 (-6.10%) | 10% trail |
+
+**Notes:** Quiet up day, +0.23%, first green session in a week — winners
+led by IREN (+20% day, now +22.9% unrealized and the standout), crypto
+proxies (BTC +1.5%, ETH +3.1%, GXRP +2.4%) and MSFT (+2.1%); most of the
+book flat-to-slightly-green. Today's 12 market-open buildout buys ($2,945
+deployed) settled: core-ramp top-ups (VOO/QQQM/SGOV/BTC/SCHD ~$500 each)
+plus buildout re-entries of the seven names cut on the -7% line last week
+(APLD/RIOT/GLXY/CIFR/RGTI/WULF/DRAM re-entered the queue under the same
+buildout rule and are back as small full positions carrying fresh 10% GTC
+trailing stops). Cash down to 31.9%, buildout on schedule. Watch item for
+tomorrow's midday scan: IONQ -6.10%, closest to the -7% manual-cut line;
+GOOGL recovered to -4.35% (was -6.11% Fri). Stop coverage looks clean —
+new multi-share re-entries all show live trailing stops; only the three
+sub-1-share remnants (META/AMZN/UNH) remain scan-only. CIFR showed two
+open trailing-stop orders in the book — verify no stale duplicate at next
+scan. BRK.B still unheld, retry next buildout. Trades today: 12 buys.
+Trades this week (Mon): 12.
