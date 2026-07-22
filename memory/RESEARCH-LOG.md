@@ -285,3 +285,86 @@ BUILDOUT — Core ramp continues (VOO/SCHD/QQQM/SGOV/BTC still deeply
 underweight), 6 zero-position names rebuy per buildout rule. One anomaly
 flagged: unexplained after-hours liquidation of 5 hold-target positions on
 07-16 — surfaced for human review.
+
+---
+
+## 2026-07-22 — Pre-market Drift Check
+
+### Account
+- Equity: $50,063.84
+- Cash: $13,842.63
+- Buying power: $156,600.51
+
+### Drift vs. Target
+| Ticker | Target % | Actual % | Gap | Ramp? | Today's Allowance Used |
+|---|---|---|---|---|---|
+| VOO   | 23.8   | 9.92  | 13.89  | yes | none (0 fills) |
+| SCHD  | 19.9   | 10.02 | 9.88   | yes | none (0 fills) |
+| BTC   | 11.1   | 10.30 | 0.80   | yes | none (0 fills) |
+| SGOV  | 9.3    | 9.29  | 0.01   | yes | — (at target) |
+| QQQM  | 7.8    | 7.80  | 0.00   | yes | — (at target) |
+| SCHG  | 7.4    | 7.35  | 0.05   | yes | — (at target) |
+| SPMO  | 5.6    | 5.64  | -0.04  | yes | — (at target) |
+| VTV   | 2.6    | 2.60  | 0.00   | yes | — (at target) |
+| BRK.B | 2.6    | 0     | 2.60   | yes | — (ZERO — still unheld, wide-spread skip) |
+| MSFT  | 1.7    | 1.75  | -0.05  | no  | — (at target) |
+| VGT   | 1.3    | 1.31  | -0.01  | no  | — (at target) |
+| ETH   | 1.2    | 1.31  | -0.11  | no  | — (at target) |
+| GOOGL | 1.1    | 1.08  | 0.02   | no  | — (at target) |
+| VXUS  | 0.9    | 0.89  | 0.01   | no  | — (at target) |
+| SOFI  | 0.6    | 0.59  | 0.01   | no  | — (at target) |
+| PLTR  | 0.4    | 0.41  | -0.01  | no  | — (at target) |
+| GXRP  | 0.3    | 0.31  | -0.01  | no  | — (at target) |
+| APLD  | 0.2    | 0.21  | -0.01  | no  | — (at target) |
+| IREN  | 0.2    | 0.001 | 0.199  | no  | — (REMNANT — top up to full target) |
+| NBIS  | 0.2    | 0     | 0.200  | no  | — (ZERO — buyback to full target) |
+| AMZN  | 0.2    | 0.20  | 0.00   | no  | — (at target) |
+| META  | 0.2    | 0.22  | -0.02  | no  | — (at target) |
+| IONQ  | 0.1222 | 0.119 | 0.003  | no  | — (at target) |
+| RGTI  | 0.1222 | 0.127 | -0.005 | no  | — (at target — recovered) |
+| QBTS  | 0.1222 | 0.132 | -0.010 | no  | — (at target — recovered) |
+| UNH   | 0.1222 | 0.125 | -0.003 | no  | — (at target) |
+| DRAM  | 0.1222 | 0.127 | -0.005 | no  | — (at target) |
+| WULF  | 0.1222 | 0.123 | -0.001 | no  | — (at target) |
+| CIFR  | 0.1222 | 0.139 | -0.017 | no  | — (at target) |
+| GLXY  | 0.1222 | 0.133 | -0.011 | no  | — (at target — remnant filled) |
+| RIOT  | 0.1222 | 0.135 | -0.013 | no  | — (at target — recovered) |
+
+(ADA target held as 0.3% cash until GADA lists — see TARGET-PORTFOLIO.json.)
+
+### Gaps Needing Attention
+- **Core ramp still the whole story.** VOO (gap 13.9%) and SCHD (gap
+  9.9%) remain deeply underweight — buildout continues at the 1%/day
+  ramp cap. BTC nearly there (gap 0.8%). SGOV/QQQM/SCHG/SPMO/VTV all
+  within tolerance now.
+- **BRK.B still at zero** (2.6% gap) — ongoing wide-spread open-skip, not
+  a stop. Retry ramp buy at open only if spread has normalized (<~2%);
+  skip again otherwise.
+- **NBIS at zero** (0.2% gap) and **IREN remnant** ($0.47, 0.001%) — the
+  last two unrecovered names from the 07-16 liquidation. Buy back to full
+  target (both non-ramp, buy in full). RGTI/QBTS/RIOT/GLXY from that same
+  event are now back at target — no recurrence of the after-hours
+  liquidation since.
+- **Duplicate trailing-stop accumulation persists** — BTC/QQQM/SCHD/SGOV
+  6 stops each, VOO 5, SCHG 5, SPMO 4, CIFR 2. Order book is at the
+  50-order return cap, so visibility is truncated. `qty_available` on
+  core positions is near-zero (VOO 0.23, SCHD 0.45, SGOV 0.23) because
+  stacked stops reserve almost all shares. Not pre-market-actionable, but
+  midday scan should audit total stop qty vs holdings and cancel stale
+  duplicates before it blocks a rebalance sell.
+
+### Planned Action for Market-Open
+- Ramp (buy up to 1% equity ≈ $500 each toward target, capped by gap):
+  VOO $500, SCHD $500, BTC $500. SGOV/QQQM/SCHG/SPMO/VTV within tolerance
+  — skip.
+- BRK.B: retry ramp buy up to 1% (~$500) only if spread normalized.
+- Buyback/top-up liquidation leftovers to full target (non-ramp, <2%,
+  buy in full): NBIS ~$100, IREN ~$100.
+- Refresh trailing stops on positions crossing ≥1 whole share after
+  today's buys (market-open routine); midday scan to de-duplicate stacked
+  stops on core names.
+
+### Decision
+BUILDOUT — Core ramp continues (VOO/SCHD still ~14%/10% underweight);
+NBIS + IREN buy back per buildout rule; BRK.B conditional on spread. No
+new anomalies — the 07-16 after-hours liquidation has not recurred.
