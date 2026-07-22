@@ -347,3 +347,60 @@ audit total stop qty vs holdings and cancel stale duplicates. IONQ recovered
 to -2.05% (was -6.10%). BRK.B still unheld, retry next buildout.
 Trades today: 6 (1 stop-triggered sell IREN, 5 buildout buys).
 Trades this week (Mon-Tue): 18.
+
+### Jul 22 — EOD Snapshot (Day 12, Wednesday)
+**Portfolio:** $50,003.91 | **Cash:** $12,342.67 (24.7%) | **Day P&L:** -$140.32 (-0.28%) | **Phase P&L:** +$3.91 (+0.01%)
+
+| Ticker | Shares | Entry | Close | Day Chg | Unrealized P&L | Stop |
+|---|---|---|---|---|---|---|
+| BTC | 190.407 | 28.20 | 29.14 | -0.82% | +178.22 (+3.32%) | 10% trail |
+| SCHD | 167.591 | 32.64 | 32.88 | +0.18% | +40.13 (+0.73%) | 10% trail |
+| VOO | 7.960 | 687.82 | 687.32 | -0.08% | -3.98 (-0.07%) | 10% trail |
+| SGOV | 46.230 | 100.52 | 100.61 | +0.01% | +3.87 (+0.08%) | 10% trail |
+| QQQM | 13.439 | 292.45 | 290.56 | -0.46% | -25.40 (-0.65%) | 10% trail |
+| SCHG | 107.442 | 34.42 | 34.10 | -0.50% | -34.08 (-0.92%) | 10% trail |
+| SPMO | 19.000 | 151.31 | 149.76 | +0.04% | -29.36 (-1.02%) | 10% trail |
+| VTV | 5.944 | 219.21 | 219.34 | +0.33% | +0.77 (+0.06%) | trail (unverif) |
+| MSFT | 2.197 | 393.50 | 390.00 | -1.95% | -7.69 (-0.89%) | trail (unverif) |
+| VGT | 5.693 | 114.17 | 115.86 | -0.13% | +9.60 (+1.48%) | trail (unverif) |
+| ETH | 35.650 | 16.83 | 18.33 | +0.00% | +53.48 (+8.91%) | trail (unverif) |
+| GOOGL | 1.550 | 368.43 | 345.09 | -0.59% | -36.17 (-6.33%) | trail (unverif) |
+| VXUS | 5.277 | 85.28 | 84.44 | -0.02% | -4.46 (-0.99%) | trail (unverif) |
+| SOFI | 16.833 | 17.82 | 17.08 | -3.17% | -12.45 (-4.15%) | 10% trail |
+| PLTR | 1.540 | 131.51 | 124.88 | -5.87% | -10.20 (-5.04%) | 10% trail |
+| GXRP | 6.912 | 21.70 | 22.02 | -1.65% | +2.20 (+1.47%) | trail (unverif) |
+| META | 0.172 | 581.77 | 625.50 | -2.84% | +7.51 (+7.52%) | scan-only |
+| APLD | 3.537 | 28.18 | 29.94 | -0.37% | +6.22 (+6.25%) | 10% trail |
+| AMZN | 0.405 | 246.86 | 245.05 | -1.01% | -0.73 (-0.73%) | scan-only |
+| CIFR | 3.084 | 19.75 | 24.32 | +6.25% | +14.09 (+23.14%) | 10% trail |
+| RIOT | 3.167 | 19.23 | 23.28 | +8.32% | +12.82 (+21.05%) | 10% trail |
+| GLXY | 2.671 | 22.80 | 24.56 | -3.35% | +4.70 (+7.72%) | 10% trail |
+| QBTS | 3.736 | 16.17 | 17.44 | -2.02% | +4.74 (+7.85%) | 10% trail |
+| DRAM | 1.115 | 54.55 | 57.75 | -1.87% | +3.57 (+5.87%) | 10% trail |
+| RGTI | 4.182 | 14.56 | 15.20 | -0.52% | +2.67 (+4.39%) | 10% trail |
+| UNH | 0.143 | 425.73 | 430.43 | -1.36% | +0.67 (+1.10%) | scan-only |
+| WULF | 3.114 | 19.50 | 19.42 | -2.27% | -0.26 (-0.43%) | 10% trail |
+| IONQ | 1.673 | 36.47 | 34.74 | -2.17% | -2.89 (-4.73%) | 10% trail |
+| IREN | 2.399 | 41.85 | 41.34 | +0.12% | -1.21 (-1.21%) | 10% trail |
+
+**Notes:** Quiet down day, -$140.32 (-0.28%), giving back part of the two-day
+bounce; phase P&L still barely green (+$3.91, +0.01%). No trades today — 0
+buildout buys ran, cash unchanged at 24.7%. Miner/quantum re-entries held
+gains (CIFR +23.1%, RIOT +21.1%, QBTS/GLXY/APLD/DRAM/RGTI all +4-8%); ETH
+still +8.9%, BTC +3.3%. Drags: MSFT -2.0% day, SOFI -3.2%, PLTR -5.9% day
+(now -5.0% unrealized, next-closest to the -7% cut line after GOOGL). TWO
+ACTION ITEMS for tomorrow's midday scan: (1) GOOGL sits at -6.33% unrealized,
+right at the -7% manual-cut threshold — cut on any further weakness; still
+the single weakest name. (2) STOP-COVERAGE VISIBILITY: duplicate
+trailing-stop stacking (flagged Jul 20 & 21, unaddressed) has now SATURATED
+the full 50-order API page — 39 of 50 open orders are duplicates on 8 core
+symbols (BTC 7, SCHD 7, SGOV 6, QQQM 5, VOO 5, SCHG 4, SPMO 3, CIFR 2). This
+pushes the stops for 7 positions (VTV, MSFT, VGT, ETH, GOOGL, VXUS, GXRP,
+~$3.7k value) beyond the visible page, so their coverage is UNVERIFIABLE from
+the order list — marked "trail (unverif)" above. They almost certainly still
+carry live stops (all showed 10% trail yesterday), but the summary cannot
+confirm it until duplicates are cancelled. Midday scan MUST cancel stale
+duplicate stops (keep one per symbol, honoring never-move-down) so coverage
+is auditable again. True scan-only remnants unchanged (META/AMZN/UNH,
+sub-1-share). BRK.B still unheld, retry next buildout.
+Trades today: none. Trades this week (Mon-Wed): 18.
