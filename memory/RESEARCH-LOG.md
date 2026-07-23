@@ -368,3 +368,94 @@ flagged: unexplained after-hours liquidation of 5 hold-target positions on
 BUILDOUT — Core ramp continues (VOO/SCHD still ~14%/10% underweight);
 NBIS + IREN buy back per buildout rule; BRK.B conditional on spread. No
 new anomalies — the 07-16 after-hours liquidation has not recurred.
+
+---
+
+## 2026-07-23 — Pre-market Drift Check
+
+### Account
+- Equity: $49,979.82
+- Cash: $12,342.67 (24.7%)
+- Buying power: $12,342.67
+
+### Drift vs. Target
+| Ticker | Target % | Actual % | Gap | Ramp? | Today's Allowance Used |
+|---|---|---|---|---|---|
+| VOO   | 23.8   | 10.92 | 12.89  | yes | no (0/1%) |
+| SCHD  | 19.9   | 11.05 | 8.85   | yes | no (0/1%) |
+| BTC   | 11.1   | 11.08 | 0.03   | yes | — (at target) |
+| SGOV  | 9.3    | 9.31  | -0.01  | yes | — (at target) |
+| QQQM  | 7.8    | 7.79  | 0.01   | yes | — (at target) |
+| SCHG  | 7.4    | 7.29  | 0.11   | yes | — (within tol) |
+| SPMO  | 5.6    | 5.73  | -0.13  | yes | — (at target) |
+| VTV   | 2.6    | 2.61  | -0.01  | yes | — (at target) |
+| BRK.B | 2.6    | 0     | 2.60   | yes | no — UNHELD (wide-spread skip) |
+| MSFT  | 1.7    | 1.71  | -0.01  | no  | — (at target) |
+| VGT   | 1.3    | 1.32  | -0.02  | no  | — (at target) |
+| ETH   | 1.2    | 1.31  | -0.11  | no  | — (at target) |
+| GOOGL | 1.1    | 1.01  | 0.09   | no  | — see Gaps (stop firing at open) |
+| VXUS  | 0.9    | 0.89  | 0.01   | no  | — (at target) |
+| SOFI  | 0.6    | 0.58  | 0.02   | no  | — (at target) |
+| PLTR  | 0.4    | 0.39  | 0.01   | no  | — (at target) |
+| GXRP  | 0.3    | 0.31  | -0.01  | no  | — (at target) |
+| APLD  | 0.2    | 0.22  | -0.02  | no  | — (at target) |
+| IREN  | 0.2    | 0.21  | -0.01  | no  | — (at target — remnant recovered) |
+| NBIS  | 0.2    | 0     | 0.20   | no  | — (ZERO — buyback to full target) |
+| AMZN  | 0.2    | 0.20  | 0.00   | no  | — (at target) |
+| META  | 0.2    | 0.21  | -0.01  | no  | — (at target) |
+| IONQ  | 0.1222 | 0.118 | 0.004  | no  | — (at target) |
+| RGTI  | 0.1222 | 0.128 | -0.006 | no  | — (at target) |
+| QBTS  | 0.1222 | 0.131 | -0.009 | no  | — (at target) |
+| UNH   | 0.1222 | 0.123 | -0.001 | no  | — (at target) |
+| DRAM  | 0.1222 | 0.133 | -0.011 | no  | — (at target) |
+| WULF  | 0.1222 | 0.124 | -0.002 | no  | — (at target) |
+| CIFR  | 0.1222 | 0.153 | -0.031 | no  | — (winner +25.8%, drift ok) |
+| GLXY  | 0.1222 | 0.133 | -0.011 | no  | — (at target) |
+| RIOT  | 0.1222 | 0.152 | -0.030 | no  | — (winner +24.8%, drift ok) |
+
+(ADA target held as 0.3% cash until GADA lists — see TARGET-PORTFOLIO.json.)
+
+### Gaps Needing Attention
+- **Core ramp still the whole story.** VOO (gap 12.9%) and SCHD (gap
+  8.85%) remain deeply underweight — buildout continues at the 1%/day
+  ramp cap. BTC now at target (gap 0.03%). SGOV/QQQM/SCHG/SPMO/VTV all
+  within tolerance.
+- **GOOGL gapped through its stop overnight** — now -11.24% unrealized
+  (was -6.33% Jul 22). Its 10% trailing stop is LIVE (verified directly),
+  but stops only fire in-hours, so it did not trigger overnight. Expect
+  the stop to sell GOOGL near the 9:30 open (gap slippage past the
+  intended -10%); position then re-enters the buildout queue at zero.
+  Auto-handled — no manual pre-market action.
+- **Stop coverage confirmed for page-hidden names.** Yesterday's "unverif"
+  stops verified live via per-symbol query: GOOGL, VTV(x2), MSFT, VGT,
+  ETH, VXUS, GXRP all carry a 10% trailing stop. AMZN/UNH (and META,
+  sub-1-share remnants) remain scan-only — no stop, as expected.
+- **BRK.B still at zero** (2.6% gap) — ongoing wide-spread open-skip, not
+  a stop. Retry ramp buy at open only if spread normalized (<~2%).
+- **NBIS at zero** (0.2% gap) — last unrecovered name from the 07-16
+  liquidation. Buy back to full target (non-ramp, buy in full). IREN now
+  recovered to target — no longer a remnant.
+- **Duplicate trailing-stop accumulation persists** — 50-order page still
+  saturated (BTC 7, SCHD 7, SGOV 6, QQQM 5, VOO 5, SCHG 4, SPMO 3, CIFR
+  2 = 39 dupes). VTV also now double-stopped. `qty_available` near-zero on
+  cores (SPMO 0.00, SGOV 0.23, SCHD 0.59, VOO 0.96). Not pre-market
+  actionable; midday scan must de-duplicate (keep one per symbol,
+  honoring never-move-down) before it blocks a rebalance sell.
+
+### Planned Action for Market-Open
+- Ramp (buy up to 1% equity ≈ $500 each toward target, capped by gap):
+  VOO $500, SCHD $500. BTC/SGOV/QQQM/SCHG/SPMO/VTV within tolerance —
+  skip.
+- BRK.B: retry ramp buy up to 1% (~$500) only if spread normalized.
+- NBIS: buyback to full target (non-ramp, <2%, buy in full) ~$100.
+- GOOGL: let the live 10% stop execute at open; re-queue for buildout
+  once flat. No manual sell needed pre-market.
+- Refresh/de-dupe stops: market-open sets stops on names crossing ≥1
+  whole share after buys; midday scan de-duplicates stacked stops on
+  cores.
+
+### Decision
+BUILDOUT — Core ramp continues (VOO/SCHD still ~13%/9% underweight); NBIS
+buy back per buildout rule; BRK.B conditional on spread. One risk event:
+GOOGL gapped through its live stop to -11.2% and will auto-sell at open —
+covered, not an anomaly. No new liquidation recurrence.
