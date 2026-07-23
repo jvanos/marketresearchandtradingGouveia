@@ -436,3 +436,66 @@ verify/re-establish coverage or cut on the -7% rule.
 - Duplicate trailing-stop stacking on cores persists (50-order page
   saturated). De-duplicate (keep one per symbol, honor never-move-down)
   so coverage is auditable.
+
+### Jul 23 — EOD Snapshot (Day 13, Thursday)
+**Portfolio:** $49,608.24 | **Cash:** $12,037.61 (24.3%) | **Day P&L:** -$395.67 (-0.79%) | **Phase P&L:** -$391.76 (-0.78%)
+
+| Ticker | Shares | Entry | Close | Day Chg | Unrealized P&L | Stop |
+|---|---|---|---|---|---|---|
+| SCHD | 182.674 | 32.67 | 32.81 | -0.30% | +24.46 (+0.41%) | 10% trail |
+| VOO | 8.690 | 687.27 | 678.61 | -1.23% | -68.77 (-1.15%) | 10% trail |
+| BTC | 190.407 | 28.20 | 28.64 | -1.72% | +83.02 (+1.55%) | 10% trail |
+| SGOV | 46.230 | 100.52 | 100.60 | +0.00% | +3.52 (+0.08%) | 10% trail |
+| QQQM | 13.439 | 292.45 | 285.85 | -1.57% | -88.70 (-2.26%) | 10% trail |
+| SCHG | 107.442 | 34.42 | 33.40 | -1.91% | -109.29 (-2.96%) | 10% trail |
+| SPMO | 19.000 | 151.31 | 149.83 | -0.16% | -28.03 (-0.98%) | 10% trail |
+| VTV | 5.944 | 219.21 | 219.86 | +0.24% | +3.86 (+0.30%) | trail (unverif) |
+| MSFT | 2.197 | 393.50 | 381.43 | -2.28% | -26.53 (-3.07%) | trail (unverif) |
+| VGT | 5.693 | 114.17 | 114.39 | -1.06% | +1.23 (+0.19%) | trail (unverif) |
+| ETH | 35.650 | 16.83 | 17.86 | -2.56% | +36.72 (+6.12%) | trail (unverif) |
+| VXUS | 5.277 | 85.28 | 83.67 | -0.94% | -8.50 (-1.89%) | trail (unverif) |
+| SOFI | 16.833 | 17.82 | 16.61 | -2.71% | -20.40 (-6.80%) | 10% trail |
+| GXRP | 6.912 | 21.70 | 21.40 | -2.82% | -2.08 (-1.39%) | trail (unverif) |
+| APLD | 3.537 | 28.18 | 30.13 | +0.16% | +6.89 (+6.91%) | 10% trail |
+| META | 0.172 | 581.77 | 605.50 | -3.46% | +4.07 (+4.08%) | scan-only |
+| IREN | 2.399 | 41.85 | 40.88 | -0.97% | -2.32 (-2.31%) | 10% trail |
+| AMZN | 0.405 | 246.86 | 233.70 | -4.55% | -5.33 (-5.33%) | scan-only |
+| CIFR | 3.084 | 19.75 | 25.89 | +5.85% | +18.94 (+31.09%) | 5% trail |
+| RIOT | 3.167 | 19.23 | 24.05 | +2.88% | +15.28 (+25.08%) | 5% trail |
+| DRAM | 1.115 | 54.55 | 59.03 | +2.18% | +5.00 (+8.21%) | 10% trail |
+| GLXY | 2.671 | 22.80 | 24.60 | -0.77% | +4.81 (+7.90%) | 10% trail |
+| QBTS | 3.736 | 16.17 | 17.10 | -1.44% | +3.47 (+5.75%) | 10% trail |
+| WULF | 3.114 | 19.50 | 20.17 | +3.49% | +2.07 (+3.41%) | 10% trail |
+| RGTI | 4.182 | 14.56 | 14.83 | -2.63% | +1.12 (+1.85%) | 10% trail |
+| UNH | 0.143 | 425.73 | 423.56 | -1.80% | -0.31 (-0.51%) | scan-only |
+| IONQ | 1.673 | 36.47 | 34.28 | -1.14% | -3.65 (-5.99%) | 10% trail |
+
+**Notes:** Down day, -$395.67 (-0.79%), the biggest daily drawdown of the
+phase; phase P&L slips back to -$391.76 (-0.78%) after yesterday's brief
+green. Broad-market weakness led the drag (VOO -1.23%, QQQM -1.57%, SCHG
+-1.91%, MSFT -2.28%) — nothing name-specific. Miner/quantum re-entries kept
+their gains (CIFR +31.1%, RIOT +25.1%, DRAM +8.2%, APLD +6.9%, GLXY/QBTS
++5.8-7.9%); ETH still +6.1%, BTC +1.6%. TRADES TODAY (4): market-open ramp
+bought VOO +$497 and SCHD +$497 (both still deeply underweight); midday scan
+CUT GOOGL and PLTR in full on the -7% manual rule — GOOGL's 1-share trailing
+stop filled @324 then the fractional remainder sold @319.93; PLTR's stop
+filled @123.14 then remainder @122.19. Both cleared from the book; they
+re-enter the buildout queue under the standard rule. NEW WATCH ITEM: with
+GOOGL and PLTR gone, SOFI is now the single weakest name at -6.80%
+unrealized — right at the -7% cut line. Midday scan tomorrow must cut on any
+further weakness. STOP-COVERAGE / DUPLICATE-STOP SATURATION UNRESOLVED AND
+WORSENING: the 50-order page is still fully saturated with duplicate
+trailing stops on 7 cores (SCHD now 8, BTC 7, VOO 6, SGOV 6, QQQM 5, SCHG 4,
+SPMO 3 = 39 dups). The midday scan was explicitly mandated (Jul 20/21/22) to
+de-duplicate and did NOT — SCHD dups actually grew 7->8. This pushes the
+stops for 6 held positions (VTV, MSFT, VGT, ETH, VXUS, GXRP, ~$3.9k value)
+beyond the visible page, so their coverage stays UNVERIFIABLE from the order
+list — marked "trail (unverif)". They almost certainly still carry live
+stops but the summary cannot confirm it until duplicates are cancelled. This
+is now a 4-day-old unaddressed operational issue and the top priority for
+tomorrow's midday scan: cancel stale duplicate stops (keep one per symbol,
+honor never-move-down) so coverage is auditable again. True scan-only
+remnants unchanged (META/AMZN/UNH, sub-1-share). BRK.B/NBIS still unheld
+(wide open spreads), retry next buildout.
+Trades today: 4 (VOO buy, SCHD buy, GOOGL cut, PLTR cut). Trades this week
+(Mon-Thu): 22.
