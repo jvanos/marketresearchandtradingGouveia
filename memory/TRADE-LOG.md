@@ -404,3 +404,35 @@ duplicate stops (keep one per symbol, honoring never-move-down) so coverage
 is auditable again. True scan-only remnants unchanged (META/AMZN/UNH,
 sub-1-share). BRK.B still unheld, retry next buildout.
 Trades today: none. Trades this week (Mon-Wed): 18.
+
+## 2026-07-23 — Market-Open Buildout
+
+Day-13 buildout. Core ramp continues: VOO and SCHD each took the next 1%
+allowance ($497). Both still deeply underweight (VOO 10.9% vs 23.8%, SCHD
+11.1% vs 19.9%). BTC/SGOV/QQQM/SCHG/SPMO/VTV all at/within tolerance —
+skipped. Fresh 10% GTC trailing stops layered over each name's net-new
+whole shares (VOO +1 sh crossing to 8; SCHD +15 sh) — no existing stop
+moved. NBIS rebuy and BRK.B ramp both skipped on wide open spreads (see
+below). GOOGL note: pre-market expected its live stop to auto-sell at open
+(gapped to -11%); as of this run GOOGL is still held at -12.5% with full
+qty_available (no reserving stop visible) — flagged for midday scan to
+verify/re-establish coverage or cut on the -7% rule.
+
+| Date | Ticker | Side | Shares/Notional | Entry | Stop | Target Weight | Ramp? | Note |
+|---|---|---|---|---|---|---|---|---|
+| 2026-07-23 | VOO  | buy | $497 / 0.7295 sh  | 681.26 | 10% trail (+1 sh)  | 23.8% | yes | ramp top-up |
+| 2026-07-23 | SCHD | buy | $497 / 15.083 sh  | 32.951 | 10% trail (+15 sh) | 19.9% | yes | ramp top-up |
+
+### Skipped this run (wide spread at open — retry next buildout)
+| Ticker | Target | Reason |
+|---|---|---|
+| NBIS  | 0.2% | ~18% spread (ap 225 / bp 188.29) — was zero, rebuy deferred |
+| BRK.B | 2.6% | ~10% spread (ap 512.6 / bp 462.98) — ongoing open-skip |
+
+### Flag for midday scan
+- GOOGL held at -12.5%, qty_available = full qty (no stop reserving shares).
+  Verify/re-establish 10% stop or cut on -7% rule; if flat, re-queues for
+  buildout.
+- Duplicate trailing-stop stacking on cores persists (50-order page
+  saturated). De-duplicate (keep one per symbol, honor never-move-down)
+  so coverage is auditable.
