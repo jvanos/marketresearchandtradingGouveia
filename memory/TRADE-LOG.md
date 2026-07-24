@@ -538,3 +538,48 @@ skipped on wide open-auction spreads (see below).
   De-duplicate AND top up to full-position coverage (keep one per symbol,
   honor never-move-down). Now 5 days old — top priority.
 - BRK.B/PLTR/NBIS still unheld (wide open spreads), retry next buildout.
+
+### Jul 24 — EOD Snapshot (Day 14, Friday)
+**Portfolio:** $49,484.74 | **Cash:** $11,365.47 (23.0%) | **Day P&L:** -$123.50 (-0.25%) | **Phase P&L:** -$515.26 (-1.03%)
+
+| Ticker | Shares | Entry | Close | Day Chg | Unrealized P&L | Stop |
+|---|---|---|---|---|---|---|
+| SCHD | 197.7 | 32.68 | 33.27 | +1.43% | +115.73 (+1.79%) | 10% trail |
+| VOO | 9.418 | 686.67 | 678.72 | +0.02% | -74.86 (-1.16%) | 10% trail |
+| BTC | 190.4 | 28.20 | 28.37 | -0.94% | +31.61 (+0.59%) | 10% trail |
+| SGOV | 46.23 | 100.52 | 100.64 | +0.03% | +5.26 (+0.11%) | 10% trail |
+| QQQM | 13.44 | 292.45 | 281.61 | -1.18% | -145.68 (-3.71%) | 10% trail |
+| SCHG | 107.4 | 34.42 | 33.46 | +0.18% | -102.84 (-2.78%) | 10% trail |
+| SPMO | 19.0 | 151.31 | 146.51 | -2.22% | -91.11 (-3.17%) | 10% trail |
+| VTV | 5.944 | 219.21 | 221.02 | +0.53% | +10.76 (+0.83%) | trail (unverif) |
+| MSFT | 2.197 | 393.50 | 381.40 | -0.05% | -26.59 (-3.08%) | trail (unverif) |
+| VGT | 5.693 | 114.17 | 113.21 | -1.03% | -5.49 (-0.84%) | trail (unverif) |
+| ETH | 35.65 | 16.83 | 17.75 | -0.62% | +32.80 (+5.47%) | trail (unverif) |
+| GOOGL | 1.703 | 319.95 | 319.74 | -0.07% | -0.35 (-0.07%) | 10% trail (stop 288.33) |
+| VXUS | 5.277 | 85.28 | 83.40 | -0.26% | -9.93 (-2.21%) | trail (unverif) |
+| GXRP | 6.912 | 21.70 | 21.07 | -1.54% | -4.36 (-2.91%) | trail (unverif) |
+| micro-remnants | — | — | — | — | META/AMZN/UNH/RGTI + 7 sub-$60 momo names | mixed |
+
+**Notes:** Day 14, Friday — quiet down day. Equity $49,484.74, off -$123.50
+(-0.25%) vs yesterday's $49,608.24 snapshot; phase -$515.26 (-1.03%) vs the
+$50k Day-0 baseline. 3 trades today, all at the market-open buildout (VOO
++$495 ramp, SCHD +$495 ramp, GOOGL $545 full rebuy after Jul-23 cut; fresh
+10% GTC trail on GOOGL @288.33). No midday run today. Broad tape soft:
+growth-tilted cores led the drag (QQQM -1.18%, SPMO -2.22%, SCHG flat,
+BTC -0.94%); SCHD +1.43% and defensives (SGOV, VTV) cushioned. VOO and
+SCHD both still deeply underweight vs 23.8%/19.9% targets — ramp continues
+Monday. Weekly trades Mon-Fri: 25 (informational; no weekly cap).
+
+**CRITICAL / 5-DAY-OLD OPERATIONAL ISSUE — duplicate + partial trailing-stop
+saturation on cores, still unresolved.** 50-order page fully saturated with
+stacked trailing stops: SCHD 10, BTC 9, SGOV 7, VOO 7, QQQM 6, SCHG 5,
+SPMO 4, GOOGL 1, RGTI 1 = 50. These are partial-qty and on VOO/SCHD sum to
+LESS than the position (cores under-stopped, not merely duplicated). The
+saturation pushes the stops for 6 held positions (VTV, MSFT, VGT, ETH,
+VXUS, GXRP, ~$3.6k value) beyond the visible page — coverage UNVERIFIABLE
+from the order list, marked "trail (unverif)". Midday scans on Jul
+20/21/22/23 were each mandated to de-duplicate and did not; SCHD dups have
+grown 8→10. TOP PRIORITY for Monday's midday scan: cancel stale duplicate
+stops (keep one per symbol, top up to full-position coverage, honor
+never-move-down) so coverage is auditable again. BRK.B/PLTR/NBIS still
+unheld on wide spreads — retry next buildout.
