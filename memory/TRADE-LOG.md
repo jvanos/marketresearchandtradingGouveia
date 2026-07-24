@@ -499,3 +499,42 @@ remnants unchanged (META/AMZN/UNH, sub-1-share). BRK.B/NBIS still unheld
 (wide open spreads), retry next buildout.
 Trades today: 4 (VOO buy, SCHD buy, GOOGL cut, PLTR cut). Trades this week
 (Mon-Thu): 22.
+
+## 2026-07-24 — Market-Open Buildout
+
+Day-14 buildout. Core ramp continues: VOO and SCHD each took the next 1%
+allowance ($495; equity $49,555.89 → 1% = $495.56). Both still deeply
+underweight (VOO 11.9% → gap, SCHD 12.2% → gap vs targets 23.8%/19.9%).
+BTC/SGOV/QQQM/SCHG/SPMO/VTV at/within tolerance — skipped. GOOGL rebought
+in full to its 1.1% target ($545) after yesterday's -7% cut — fresh 10%
+GTC trailing stop placed (qty 1; new position was zero-stopped, coverage
+critical). SCHD's net-new whole shares (+15 sh) covered by a fresh 10%
+trail — no existing stop moved. VOO increment was sub-share (+0.7285 sh),
+no whole-share stop placeable on the increment alone; rolls into the
+midday de-dup consolidation. PLTR and NBIS rebuys and BRK.B ramp all
+skipped on wide open-auction spreads (see below).
+
+| Date | Ticker | Side | Shares/Notional | Entry | Stop | Target Weight | Ramp? | Note |
+|---|---|---|---|---|---|---|---|---|
+| 2026-07-24 | VOO   | buy | $495 / 0.7285 sh  | 679.50  | (incr sub-share; midday consol) | 23.8% | yes | ramp top-up |
+| 2026-07-24 | SCHD  | buy | $495 / 15.041 sh  | 32.91   | 10% trail (+15 sh)              | 19.9% | yes | ramp top-up |
+| 2026-07-24 | GOOGL | buy | $545 / 1.7034 sh  | 319.948 | 10% trail (qty 1, stop 288.33)  | 1.1%  | no  | gap-fill (buyback after Jul23 cut) |
+
+### Skipped this run (wide spread at open — retry next buildout)
+| Ticker | Target | Reason |
+|---|---|---|
+| BRK.B | 2.6% | ~6.0% spread (ap 516.01 / bp 485) — ongoing open-skip, ramp deferred |
+| PLTR  | 0.4% | ~3.8% spread (ap 123.45 / bp 118.75) — was zero, rebuy deferred |
+| NBIS  | 0.2% | ~21% spread (ap 232 / bp 183.18) — was zero, rebuy deferred |
+
+### Flag for midday scan
+- VOO ramp increment (+0.7285 sh) has no dedicated stop; fold into
+  consolidation. VOO position now ~9.42 sh, only ~6 sh covered by stacked
+  partial stops — under-covered.
+- DUPLICATE/PARTIAL trailing-stop stacking on cores persists (50-order
+  page saturated; SCHD 8, BTC 7, VOO 6, SGOV 6, QQQM 5, SCHG 4, SPMO 3).
+  Stops are partial-qty and sum to LESS than position on VOO (6/9.4 sh)
+  and SCHD (121/197.7 sh) — cores are UNDER-stopped, not just duplicated.
+  De-duplicate AND top up to full-position coverage (keep one per symbol,
+  honor never-move-down). Now 5 days old — top priority.
+- BRK.B/PLTR/NBIS still unheld (wide open spreads), retry next buildout.
