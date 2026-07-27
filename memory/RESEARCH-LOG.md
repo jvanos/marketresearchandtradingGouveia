@@ -543,3 +543,95 @@ cash); GOOGL/PLTR/NBIS buy back per buildout rule; BRK.B conditional on
 spread. No new risk event. Standing operational flag: duplicate-stop page
 saturation (100% of order list, 5 days old) escalated to human — the
 automated midday de-dupe is not self-healing.
+
+## 2026-07-27 — Pre-market Drift Check
+
+### Account
+- Equity: $49,892.27
+- Cash: $11,365.45 (22.8%)
+- Buying power: $153,325.99 (4x margin; cash the binding constraint for buys)
+
+### Drift vs. Target
+| Ticker | Target % | Actual % | Gap | Ramp? | Today's Allowance Used |
+|---|---|---|---|---|---|
+| VOO   | 23.8   | 12.95 | 10.85  | yes | no (0/1%) |
+| SCHD  | 19.9   | 13.20 | 6.70   | yes | no (0/1%) |
+| BTC   | 11.1   | 11.01 | 0.09   | yes | — (at target) |
+| SGOV  | 9.3    | 9.33  | -0.03  | yes | — (at target) |
+| QQQM  | 7.8    | 7.71  | 0.09   | yes | — (within tol) |
+| SCHG  | 7.4    | 7.29  | 0.11   | yes | — (within tol) |
+| SPMO  | 5.6    | 5.68  | -0.08  | yes | — (at target) |
+| VTV   | 2.6    | 2.64  | -0.04  | yes | — (at target) |
+| BRK.B | 2.6    | 0     | 2.60   | yes | no — UNHELD (buyback if spread ok) |
+| MSFT  | 1.7    | 1.70  | 0.00   | no  | — (at target) |
+| ETH   | 1.2    | 1.34  | -0.14  | no  | — (over, +11% unreal) |
+| VGT   | 1.3    | 1.31  | -0.01  | no  | — (at target) |
+| GOOGL | 1.1    | 1.11  | -0.01  | no  | — (rebought Fri, at target) |
+| VXUS  | 0.9    | 0.89  | 0.01   | no  | — (at target) |
+| SOFI  | 0.6    | 0     | 0.60   | no  | no — ZERO (stopped Fri, buyback full) |
+| PLTR  | 0.4    | 0     | 0.40   | no  | no — ZERO (cut Jul23, buyback full) |
+| GXRP  | 0.3    | 0.29  | 0.01   | no  | — (at target) |
+| APLD  | 0.2    | 0.03  | 0.17   | no  | no — REMNANT (stopped Fri, top to full) |
+| IREN  | 0.2    | 0     | 0.20   | no  | no — ZERO (stopped Fri, buyback full) |
+| NBIS  | 0.2    | 0     | 0.20   | no  | no — ZERO (buyback to full target) |
+| AMZN  | 0.2    | 0.19  | 0.01   | no  | — (at target) |
+| META  | 0.2    | 0.21  | -0.01  | no  | — (at target) |
+| IONQ  | 0.1222 | 0     | 0.12   | no  | no — ZERO (stopped Fri, buyback full) |
+| RGTI  | 0.1222 | 0.125 | -0.003 | no  | — (at target) |
+| QBTS  | 0.1222 | 0.024 | 0.098  | no  | no — REMNANT (stopped Fri, top to full) |
+| UNH   | 0.1222 | 0.121 | 0.001  | no  | — (at target) |
+| DRAM  | 0.1222 | 0.013 | 0.109  | no  | no — REMNANT (stopped Fri, top to full) |
+| WULF  | 0.1222 | 0.004 | 0.118  | no  | no — REMNANT (stopped Fri, top to full) |
+| CIFR  | 0.1222 | 0.004 | 0.118  | no  | no — REMNANT (winner trailed out Fri, top to full) |
+| GLXY  | 0.1222 | 0.032 | 0.090  | no  | no — REMNANT (stopped Fri, top to full) |
+| RIOT  | 0.1222 | 0.008 | 0.114  | no  | no — REMNANT (winner trailed out Fri, top to full) |
+
+(ADA target held as 0.3% cash until GADA lists — see TARGET-PORTFOLIO.json.)
+
+### Gaps Needing Attention
+- **Broad Friday-afternoon stop-out swept the speculative/miner basket.**
+  Since the Jul-24 EOD snapshot, trailing stops fired across the small
+  names: SOFI (0.60%), IREN (0.20%), IONQ (0.12%) fully ZEROED; APLD, QBTS,
+  DRAM, WULF, CIFR, GLXY, RIOT reduced to sub-remnants (each now <0.03% vs
+  0.12–0.20% targets). CIFR/RIOT were the +31%/+25% winners on 5% trails —
+  a single down day trailed them out. Note the crypto-ETF cores were the
+  opposite (BTC +1.7%, ETH +5.6% today) — this was name-specific to the
+  momo/miner longs, not crypto broadly. All re-enter the buildout queue
+  under the normal rule; nothing anomalous, just a large buyback list.
+- **Core ramp unchanged as the main story.** VOO (gap 10.85%) and SCHD
+  (6.70%) still deeply underweight — 1%/day ramp continues. 22.8% cash vs
+  0.3% target: still heavily underinvested. Other ramp cores at/within tol.
+- **Persistent zeros:** PLTR (cut Jul23) and NBIS (07-16 liquidation) still
+  unheld — buy back in full. BRK.B (2.60%, ramp) still unheld on wide-spread
+  skip — retry ramp buy at open only if spread normalized (<~2%).
+
+### Planned Action for Market-Open
+- Ramp (buy up to 1% equity ≈ $499 each toward target, capped by gap):
+  VOO $499, SCHD $499. BRK.B $499 only if spread normalized.
+- Buyback / top-up to full target (non-ramp, <2%, buy in full):
+  SOFI ~$299, PLTR ~$200, IREN ~$100, NBIS ~$100, IONQ ~$61, APLD ~$85,
+  and spec top-ups QBTS ~$49 / DRAM ~$55 / WULF ~$59 / CIFR ~$59 /
+  GLXY ~$45 / RIOT ~$57 (each to full 0.1222% ≈ $61). Total ≈ $2.7k;
+  cash $11.4k covers it.
+- Set 10% trailing stops on every name crossing ≥1 whole share after buys.
+
+### Decision
+BUILDOUT — Core ramp continues (VOO/SCHD ~11%/7% underweight, 23% idle
+cash); large buyback list from Friday's speculative-basket stop-out
+(SOFI/IREN/IONQ zeroed + 7 remnants) all rejoin buildout per the standard
+rule; PLTR/NBIS persistent zeros; BRK.B conditional on spread. No daily-loss
+breaker (equity +0.8% on pre-market marks).
+
+### STANDING OPERATIONAL FLAG (6 days old, ESCALATED — worsening)
+Order page is now **100% saturated: 50/50 orders, all stacked duplicate
+trailing stops on just 9 core symbols** (SCHD 10, BTC 9, VOO 7, SGOV 7,
+QQQM 6, SCHG 5, SPMO 4, GOOGL 1, RGTI 1). SCHD dups grew 8→10 since Jul23.
+Consequences: (1) every OTHER held position — VTV, MSFT, VGT, ETH, VXUS,
+GXRP + all spec remnants — has NO visible/verifiable stop (pushed beyond
+the 50-order page, coverage unauditable); (2) today's fresh buys can't
+register new stops until the page is freed; (3) any rebalance sell is
+blocked (shares reserved against stacked stops, qty_available ~0 on cores).
+The automated midday de-dupe has been mandated Jul20–24 and has NOT
+self-healed. Market-open MUST de-dupe (cancel stale duplicates, keep one
+full-position stop per symbol, honor never-move-down) BEFORE it can place
+stops on today's buys. Needs human attention.
