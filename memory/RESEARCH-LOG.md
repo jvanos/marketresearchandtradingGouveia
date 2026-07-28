@@ -635,3 +635,90 @@ The automated midday de-dupe has been mandated Jul20–24 and has NOT
 self-healed. Market-open MUST de-dupe (cancel stale duplicates, keep one
 full-position stop per symbol, honor never-move-down) BEFORE it can place
 stops on today's buys. Needs human attention.
+
+---
+
+## 2026-07-28 — Pre-market Drift Check
+
+### Account
+- Equity: $49,376.29
+- Cash: $9,404.20 (19.05% vs 0.3% target — still underinvested, improving)
+- Buying power: $149,207.71
+
+### Drift vs. Target
+| Ticker | Target % | Actual % | Gap | Ramp? | Today's Allowance Used |
+|---|---|---|---|---|---|
+| VOO | 23.800 | 13.949 | +9.851 | yes | no (fresh) |
+| SCHD | 19.900 | 14.458 | +5.442 | yes | no (fresh) |
+| BTC | 11.100 | 10.798 | +0.302 | yes | no (fresh) |
+| SGOV | 9.300 | 9.425 | -0.125 | yes | no (fresh) |
+| QQQM | 7.800 | 7.578 | +0.222 | yes | no (fresh) |
+| SCHG | 7.400 | 7.305 | +0.095 | yes | no (fresh) |
+| SPMO | 5.600 | 5.499 | +0.101 | yes | no (fresh) |
+| VTV | 2.600 | 2.674 | -0.074 | yes | no (fresh) |
+| BRK.B | 2.600 | 0.000 | +2.600 | yes | no (fresh) **ZERO** |
+| MSFT | 1.700 | 1.749 | -0.049 | no | n/a |
+| VGT | 1.300 | 1.284 | +0.016 | no | n/a |
+| ETH | 1.200 | 1.292 | -0.092 | no | n/a |
+| GOOGL | 1.100 | 1.127 | -0.027 | no | n/a |
+| VXUS | 0.900 | 0.891 | +0.009 | no | n/a |
+| SOFI | 0.600 | 0.583 | +0.017 | no | n/a |
+| PLTR | 0.400 | 0.405 | -0.005 | no | n/a |
+| GXRP | 0.300 | 0.296 | +0.004 | no | n/a |
+| APLD | 0.200 | 0.195 | +0.005 | no | n/a |
+| IREN | 0.200 | 0.186 | +0.014 | no | n/a |
+| NBIS | 0.200 | 0.000 | +0.200 | no | n/a **ZERO** |
+| AMZN | 0.200 | 0.190 | +0.010 | no | n/a |
+| META | 0.200 | 0.207 | -0.007 | no | n/a |
+| IONQ | 0.122 | 0.119 | +0.004 | no | n/a |
+| RGTI | 0.122 | 0.130 | -0.007 | no | n/a |
+| QBTS | 0.122 | 0.124 | -0.001 | no | n/a |
+| UNH | 0.122 | 0.122 | +0.000 | no | n/a |
+| DRAM | 0.122 | 0.110 | +0.012 | no | n/a |
+| WULF | 0.122 | 0.115 | +0.007 | no | n/a |
+| CIFR | 0.122 | 0.000 | +0.122 | no | n/a **ZERO** |
+| GLXY | 0.122 | 0.030 | +0.092 | no | n/a |
+| RIOT | 0.122 | 0.116 | +0.006 | no | n/a |
+
+(ADA target held as 0.3% cash until GADA lists — see TARGET-PORTFOLIO.json.)
+
+### Gaps Needing Attention
+- **Core ramp remains the whole story.** VOO (gap +9.85%) and SCHD (+5.44%)
+  still deeply underweight; 1%/day ramp continues. All other ramp cores
+  (BTC/SGOV/QQQM/SCHG/SPMO/VTV) are at/within tolerance. Cash 19.05% vs
+  0.3% — still heavily underinvested but down from 22.8% Friday as the ramp
+  works.
+- **Friday's speculative-basket stop-out has been largely rebuilt.** Monday's
+  runs restored SOFI, IREN, IONQ, APLD, QBTS, DRAM, WULF, RIOT, PLTR to
+  at/within tolerance — the big buyback list is essentially cleared.
+- **Remaining zeros / remnants:** BRK.B (2.60%, ramp — persistent wide-spread
+  skip), NBIS (0.20%), CIFR (0.122%) all at ZERO; GLXY a 0.030% remnant vs
+  0.122%. All rejoin the buildout queue under the normal rule.
+
+### Planned Action for Market-Open
+- Ramp (buy up to 1% equity ≈ $494 each, gap-capped): VOO $494, SCHD $494.
+  BRK.B ramp buy ≈ $494 only if spread has normalized (<~2%); else skip again.
+- Buyback / top-up to full target (non-ramp, <2%, buy in full): NBIS ~$99,
+  CIFR ~$60, GLXY ~$45 top-up. Total ≈ $1.2k; cash $9.4k covers it easily.
+- Set 10% GTC trailing stops on every new buy crossing ≥1 whole share —
+  **but see operational flag: order page must be de-duped first to free slots.**
+
+### Decision
+BUILDOUT — VOO/SCHD ramp continues (~10%/5% underweight, 19% idle cash);
+small buybacks BRK.B (spread-conditional) / NBIS / CIFR / GLXY. No daily-loss
+breaker (equity -0.45% on pre-market marks vs 10% limit).
+
+### STANDING OPERATIONAL FLAG (7 days old — STILL UNRESOLVED, page 50/50)
+Order page remains **100% saturated: 50/50 orders, all trailing stops.**
+Duplicate stacking on cores persists: SCHD 9, VOO 7, BTC 7, SGOV 5, SCHG 4,
+QQQM 4, SPMO 3 (= 39 on 7 symbols); the other 11 are single stops now placed
+on small names (SOFI/PLTR/IREN/IONQ/APLD/QBTS/DRAM/WULF/RIOT/RGTI/GOOGL).
+Partial healing since Friday (SCHD 10→9, BTC 9→7, SGOV 7→5, QQQM 6→4) but
+the page is full again because Monday's buyback stops consumed the freed
+slots. Consequences unchanged: (1) 10 held positions have NO visible stop —
+AMZN, ETH, GLXY, GXRP, META, MSFT, UNH, VGT, VTV, VXUS (~$4.9k, coverage
+unauditable, pushed off the 50-order page); (2) today's fresh buys cannot
+register new stops until slots are freed. Market-open/midday MUST de-dupe
+(cancel stale duplicates, keep one full-position stop per symbol, honor
+never-move-down, then top up uncovered held names) BEFORE placing new stops.
+Auto de-dupe has not self-healed for 7 days — needs human attention.
