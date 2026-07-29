@@ -583,3 +583,57 @@ grown 8→10. TOP PRIORITY for Monday's midday scan: cancel stale duplicate
 stops (keep one per symbol, top up to full-position coverage, honor
 never-move-down) so coverage is auditable again. BRK.B/PLTR/NBIS still
 unheld on wide spreads — retry next buildout.
+
+### Jul 29 — EOD Snapshot (Day 17, Wednesday)
+**Portfolio:** $48,907.24 | **Cash:** $9,045.31 (18.5%) | **Day P&L:** -$551.97 (-1.12%) | **Phase P&L:** -$1,092.76 (-2.19%)
+
+| Ticker | Shares | Entry | Close | Day Chg | Unrealized P&L | Stop |
+|---|---|---|---|---|---|---|
+| SCHD | 241.2 | 32.89 | 33.78 | -0.33% | +214.44 (+2.70%) | 10% trail x11 (dup) |
+| VOO | 11.58 | 685.61 | 669.00 | -1.76% | -192.38 (-2.42%) | 10% trail x8 (dup, under-covered) |
+| BTC | 190.4 | 28.20 | 28.01 | -0.74% | -36.94 (-0.69%) | 10% trail x7 (dup) |
+| SGOV | 46.23 | 100.52 | 100.68 | +0.02% | +7.22 (+0.15%) | 10% trail x6 (dup) |
+| QQQM | 13.44 | 292.45 | 271.57 | -2.36% | -280.61 (-7.14%) | 10% trail x5 (dup) — PAST -7% cut line |
+| SCHG | 107.4 | 34.42 | 33.18 | -1.66% | -132.93 (-3.60%) | 10% trail x4 (dup) |
+| VTV | 5.944 | 219.21 | 219.65 | -1.50% | +2.62 (+0.20%) | NO STOP on page |
+| MSFT | 2.197 | 393.50 | 399.10 | +1.46% | +12.31 (+1.42%) | NO STOP on page |
+| ETH | 35.65 | 16.83 | 17.91 | -2.08% | +38.50 (+6.42%) | NO STOP on page |
+| VGT | 5.693 | 114.17 | 108.11 | -2.49% | -34.51 (-5.31%) | NO STOP on page |
+| SPMO | 4.509 | 147.21 | 135.42 | -3.92% | -53.16 (-8.01%) | 10% trail x2 (trimmed today) |
+| GOOGL | 1.703 | 319.95 | 333.00 | -0.21% | +22.23 (+4.08%) | 10% trail @308.25 |
+| BRK.B | 0.967 | 510.84 | 509.24 | -0.31% | -1.55 (-0.31%) | NO STOP on page (rebought today) |
+| VXUS | 5.277 | 85.28 | 82.78 | -0.56% | -13.19 (-2.93%) | NO STOP on page |
+| SOFI | 19.57 | 15.19 | 15.11 | -9.74% | -1.65 (-0.56%) | 10% trail @14.193 |
+| PLTR | 1.586 | 125.61 | 121.23 | -1.86% | -6.95 (-3.49%) | 10% trail @114.55 |
+| GXRP | 6.912 | 21.70 | 20.71 | +0.97% | -6.85 (-4.57%) | NO STOP on page |
+| micro-remnants | — | — | — | — | AMZN -8.4%, META -9.6%, NBIS -11.4%, UNH -1.3%, QBTS -5.8%, IONQ -5.4%, RGTI -8.1%, DRAM -8.5%, IREN -13.3%, WULF -9.4%, CIFR -10.6% (~$596 total) | QBTS/IONQ/RGTI/DRAM stopped; AMZN/META/NBIS/UNH/IREN/WULF/CIFR NO STOP |
+
+**Notes:** Day 17, Wednesday — busy buildout day, soft tape. Equity
+$48,907.24, off -$551.97 (-1.12%) vs Alpaca's Jul-28 close of $49,459.21;
+phase -$1,092.76 (-2.19%) vs the $50k Day-0 baseline. (Trade-log gap: no EOD
+push landed Jul 27 or Jul 28, so the prior *logged* snapshot is Jul 24
+$49,484.74 — Day P&L above uses Alpaca last_equity for a true one-day
+figure.) 26 fills today: morning buildout added VOO/SCHD/SPMO ramps plus
+full/rebuy buys across small targets (BRK.B, SOFI, PLTR, IREN, NBIS, IONQ,
+DRAM, WULF, QBTS, RGTI, RIOT, CIFR); midday trimmed/cut SOFI, SPMO, APLD,
+GLXY, RIOT, IREN, CIFR, WULF. All buys on-target. Growth-tilted cores led
+the drag (QQQM -2.36% and now -7.14% unrealized — through the -7% manual-cut
+line; SPMO -3.92%, SCHG -1.66%, VGT -2.49%); SCHD, SGOV, MSFT, GOOGL held up.
+Weekly Mon–today trade count not reconstructable from log (Jul 27/28 pushes
+missed); today alone 26 fills. No weekly cap — informational.
+
+**CRITICAL / STOP-COVERAGE BROKEN — worsening, now ~6 days old.** The 50-order
+page is 100% consumed by DUPLICATE trailing stops on 6 cores (SCHD 11, VOO 8,
+BTC 7, SGOV 6, QQQM 5, SCHG 4 = 41; +SPMO 2, GOOGL/SOFI/PLTR/QBTS/IONQ/RGTI/
+DRAM 1 each = 50). Consequence: ~11 HELD positions have NO trailing stop
+visible on the page at all — VTV ($1.3k), MSFT ($877), ETH ($638), VGT ($615),
+BRK.B ($492), VXUS ($437), GXRP ($143), AMZN, META, NBIS, UNH — i.e. the
+strategy's "10% trail on every position, no exceptions" rule is being
+violated for real, uncovered dollars. VOO/SCHD dup-stops also still sum to
+LESS than the position (under-covered). Midday scans Jul 20–24 + this week
+were each mandated to de-duplicate and have not; the situation is now
+strictly worse (SCHD dups 10→11, VOO 7→8, and the newly-bought positions
+added today got no stop). TOP PRIORITY for the next midday scan: cancel
+duplicate stops (keep one per symbol, honor never-move-down), then place a
+single full-position 10% trail on every currently-unstopped holding.
+QQQM also warrants a manual-cut decision (-7.14%).
