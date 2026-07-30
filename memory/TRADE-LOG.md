@@ -637,3 +637,58 @@ added today got no stop). TOP PRIORITY for the next midday scan: cancel
 duplicate stops (keep one per symbol, honor never-move-down), then place a
 single full-position 10% trail on every currently-unstopped holding.
 QQQM also warrants a manual-cut decision (-7.14%).
+
+### Jul 30 — EOD Snapshot (Day 18, Thursday)
+**Portfolio:** $49,675.66 | **Cash:** $6,656.83 (13.4%) | **Day P&L:** +$248.07 (+0.50%) | **Phase P&L:** -$324.34 (-0.65%)
+
+| Ticker | Shares | Entry | Close | Day Chg | Unrealized P&L | Stop |
+|---|---|---|---|---|---|---|
+| SCHD | 256.019 | 32.92 | 33.38 | -1.34% | +117.26 (+1.39%) | 10% trail x10 (dup) |
+| VOO | 12.309 | 685.03 | 682.05 | +1.70% | -36.62 (-0.43%) | 10% trail x7 (dup) |
+| BTC | 190.407 | 28.20 | 28.67 | +2.10% | +88.73 (+1.65%) | 10% trail x5 (dup) |
+| SGOV | 46.230 | 100.52 | 100.69 | +0.01% | +7.45 (+0.16%) | 10% trail x3 (dup) |
+| QQQM | 13.856 | 292.01 | 281.77 | +3.40% | -141.94 (-3.51%) | 10% trail x3 (dup) — recovered above -7% cut |
+| SCHG | 108.924 | 34.40 | 33.82 | +1.75% | -63.64 (-1.70%) | 10% trail x2 (dup) |
+| VTV | 5.944 | 219.21 | 220.49 | +0.31% | +7.61 (+0.58%) | NO STOP |
+| SPMO | 8.009 | 141.89 | 143.47 | +5.21% | +12.69 (+1.12%) | 10% trail x2 (dup) |
+| MSFT | 2.197 | 393.50 | 456.45 | +16.88% | +138.33 (+16.00%) | 1 trail — tighten to 7% (+15% tier) |
+| BRK.B | 1.943 | 508.11 | 508.46 | -0.14% | +0.70 (+0.07%) | 1 trail |
+| ETH | 35.650 | 16.83 | 18.37 | +2.11% | +54.90 (+9.15%) | NO STOP |
+| VGT | 5.693 | 114.17 | 113.64 | +5.02% | -3.07 (-0.47%) | NO STOP |
+| GOOGL | 1.703 | 319.95 | 334.69 | -0.60% | +25.10 (+4.61%) | 1 trail |
+| VXUS | 5.277 | 85.28 | 84.75 | +2.86% | -2.83 (-0.63%) | NO STOP |
+| SOFI | 19.566 | 15.19 | 16.42 | +7.67% | +23.98 (+8.07%) | 1 trail |
+| PLTR | 1.586 | 125.61 | 122.39 | -0.50% | -5.12 (-2.57%) | 1 trail |
+| GXRP | 6.912 | 21.70 | 21.07 | +1.64% | -4.36 (-2.91%) | NO STOP |
+| NBIS | 0.612 | 161.71 | 188.68 | +27.30% | +16.50 (+16.68%) | 1 stop (hard) |
+| IREN | 2.849 | 34.34 | 37.23 | +27.02% | +8.23 (+8.42%) | 1 trail |
+| APLD | 3.685 | 26.76 | 28.09 | +4.99% | +4.92 (+4.99%) | 1 trail |
+| AMZN | 0.405 | 246.86 | 239.67 | +5.75% | -2.91 (-2.91%) | 1 stop (hard) |
+| DRAM | 1.275 | 47.39 | 51.88 | +15.69% | +5.74 (+9.49%) | 1 trail |
+| GLXY | 3.008 | 20.03 | 21.61 | +7.89% | +4.75 (+7.89%) | 1 trail |
+| CIFR | 2.839 | 21.15 | 22.66 | +28.07% | +4.28 (+7.12%) | 1 trail |
+| IONQ | 1.799 | 33.60 | 35.70 | +11.61% | +3.79 (+6.27%) | 1 trail |
+| RIOT | 2.853 | 21.12 | 22.42 | +6.16% | +3.71 (+6.16%) | 1 trail |
+| QBTS | 3.558 | 17.11 | 17.97 | +11.06% | +3.08 (+5.05%) | 1 trail |
+| RGTI | 4.248 | 14.24 | 14.86 | +12.42% | +2.65 (+4.37%) | 1 trail |
+| UNH | 0.143 | 425.73 | 422.98 | +0.57% | -0.39 (-0.65%) | 1 stop (hard) |
+| WULF | 0.690 | 16.38 | 17.83 | +18.16% | +1.00 (+8.85%) | 1 stop (hard) |
+
+**Notes:** Day 18, Thursday — firm recovery tape, broad green. Equity
+$49,675.66, +$248.07 (+0.50%) vs Alpaca's Jul-29 close of $49,427.59; phase
+-$324.34 (-0.65%) vs the $50k Day-0 baseline, best phase reading in over a
+week. (Yesterday's *logged* snapshot was $48,907.24, captured mid-afternoon
+before the close firmed; comparison vs Alpaca last_equity gives the true
+one-day figure per prior convention.) No trades today — EOD summary only.
+Growth names that dragged Wed rebounded hard: QQQM +3.40% (unrealized back
+to -3.51%, recovered above the -7% manual-cut line), VGT +5.02%, SPMO
++5.21%, SCHG +1.75%; MSFT ripped +16.88% to +16.00% unrealized. Speculative
+remnants ran (NBIS +27%, IREN +27%, CIFR +28%, DRAM +16%, WULF +18%).
+SCHD was the lone core red (-1.34%). **STOP-COVERAGE — improving but still
+broken.** Duplicate trails still consume most of the 50-order page (SCHD 10,
+VOO 7, BTC 5, QQQM 3, SGOV 3, SCHG 2, SPMO 2 = 32 dup slots); 5 HELD
+positions still carry NO stop — VTV ($1.3k), ETH ($655), VGT ($647), VXUS
+($447), GXRP ($146). MSFT hit the +15% tier and should be tightened to a 7%
+trail. TOP PRIORITY for next midday scan unchanged: de-dupe (keep one per
+symbol, honor never-move-down), then place a single full-position 10% trail
+on VTV/ETH/VGT/VXUS/GXRP, and tighten MSFT to 7%.
