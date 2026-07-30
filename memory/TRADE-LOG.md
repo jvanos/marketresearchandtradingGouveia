@@ -637,3 +637,40 @@ added today got no stop). TOP PRIORITY for the next midday scan: cancel
 duplicate stops (keep one per symbol, honor never-move-down), then place a
 single full-position 10% trail on every currently-unstopped holding.
 QQQM also warrants a manual-cut decision (-7.14%).
+
+## 2026-07-30 — Midday Stop-Loss Scan (Day 18, Thursday)
+
+Market open, no HALT, env OK. Actions taken:
+
+| Action | SYM | Detail |
+|---|---|---|
+| CUT -7% | META | Sold 0.1717 sh @ 532.27 (entry 581.77). Realized ≈ -$8.50 (-8.5%), unrealized_plpc -8.58% ≤ -7% rule. Wrapper cancelled its stop then closed. Zero-position gap → next market-open to refill per buildout rule (target still on list). |
+| TIGHTEN | MSFT | +15.7% → cancelled 10% trail (hwm 456.49, stop 410.84), placed 7% trailing GTC qty 2 (id 8528…3027). New implied stop ≈423.6 > old 410.84 → tighter, not moved down. Confirmed live. |
+| NEW STOP (DAY) | NBIS | +16.8%, was UNSTOPPED. GTC/trailing rejected 422 (fractional 0.612 sh). Placed fixed **DAY** stop @175.62 (~7% below, +15% tier). id d9ec…bfd9. |
+| NEW STOP (DAY) | AMZN | -3.3%, was UNSTOPPED. Fixed DAY stop @214.79 (10% below). id 5042…a845. |
+| NEW STOP (DAY) | UNH | flat, was UNSTOPPED. Fixed DAY stop @383.11 (10% below). id 1c4f…6b50. |
+| NEW STOP (DAY) | WULF | +9.9%, was UNSTOPPED. Fixed DAY stop @16.20 (10% below). id 1d72…4a7a. |
+
+**Stop-coverage correction (supersedes Jul 29 "CRITICAL" note).** That note
+conflated "not visible on the truncated 50-order page" with "no stop." Using
+reserved qty (position qty − qty_available) + per-symbol order queries, the
+real picture is:
+- Positions the prior note flagged as unstopped but that DO have live stops
+  (beyond page 1): VTV, MSFT, ETH, VGT, BRK.B, VXUS, GXRP. MSFT confirmed
+  directly (one 10% trail). Reserved qty ≈ full position for each.
+- The fragmented per-lot stops on cores (SCHD, VOO, BTC, SGOV, QQQM, SCHG)
+  each cover a different day's lot with its own hwm; per symbol they **sum to
+  ≤ position qty** (Alpaca can't reserve more than you hold), so there is NO
+  oversell/short risk and each position IS protected. Messy, not dangerous.
+- **Do NOT blind-"de-duplicate"** as the Jul 29 note urged: collapsing to one
+  full-position trail requires whole-share qty AND resets hwm, which would
+  move stops DOWN on lots that have higher hwms — a rule violation. Left as-is.
+- **Genuine gap = sub-1-share fractional positions only** (AMZN, META, NBIS,
+  UNH, WULF). Alpaca **rejects GTC trailing_stop AND GTC fixed stop on
+  fractional qty (422); only fixed DAY stops are accepted.** So these can hold
+  intraday protection (placed above) but NOT durable GTC stops until each
+  grows ≥1 whole share via buildout. DAY stops expire at today's close and
+  must be re-placed each session — flagged for market-open/midday to re-arm.
+
+Net: 1 cut, 1 tighten, 4 intraday stops placed. All other holdings confirmed
+covered. No new buys (midday scan).
