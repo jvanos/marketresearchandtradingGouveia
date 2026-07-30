@@ -637,3 +637,48 @@ added today got no stop). TOP PRIORITY for the next midday scan: cancel
 duplicate stops (keep one per symbol, honor never-move-down), then place a
 single full-position 10% trail on every currently-unstopped holding.
 QQQM also warrants a manual-cut decision (-7.14%).
+
+## 2026-07-30 — Midday Stop-Loss Scan (Day 19)
+
+**No orders placed or cancelled.** Full-book verification (queried all 91
+open orders via limit=500, not the default 50-order page) resolves the
+standing "STOP-COVERAGE BROKEN" alarm below as a **FALSE ALARM caused by
+50-order page truncation** — NOT a real coverage gap.
+
+- **Correction to the prior CRITICAL block:** every one of the 30 held
+  positions has live stop coverage on its whole-share portion. The "~11
+  HELD positions with NO trailing stop" (VTV, MSFT, ETH, VGT, BRK.B, VXUS,
+  GXRP, AMZN, NBIS, UNH, +META) were simply beyond the default 50-order
+  view — their stops are present in the full 91-order list. Confirmed live:
+  VTV 201.222, MSFT 426.58 (trail 7%), ETH 16.95, VGT 106.45, BRK.B 458.53,
+  VXUS 76.93, GXRP 20.24, plus fixed stops on the sub-1-share remnants
+  (AMZN 214.79, NBIS 175.62, UNH 383.11, WULF 16.20).
+- **The 8 multi-stop symbols are fragmented-but-complete coverage, not
+  redundant dups.** Per-symbol summed stop qty EXACTLY equals the
+  whole-share floor of the position (BTC 190/190.41, QQQM 13/13.86, SCHD
+  256/256.02, SCHG 108/108.92, SGOV 46/46.23, SPMO 8/8.01, VOO 12/12.31,
+  VTV 5/5.94). ZERO over-coverage — no order can be cancelled without
+  opening a real gap. Fragmentation is the accretion of one per-buy trail
+  over many buildout days.
+- **Consolidation deferred — a fresh full-qty 10% trail would MOVE STOPS
+  DOWN on all 8.** current×0.90 sits below the best existing stop for every
+  one (e.g. VOO fresh 613.83 < best 625.00; SGOV 90.62 vs 90.62; SPMO
+  129.20 < 136.13). Cancel-all-then-fresh-trail therefore violates
+  never-move-down. The only single-order alternative (one fixed stop at the
+  best existing level) would convert trailing→fixed, breaking the "trailing,
+  no exceptions" rule. Correct fix is operational (always query full order
+  book; one stop per position on future buys), not intraday churn that
+  lowers protection. Left untouched.
+- **Losers:** none at ≤ -7%. QQQM has RECOVERED to -3.52% (was -7.14% at
+  yesterday's EOD, just over the manual-cut line) — no cut warranted.
+- **Winners ≥ +15%:** MSFT +15.9% already trailing at 7% (no action). NBIS
+  +16.9% holds 0.61 sh (<1 whole share) so it cannot carry a trailing stop
+  — its fixed stop at 175.62 already gives ~7.1% protection; cancel/replace
+  for a $0.15 tightening would risk a naked fractional position, so left
+  as-is.
+
+**Net:** portfolio fully stop-covered on all whole-share exposure; no
+rule-compliant order action available this session. Prior CRITICAL alarm
+downgraded to RESOLVED/false-positive. Only remaining unstopped exposure is
+inherent sub-1-share fractional remainders (Alpaca 422s fractional trailing
+stops) — negligible/by-design.
