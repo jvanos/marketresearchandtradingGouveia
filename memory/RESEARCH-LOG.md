@@ -722,3 +722,86 @@ register new stops until slots are freed. Market-open/midday MUST de-dupe
 (cancel stale duplicates, keep one full-position stop per symbol, honor
 never-move-down, then top up uncovered held names) BEFORE placing new stops.
 Auto de-dupe has not self-healed for 7 days — needs human attention.
+
+---
+
+## 2026-07-30 — Pre-market Drift Check
+
+### Account
+- Equity: $49,253.94
+- Cash: $9,045.29 (18.36% vs 0.3% target — still underinvested, ramp continues)
+- Buying power: $148,499.26
+
+### Drift vs. Target
+| Ticker | Target % | Actual % | Gap | Ramp? | Today's Allowance Used |
+|---|---|---|---|---|---|
+| VOO | 23.800 | 15.849 | +7.951 | yes | no (fresh) |
+| SCHD | 19.900 | 16.481 | +3.419 | yes | no (fresh) |
+| BTC | 11.100 | 11.014 | +0.086 | yes | no (fresh) |
+| SGOV | 9.300 | 9.450 | -0.150 | yes | no (fresh) |
+| QQQM | 7.800 | 7.515 | +0.285 | yes | no (fresh) |
+| SCHG | 7.400 | 7.308 | +0.092 | yes | no (fresh) |
+| SPMO | 5.600 | 1.260 | +4.340 | yes | no (fresh) **STOP-TRIGGERED** |
+| VTV | 2.600 | 2.656 | -0.056 | yes | no (fresh) |
+| BRK.B | 2.600 | 0.998 | +1.602 | yes | no (fresh) |
+| MSFT | 1.700 | 1.907 | -0.207 | no | n/a |
+| VGT | 1.300 | 1.275 | +0.025 | no | n/a |
+| ETH | 1.200 | 1.322 | -0.122 | no | n/a |
+| GOOGL | 1.100 | 1.167 | -0.067 | no | n/a |
+| VXUS | 0.900 | 0.888 | +0.012 | no | n/a |
+| SOFI | 0.600 | 0.609 | -0.009 | no | n/a |
+| PLTR | 0.400 | 0.391 | +0.009 | no | n/a |
+| GXRP | 0.300 | 0.291 | +0.009 | no | n/a |
+| APLD | 0.200 | 0.000 | +0.200 | no | n/a **ZERO** |
+| IREN | 0.200 | 0.062 | +0.138 | no | n/a |
+| NBIS | 0.200 | 0.193 | +0.007 | no | n/a |
+| AMZN | 0.200 | 0.192 | +0.008 | no | n/a |
+| META | 0.200 | 0.186 | +0.014 | no | n/a |
+| IONQ | 0.122 | 0.120 | +0.002 | no | n/a |
+| RGTI | 0.122 | 0.117 | +0.005 | no | n/a |
+| QBTS | 0.122 | 0.120 | +0.002 | no | n/a |
+| UNH | 0.122 | 0.122 | +0.000 | no | n/a |
+| DRAM | 0.122 | 0.117 | +0.005 | no | n/a |
+| WULF | 0.122 | 0.022 | +0.100 | no | n/a |
+| CIFR | 0.122 | 0.005 | +0.117 | no | n/a **remnant** |
+| GLXY | 0.122 | 0.000 | +0.122 | no | n/a **ZERO** |
+| RIOT | 0.122 | 0.000 | +0.122 | no | n/a **ZERO** |
+
+(ADA target held as 0.3% cash until GADA lists — see TARGET-PORTFOLIO.json.)
+
+### Gaps Needing Attention
+- **SPMO stop-triggered — dropped 5.50% → 1.26% (+4.34% gap).** Trailing
+  stop fired since 07-28 (a fresh trailing_stop still sits on the residual
+  ~4 shares). Re-enters ramp buildout under the normal rule — up to 1%/day.
+- **Core ramp still the main story.** VOO (+7.95%) and SCHD (+3.42%) remain
+  underweight; 1%/day ramp continues. BRK.B recovered to 1.00% but still
+  +1.60% short. BTC/SGOV/QQQM/SCHG/VTV at/within tolerance. Cash 18.4% vs
+  0.3% — heavily underinvested, grinding down as ramp works.
+- **Spec-basket zeros/remnants:** APLD, GLXY, RIOT at ZERO; CIFR ($2.46)
+  and WULF ($10.82) remnants; IREN ($30.56) underweight. All rejoin the
+  buildout queue, buy to full target at open.
+- **⚠ OPERATIONAL — 14 positions carry NO trailing stop, incl. the two
+  largest: VTV ($1,308) and MSFT ($939); also ETH, VGT, BRK.B, VXUS +8
+  smaller (~$4,884 total unprotected).** Violates the 10%-trailing-stop
+  hard rule. Root cause is order-page saturation: 50 open orders, 43 of
+  them duplicate stale stops stacked on 7 core symbols (SCHD 11, VOO 8,
+  BTC 7, SGOV 6, QQQM 5, SCHG 4, SPMO 2) — the market-open routine adds a
+  new stop each day without cancelling the prior one, starving uncovered
+  positions of order slots. This has worsened since the 07-28 flag.
+  **Market-open must de-dup (cancel redundant stops, keep one per symbol)
+  before placing new stops.**
+
+### Planned Action for Market-Open
+- Ramp (buy up to 1% equity ≈ $492 each, gap-capped): VOO ~$492,
+  SCHD ~$492, SPMO ~$492 (stop-triggered rebuild), BRK.B ~$492.
+- Buyback / top-up to full target (non-ramp, <2%, buy in full): APLD ~$99,
+  GLXY ~$60, RIOT ~$60, CIFR ~$58, IREN ~$68, WULF ~$49.
+- Total ≈ $2.36k; cash $9.0k covers easily.
+- **De-dup the order page first**, then set 10% GTC trailing stops on every
+  position/new buy currently lacking one (VTV, MSFT, ETH, VGT, BRK.B, VXUS,
+  GXRP, NBIS, AMZN, META, UNH, IREN, WULF, CIFR).
+
+### Decision
+BUILDOUT — VOO/SCHD/SPMO/BRK.B ramp continues; spec buybacks; and clear the
+stop-coverage gap on the 14 unstopped positions. No daily-loss breaker
+(equity -0.35% on pre-market marks vs 10% limit).
