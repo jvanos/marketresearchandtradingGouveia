@@ -44,6 +44,89 @@ a human wrapper edit.)
 
 ### Drift Health: On-track / Needs Rebalance / Alert
 
+## Week ending 2026-07-31
+
+### Stats
+| Metric | Value |
+|--------|-------|
+| Starting portfolio (Mon AM ≈ Fri 07-24 close) | $49,491.18 |
+| Ending portfolio | $49,591.89 |
+| Week return | +$100.71 (+0.20%) |
+| Cash % | 10.3% |
+| Symbols still ramping | 4 of 9 (VOO, SPMO, SCHD, BRK.B) |
+| Est. days to full buildout | ~6 (VOO is long pole) |
+
+Intra-week path (logged EOD): Wed 07-29 $48,907 (week low) → Thu 07-30
+$49,676 (week high) → Fri 07-31 $49,592. Dipped on Wed's soft growth tape,
+firm recovery Thu, eased slightly Fri. Net +$100 on the week. Phase P&L (vs
+$50k Day-0): -$408 (-0.82%), best weekly close of the phase. Two EOD pushes
+missed (Jul 27, Jul 28) — logging gap, figures reconstructed from Alpaca.
+
+### Drift Table
+| Ticker | Target % | Actual % | Gap (pp) |
+|---|---|---|---|
+| CASH  | 0.3  | 10.3 | +10.0 (buildout gap — dominant) |
+| VOO   | 23.8 | 18.0 | +5.8 (~$2.9k short) |
+| SPMO  | 5.6  | 3.3  | +2.3 (~$1.1k short; rebuilding post-Wed trim) |
+| SCHD  | 19.9 | 18.3 | +1.6 (~$0.8k short) |
+| BRK.B | 2.6  | 2.0  | +0.6 (~$0.3k short) |
+| MSFT  | 1.7  | 2.0  | -0.3 (slightly over on its +17% run — within tol) |
+(All other cores/satellites at/within tolerance. BTC 11.0, SGOV 9.4,
+QQQM 7.9, SCHG 7.5, VTV 2.6 all essentially on target. Cash 23%→10% this
+week — buildout advanced hard.)
+
+### Stop-Loss Activity This Week
+| Ticker | Trigger | Realized P&L | Buyback Status |
+|---|---|---|---|
+| SPMO | Wed 07-29: partial trailing-stop fires (5 sh @ ~$138) amid stacked-stop cleanup | ~flat | rebuilt via ramp Thu/Fri (4.5→11.4 sh) |
+| APLD/GLXY/RIOT/IREN/CIFR/WULF | Wed 07-29: fragment trailing-stop fires + market cleanup sells | small, mixed | topped back at 07-30 open |
+| IREN/APLD/RIOT/CIFR | Fri 07-31: trailing stops trimmed winners near highs on the pullback, left sub-share remnants | small gains | remnants held; re-enter buildout |
+| META | Thu 07-30: 0.17 sh market cleanup | ~-$0.6 | rebought toward 0.2% |
+(No -7% core cuts. QQQM touched -7.14% unrealized Wed, recovered above the
+line Thu — no cut taken, correct call.)
+
+### What Worked / What Didn't
+- Worked: **Stop-coverage backlog RESOLVED** — last week's 5+-day
+  operational Alert is cleared. Every position ≥1 whole share now carries
+  full trailing-stop coverage (complementary lot stops summing to position
+  qty, not redundant dups); previously-naked VTV/ETH/VGT/VXUS/GXRP all
+  covered; MSFT tightened to 7% at the +15% tier (+17.3%).
+- Worked: Cash deployment accelerated — 23%→10% in one week (25+ fills Wed
+  alone), VOO/SPMO/SCHD ramped every session at the 1%/day cap. Thu
+  recovery broad (QQQM/VGT/SPMO/SCHG rebounded, MSFT +16.9%).
+- Didn't: Early week the still-stacked stops over-trimmed SPMO to 4.5 sh on
+  Wed's down tape before Friday's cleanup (rebuilt since). Friday's
+  whole-share trails on small momo names again fired partial, leaving
+  sub-share remnants (APLD/IREN/CIFR/RIOT) — but these trimmed winners near
+  highs, minor.
+- Known limit: 8 sub-1-share positions (~$470) remain stopless — Alpaca
+  rejects fractional trailing stops, so they ride under the -7% manual-cut
+  rule until each lot ramps past 1 share (notably NBIS, a +16% winner at
+  0.61 sh).
+
+### Adjustments for Next Week
+- Continue VOO/SPMO/SCHD/BRK.B ramp at 1%/day (~6 days to full; VOO long pole).
+- Place NBIS's 7% trail the moment it crosses 1 share (currently +16%
+  unprotected).
+- Keep the resolved stop coverage clean — verify no re-stacking as lots grow.
+- Land the daily EOD pushes (two missed this week).
+
+### Proposed Strategy Changes
+- **Last week's escalation (stacked/partial trailing-stop saturation) is
+  RESOLVED** — no further human action needed on it. The order page is no
+  longer saturated and coverage is auditable again.
+- No new rule change proposed. The sub-1-share stopless gap is a standing
+  Alpaca constraint (fractional trailing stops rejected), not a strategy
+  loosening — the -7% manual rule already governs those small lots. A
+  `reconcile-stops` helper remains a nice-to-have but is no longer urgent
+  now that the backlog is cleared.
+
+### Drift Health: On-track
+Core drift is normal mid-buildout and narrowing well (cash 23%→10%). The
+operational Alert that dominated last week is resolved. Idle cash remains
+elevated vs the 0.3% target but is grinding down as designed; VOO is the
+only large single-name gap and is on the ramp.
+
 ## Week ending 2026-07-24
 
 ### Stats
