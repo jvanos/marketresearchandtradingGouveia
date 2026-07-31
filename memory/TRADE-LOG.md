@@ -692,3 +692,49 @@ positions still carry NO stop — VTV ($1.3k), ETH ($655), VGT ($647), VXUS
 trail. TOP PRIORITY for next midday scan unchanged: de-dupe (keep one per
 symbol, honor never-move-down), then place a single full-position 10% trail
 on VTV/ETH/VGT/VXUS/GXRP, and tighten MSFT to 7%.
+
+## 2026-07-31 — Market-Open Buildout
+
+Day-19 buildout. Core ramp continues: VOO/SCHD/SPMO each took the full 1%
+allowance ($496; equity $49,729 → 1% cap $496.76 per wrapper — initial
+$497.29 orders were rejected for topping the cap by $0.53, re-placed at
+$496). BTC took its remaining gap ($167, under cap). META rebought to full
+0.2% target ($99.46; was zero). WULF topped up to full 0.12% target ($48;
+was a $12.7 remnant → now 3.32 sh). BRK.B buy SKIPPED — ~4.7% open-auction
+spread (bp 486.21 / ap 510).
+
+**Stop-page overhaul (the "8 naked positions" alarm was a pagination
+artifact).** The order endpoint caps at 50; true open-order count exceeded
+that, hiding stops on VTV/VGT/ETH/VXUS/GXRP behind page 1 and making them
+look naked. Full de-dup executed (iterated across pages): kept the single
+highest-stop-price order per symbol (honors never-move-down), then added
+supplemental full-remaining-whole-qty 10% GTC trails so every whole-share
+position is now fully covered. Order page 35/50, one-to-two clean stops
+per symbol.
+
+| Date | Ticker | Side | Shares/Notional | Entry | Stop | Target Weight | Ramp? | Note |
+|---|---|---|---|---|---|---|---|---|
+| 2026-07-31 | VOO  | buy | $496 / 0.7248 sh  | 684.312 | 10% trail (+12 sh supp) | 23.8% | yes | ramp top-up |
+| 2026-07-31 | SCHD | buy | $496 / 14.918 sh  | 33.247  | 10% trail (+240 sh supp)| 19.9% | yes | ramp top-up |
+| 2026-07-31 | SPMO | buy | $496 / 3.388 sh   | 146.38  | 10% trail (+10 sh supp) | 5.6%  | yes | ramp top-up |
+| 2026-07-31 | BTC  | buy | $167 / 5.941 sh   | 28.11   | 10% trail (+160 sh supp)| 11.1% | yes | ramp top-up (gap) |
+| 2026-07-31 | META | buy | $99.46 / 0.1811 sh| 549.078 | BLOCKED — fractional    | 0.2%  | no  | gap-fill (buyback) |
+| 2026-07-31 | WULF | buy | $48 / 2.632 sh    | 18.23   | 10% trail (qty 3)       | 0.12% | no  | top-up to full |
+
+### Skipped this run
+| Ticker | Target | Reason |
+|---|---|---|
+| BRK.B | 2.6% | ~4.7% open-auction spread (bp 486.21 / ap 510) — ramp deferred |
+
+### ⚠ Stops BLOCKED — fractional-share limitation (monitor in scans)
+Alpaca rejects stop/trailing orders on positions under 1 whole share (422).
+These carry NO resting stop and cannot until they reach ≥1 share (which
+their target weights forbid). Protect via midday/EOD manual scan only:
+- AMZN 0.405 sh (~$108) · META 0.181 sh (~$100) · NBIS 0.612 sh (~$117) ·
+  UNH 0.143 sh (~$60). Combined ~$385.
+
+### Coverage note
+Every whole-share position now carries full 10% trailing-stop coverage
+(35 active orders). The only unprotected exposure is the 4 fractional
+remnants above (~$385, 0.8% of equity). MSFT trail already at 7% (+15%
+tier) from 07-30.
