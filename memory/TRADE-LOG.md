@@ -709,3 +709,53 @@ trailing stops here, so none is placeable until the lot ramps past 1 share;
 these are governed by the -7% manual-cut rule at each scan meanwhile. Note
 NBIS is a +16.3% winner sitting unprotected at 0.61 sh — will get a 7% trail
 once it crosses 1 share.
+
+### Jul 31 — EOD Snapshot (Day 19, Friday)
+**Portfolio:** $49,610.02 | **Cash:** $5,094.34 (10.3%) | **Day P&L:** -$42.18 (-0.09%) | **Phase P&L:** -$389.98 (-0.78%)
+| Ticker | Shares | Entry | Close | Day Chg | Unrealized P&L | Stop |
+| AMZN | 0.405 | 246.86 | 270.25 | +14.76% | +9.47 (+9.48%) | NO STOP (sub-1sh) |
+| APLD | 0.685 | 26.76 | 27.12 | -3.04% | +0.25 (+1.34%) | NO STOP (sub-1sh) |
+| BRK.B | 1.943 | 508.11 | 511.88 | +0.43% | +7.33 (+0.74%) | 10% trail |
+| BTC | 196.348 | 28.20 | 27.79 | -2.93% | -80.71 (-1.46%) | 2 trails (10%) |
+| CIFR | 0.839 | 21.15 | 22.08 | -2.54% | +0.78 (+4.41%) | NO STOP (sub-1sh) |
+| DRAM | 1.275 | 47.39 | 49.95 | -4.56% | +3.27 (+5.41%) | 10% trail |
+| ETH | 35.650 | 16.83 | 17.76 | -3.06% | +33.13 (+5.52%) | 10% trail |
+| GLXY | 3.008 | 20.03 | 21.00 | -2.42% | +2.92 (+4.84%) | 10% trail |
+| GOOGL | 1.703 | 319.95 | 354.00 | +6.10% | +58.00 (+10.64%) | 10% trail |
+| GXRP | 6.912 | 21.70 | 20.57 | -2.47% | -7.82 (-5.21%) | 10% trail |
+| IONQ | 1.799 | 33.60 | 36.23 | +1.29% | +4.73 (+7.83%) | 10% trail |
+| IREN | 0.849 | 34.34 | 36.66 | -4.18% | +1.97 (+6.76%) | NO STOP (sub-1sh) |
+| META | 0.181 | 549.08 | 555.30 | +3.02% | +1.13 (+1.13%) | NO STOP (sub-1sh) |
+| MSFT | 2.197 | 393.50 | 461.46 | +2.30% | +149.34 (+17.27%) | 7% trail |
+| NBIS | 0.612 | 161.71 | 187.10 | -0.71% | +15.53 (+15.70%) | NO STOP (sub-1sh) |
+| PLTR | 1.586 | 125.61 | 122.70 | +0.36% | -4.62 (-2.32%) | 10% trail |
+| QBTS | 3.558 | 17.11 | 17.98 | -0.00% | +3.11 (+5.11%) | 10% trail |
+| QQQM | 13.856 | 292.01 | 282.01 | +0.24% | -138.62 (-3.43%) | 2 trails (10%) |
+| RGTI | 4.248 | 14.24 | 14.87 | +0.07% | +2.68 (+4.43%) | 10% trail |
+| RIOT | 0.853 | 21.12 | 20.07 | -9.26% | -0.89 (-4.96%) | NO STOP (sub-1sh) |
+| SCHD | 270.937 | 32.94 | 33.52 | +0.33% | +158.34 (+1.77%) | 2 trails (10%) |
+| SCHG | 108.924 | 34.40 | 34.05 | +0.78% | -38.04 (-1.01%) | 2 trails (10%) |
+| SGOV | 46.230 | 100.52 | 100.71 | +0.02% | +8.67 (+0.19%) | 2 trails (10%) |
+| SOFI | 19.566 | 15.19 | 16.21 | -1.58% | +19.87 (+6.69%) | 10% trail |
+| SPMO | 11.397 | 143.22 | 143.58 | +0.11% | +4.08 (+0.25%) | 2 trails (10%) |
+| UNH | 0.143 | 425.73 | 414.07 | -1.76% | -1.67 (-2.74%) | NO STOP (sub-1sh) |
+| VGT | 5.693 | 114.17 | 112.74 | -0.74% | -8.16 (-1.26%) | 10% trail |
+| VOO | 13.034 | 684.99 | 684.79 | +0.44% | -2.60 (-0.03%) | 2 trails (10%) |
+| VTV | 5.944 | 219.21 | 219.95 | -0.27% | +4.40 (+0.34%) | 2 trails (10%) |
+| VXUS | 5.277 | 85.28 | 84.50 | -0.32% | -4.12 (-0.92%) | 10% trail |
+| WULF | 3.322 | 17.85 | 17.65 | -0.95% | -0.65 (-1.10%) | 10% trail |
+**Notes:** Day 19, Friday — quiet flat close, essentially unchanged
+(-0.09% day vs Alpaca's Jul-30 last_equity of $49,652.20). Phase -0.78% vs
+$50k baseline, holding near the recent best. No trades today (EOD summary
+only; midday scan placed no orders, no cuts). Modest broad pullback in
+speculative/crypto names (BTC -2.93%, ETH -3.06%, DRAM -4.56%, IREN -4.18%)
+offset by mega-cap strength (GOOGL +6.10% to +10.64% unrealized, MSFT
+holding +17.27%, AMZN +14.76% to +9.48%). RIOT was the day's weakest at
+-9.26% but sits -4.96% unrealized, above the -7% manual-cut line. **STOP
+COVERAGE: solid.** Every position >=1 whole share carries a full-qty
+trailing stop (MSFT at 7% post-+15% tier; all others 10%; "2 trails" =
+complementary lot stops = full position). Only remaining stopless names are
+8 sub-1-share positions (AMZN, APLD, CIFR, IREN, META, NBIS, RIOT, UNH;
+~$450 total) — Alpaca rejects fractional-share trailing stops, so each is
+governed by the -7% manual-cut rule until it ramps past 1 share. NBIS
+(+15.70%, 0.61sh) still the notable unprotected winner pending a >=1sh ramp.
