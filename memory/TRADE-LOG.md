@@ -692,3 +692,20 @@ positions still carry NO stop — VTV ($1.3k), ETH ($655), VGT ($647), VXUS
 trail. TOP PRIORITY for next midday scan unchanged: de-dupe (keep one per
 symbol, honor never-move-down), then place a single full-position 10% trail
 on VTV/ETH/VGT/VXUS/GXRP, and tighten MSFT to 7%.
+
+### 2026-07-31 — Midday stop-loss scan
+No cuts (worst open: GXRP -4.98%, BTC -1.60%, RIOT -3.16% — all above the
+-7% line). No orders placed by this scan. **STOP-COVERAGE now RESOLVED.**
+The prior backlog was cleared by today's market-open run: every position
+>=1 whole share carries trailing-stop coverage summing to its full
+whole-share qty. The "duplicate" trails are actually complementary lot
+stops (older lot + shares added since) that together = full position — not
+redundant: BTC 160+36=196, SCHD 240+30=270, SCHG 79+29=108, SGOV 36+10=46,
+QQQM 11+2=13, SPMO 10+1=11, VOO 12+1=13, VTV 2+3=5. Previously-uncovered
+VTV/ETH/VGT/VXUS/GXRP all now fully covered; MSFT confirmed tightened to 7%
+(+17.30%). Remaining stopless = 8 sub-1-share positions (AMZN, APLD, CIFR,
+IREN, META, NBIS, RIOT, UNH; ~$470 total) — Alpaca only accepts whole-share
+trailing stops here, so none is placeable until the lot ramps past 1 share;
+these are governed by the -7% manual-cut rule at each scan meanwhile. Note
+NBIS is a +16.3% winner sitting unprotected at 0.61 sh — will get a 7% trail
+once it crosses 1 share.
