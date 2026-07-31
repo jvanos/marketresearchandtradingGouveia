@@ -805,3 +805,85 @@ Auto de-dupe has not self-healed for 7 days — needs human attention.
 BUILDOUT — VOO/SCHD/SPMO/BRK.B ramp continues; spec buybacks; and clear the
 stop-coverage gap on the 14 unstopped positions. No daily-loss breaker
 (equity -0.35% on pre-market marks vs 10% limit).
+
+---
+
+## 2026-07-31 — Pre-market Drift Check
+
+### Account
+- Equity: $49,784.12
+- Cash: $6,656.81
+- Buying power: $146,850.94 (margin; non-marginable $28,125.32)
+
+### Drift vs. Target
+| Ticker | Target % | Actual % | Gap | Ramp? | Today's Allowance Used |
+|---|---|---|---|---|---|
+| VOO | 23.80 | 16.94 | +6.86 | yes | no |
+| SCHD | 19.90 | 17.20 | +2.70 | yes | no |
+| BTC | 11.10 | 10.81 | +0.29 | yes | no |
+| SGOV | 9.30 | 9.35 | -0.05 | yes | n/a |
+| QQQM | 7.80 | 7.93 | -0.13 | yes | n/a |
+| SCHG | 7.40 | 7.43 | -0.03 | yes | n/a |
+| SPMO | 5.60 | 2.35 | +3.25 | yes | no |
+| VTV | 2.60 | 2.65 | -0.05 | yes | n/a |
+| BRK.B | 2.60 | 1.99 | +0.61 | yes | no |
+| MSFT | 1.70 | 1.98 | -0.28 | no | n/a |
+| VGT | 1.30 | 1.30 | -0.00 | no | n/a |
+| ETH | 1.20 | 1.29 | -0.09 | no | n/a |
+| GOOGL | 1.10 | 1.16 | -0.06 | no | n/a |
+| VXUS | 0.90 | 0.90 | -0.00 | no | n/a |
+| SOFI | 0.60 | 0.65 | -0.05 | no | n/a |
+| PLTR | 0.40 | 0.39 | +0.01 | no | n/a |
+| GXRP | 0.30 | 0.29 | +0.01 | no | n/a |
+| APLD | 0.20 | 0.22 | -0.02 | no | n/a |
+| IREN | 0.20 | 0.23 | -0.03 | no | n/a |
+| NBIS | 0.20 | 0.25 | -0.05 | no | n/a |
+| AMZN | 0.20 | 0.21 | -0.01 | no | n/a |
+| META | 0.20 | 0.00 | +0.20 | no | no **ZERO** |
+| IONQ | 0.12 | 0.13 | -0.01 | no | n/a |
+| RGTI | 0.12 | 0.13 | -0.01 | no | n/a |
+| QBTS | 0.12 | 0.13 | -0.01 | no | n/a |
+| UNH | 0.12 | 0.12 | +0.00 | no | n/a |
+| DRAM | 0.12 | 0.14 | -0.02 | no | n/a |
+| WULF | 0.12 | 0.03 | +0.10 | no | no **remnant** |
+| CIFR | 0.12 | 0.13 | -0.01 | no | n/a |
+| GLXY | 0.12 | 0.14 | -0.01 | no | n/a |
+| RIOT | 0.12 | 0.13 | -0.01 | no | n/a |
+
+(ADA target held as 0.3% cash until GADA lists — see TARGET-PORTFOLIO.json.)
+
+### Gaps Needing Attention
+- **Core ramp remains the story.** VOO deeply underweight (+6.86% gap,
+  ~$3.4k) and SCHD (+2.70%, ~$1.3k) — 1%/day ramp continues. SPMO still
+  rebuilding from its 07-28 stop trigger (+3.25%, ~$1.6k). BRK.B +0.61%
+  (~$304). BTC within a hair of target (+0.29%). Cash 13.4% vs 0.3% target
+  — still overweight cash, grinding down as ramp works. Down from ~18% a
+  few sessions ago; buildout is progressing.
+- **META at ZERO (+0.20% gap, ~$100).** Non-ramp — buy to full target at
+  open. WULF a remnant ($12.83, +0.10% gap) — top up to full. (Yesterday's
+  APLD/GLXY/RIOT/CIFR/IREN zeros/remnants were filled at the 07-30 open and
+  now sit at target.)
+- **⚠ OPERATIONAL — stop-coverage hard-rule violation persists. 8 held
+  positions carry NO trailing stop:** VTV ($1,320), VGT ($649), ETH ($641),
+  VXUS ($450), GXRP ($146), NBIS ($126), AMZN ($106), UNH ($60) — ~$3.5k
+  unprotected, incl. the 8th-largest position (VTV). Root cause unchanged:
+  order page saturated at 50/50, ~36 slots are duplicate stale stops
+  stacked on 7 core symbols (SCHD 10, VOO 8, BTC 5, QQQM 4, SGOV 3, SPMO 3,
+  SCHG 3), starving uncovered positions of slots. Improved from 14
+  unprotected on 07-30 but not cleared. **Market-open must de-dup (cancel
+  redundant stops, keep one per symbol, honor never-move-down) BEFORE
+  placing the 8 missing 10% GTC trailing stops.**
+
+### Planned Action for Market-Open
+- Ramp (buy up to 1% equity ≈ $498 each, gap-capped): VOO ~$498,
+  SCHD ~$498, SPMO ~$498, BRK.B ~$304, BTC ~$144.
+- Buy to full target (non-ramp): META ~$100, WULF ~$50.
+- Total ≈ $2.09k; cash $6.66k covers easily.
+- **De-dup the order page first**, then set 10% GTC trailing stops on every
+  uncovered position/new buy: VTV, VGT, ETH, VXUS, GXRP, NBIS, AMZN, UNH
+  (plus stops on any new fills: META, and top-ups).
+
+### Decision
+BUILDOUT — VOO/SCHD/SPMO/BRK.B/BTC ramp continues; META buyback + WULF
+top-up; clear the 8-position stop-coverage gap. No daily-loss breaker
+(equity +0.27% vs prior close on pre-market marks, well within 10% limit).
