@@ -777,3 +777,56 @@ NBIS, RIOT, UNH) — Alpaca rejects fractional trailing stops, so each stays
 under the -7% manual-cut rule until it ramps past 1 share. Notable
 unprotected winners: NBIS +34.1% (0.61sh) and AMZN +15.4% (0.41sh) — both
 awaiting a >=1sh ramp before a 5%/7% trail can be placed.
+
+### Aug 03 — EOD Snapshot (Day 20, Monday)
+**Portfolio:** $50,299.68 | **Cash:** $3,091.00 (6.1%) | **Day P&L:** +$689.66 (+1.39%) | **Phase P&L:** +$299.68 (+0.60%)
+| Ticker | Shares | Entry | Close | Day Chg | Unrealized P&L | Stop |
+| AMZN | 0.405 | 246.86 | 279.86 | +3.05% | +13.37 (+13.37%) | NO STOP (sub-1sh) |
+| APLD | 3.673 | 27.32 | 29.94 | +9.31% | +9.64 (+9.61%) | 10% trail |
+| BRK.B | 2.499 | 510.28 | 513.14 | +0.31% | +7.14 (+0.56%) | 2 trails (10%) |
+| BTC | 199.845 | 28.19 | 28.05 | +0.86% | -28.59 (-0.51%) | 3 trails (10%) |
+| CIFR | 2.761 | 22.03 | 23.94 | +7.26% | +5.28 (+8.68%) | 10% trail |
+| DRAM | 0.275 | 47.39 | 51.60 | +2.44% | +1.16 (+8.89%) | NO STOP (sub-1sh) |
+| ETH | 35.650 | 16.83 | 17.75 | -0.28% | +32.80 (+5.47%) | 10% trail |
+| GLXY | 1.926 | 20.86 | 22.17 | +5.52% | +2.53 (+6.30%) | 10% trail |
+| GOOGL | 1.703 | 319.95 | 371.82 | +4.41% | +88.36 (+16.21%) | 7% trail |
+| GXRP | 6.912 | 21.70 | 20.94 | +1.80% | -5.26 (-3.51%) | 10% trail |
+| IONQ | 1.799 | 33.60 | 39.52 | +8.45% | +10.65 (+17.63%) | 7% trail |
+| IREN | 2.720 | 36.28 | 40.15 | +9.12% | +10.55 (+10.69%) | 10% trail |
+| META | 0.181 | 549.08 | 589.65 | +5.92% | +7.35 (+7.39%) | NO STOP (sub-1sh) |
+| MSFT | 2.197 | 393.50 | 483.46 | +4.03% | +197.68 (+22.86%) | 5% trail |
+| NBIS | 0.612 | 161.71 | 216.00 | +13.44% | +33.21 (+33.57%) | NO STOP (sub-1sh) |
+| PLTR | 1.586 | 125.61 | 143.01 | +16.21% | +27.60 (+13.85%) | 10% trail |
+| QBTS | 3.558 | 17.11 | 20.01 | +10.67% | +10.34 (+16.98%) | 7% trail |
+| QQQM | 13.856 | 292.01 | 288.84 | +1.96% | -43.98 (-1.09%) | 2 trails (10%) |
+| RGTI | 4.248 | 14.24 | 16.09 | +7.62% | +7.86 (+13.00%) | 10% trail |
+| RIOT | 0.853 | 21.12 | 21.50 | +6.59% | +0.32 (+1.80%) | NO STOP (sub-1sh) |
+| SCHD | 285.732 | 32.97 | 33.57 | +0.29% | +170.24 (+1.81%) | 3 trails (10%) |
+| SCHG | 108.924 | 34.40 | 34.86 | +2.02% | +49.64 (+1.32%) | 2 trails (10%) |
+| SGOV | 46.230 | 100.52 | 100.42 | -0.28% | -4.57 (-0.10%) | 2 trails (10%) |
+| SOFI | 19.566 | 15.19 | 18.01 | +10.42% | +55.09 (+18.53%) | 7% trail |
+| SPMO | 14.892 | 143.05 | 146.00 | +1.51% | +43.90 (+2.06%) | 3 trails (10%) |
+| UNH | 0.143 | 425.73 | 414.87 | +0.11% | -1.55 (-2.55%) | NO STOP (sub-1sh) |
+| VGT | 5.693 | 114.17 | 115.59 | +2.15% | +8.05 (+1.24%) | 10% trail |
+| VOO | 13.755 | 685.29 | 697.05 | +1.52% | +161.73 (+1.72%) | 2 trails (10%) |
+| VTV | 5.944 | 219.21 | 221.21 | +0.57% | +11.89 (+0.91%) | 2 trails (10%) |
+| VXUS | 5.277 | 85.28 | 85.05 | +0.54% | -1.22 (-0.27%) | 10% trail |
+| WULF | 3.322 | 17.85 | 19.04 | +7.81% | +3.97 (+6.69%) | 10% trail |
+**Notes:** Day 20, Monday — strong risk-on session, +1.39% day (vs Fri EOD
+$49,610.02), new phase high at +0.60% ($50,299.68). Market-open buildout
+executed 9 ramp buys totaling ~$2,113 (VOO/SCHD/SPMO $498 ea, BRK.B $288,
+BTC $97, APLD $82, IREN $69, CIFR $43, GLXY $40) toward target weights,
+each getting a fresh 10% GTC trail; cash drawn to $3,091 (6.1%). Two
+trailing stops triggered intraday on brief dips then names rebounded: DRAM
+(sold 1 whole sh @48.05, closed 51.60) and GLXY (sold 3 sh @20.51, then
+$40 buildout re-buy, closed 22.17) — both re-enter buildout queue per rule.
+Broad strength led by high-beta/AI names (PLTR +16.2%, NBIS +13.4%, QBTS
++10.7%, SOFI +10.4%, IREN +9.1%, APLD +9.3%, IONQ +8.5%); mega-caps firm
+(MSFT +22.86% unrealized, GOOGL +16.21%). Only laggards SGOV/VXUS flat-red,
+BTC -0.51% unrealized. **STOP COVERAGE: solid.** All 27 positions >=1 whole
+share carry full-qty trailing coverage (whole-share qty == summed stop qty;
+MSFT 5%, GOOGL/IONQ/QBTS/SOFI 7%, rest 10%). Remaining stopless = 6
+sub-1-share positions (AMZN, DRAM, META, NBIS, RIOT, UNH; ~$450) — Alpaca
+rejects fractional trailing stops, each governed by the -7% manual-cut rule
+until it ramps past 1 share. NBIS (+33.57%, 0.61sh) still the notable
+unprotected winner pending a >=1sh ramp.
