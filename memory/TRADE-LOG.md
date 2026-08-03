@@ -759,3 +759,21 @@ complementary lot stops = full position). Only remaining stopless names are
 ~$450 total) — Alpaca rejects fractional-share trailing stops, so each is
 governed by the -7% manual-cut rule until it ramps past 1 share. NBIS
 (+15.70%, 0.61sh) still the notable unprotected winner pending a >=1sh ramp.
+
+### 2026-08-03 — Midday stop-loss scan
+No cuts (worst opens: GXRP -3.46%, UNH -2.47%, RIOT -1.47% — all above the
+-7% line). **Tightened 5 winners** that crossed a stop-ladder tier since
+Fri, cancel-then-replace, each new stop verified > old (no stop moved
+down), all live post-placement:
+- MSFT +24.0% -> +20% tier -> 5% trail (was 7%); stop 456.96 -> 463.86
+- IONQ +18.5% -> +15% tier -> 7% (was 10%); stop 36.14 -> 37.08
+- GOOGL +17.3% -> +15% tier -> 7% (was 10%); stop 339.02 -> 349.23
+- SOFI +16.7% -> +15% tier -> 7% (was 10%); stop 15.97 -> 16.56
+- QBTS +16.7% -> +15% tier -> 7% (was 10%); stop 18.12 -> 18.58
+**STOP COVERAGE: solid.** Every position >=1 whole share carries full-qty
+trailing-stop coverage (re-verified: whole-share qty == summed stop qty for
+all 25). Remaining stopless = 6 sub-1-share positions (AMZN, DRAM, META,
+NBIS, RIOT, UNH) — Alpaca rejects fractional trailing stops, so each stays
+under the -7% manual-cut rule until it ramps past 1 share. Notable
+unprotected winners: NBIS +34.1% (0.61sh) and AMZN +15.4% (0.41sh) — both
+awaiting a >=1sh ramp before a 5%/7% trail can be placed.
