@@ -759,3 +759,44 @@ complementary lot stops = full position). Only remaining stopless names are
 ~$450 total) — Alpaca rejects fractional-share trailing stops, so each is
 governed by the -7% manual-cut rule until it ramps past 1 share. NBIS
 (+15.70%, 0.61sh) still the notable unprotected winner pending a >=1sh ramp.
+
+## 2026-08-03 — Market-Open Buildout
+
+Day-20 buildout. Equity $49,838.58 (1% ramp allowance = $498.39). Core
+ramp continues at the $498 cap: VOO/SCHD/SPMO each took their full 1% day
+allowance (all still underweight — VOO 18.1%/SCHD 18.4%/SPMO 3.2% vs
+23.8/19.9/5.6% targets). BRK.B (+$288, gap < cap) and BTC (+$97, nearly at
+target) topped to remaining gap. Non-ramp remnants bought to full target:
+APLD/IREN/CIFR/GLXY. SGOV/QQQM/SCHG/VTV at/over tolerance — skipped.
+MSFT/ETH/GOOGL/AMZN/NBIS/META over target — skipped. Total $2,113 filled;
+cash $5,135 → ample. APLD/IREN/CIFR crossed 1 whole share for the first
+time and now carry their first 10% GTC trailing stops. VOO increment was
+sub-share (+0.721 sh) — no dedicated stop placeable on the fractional
+increment; its 13 whole shares remain fully covered. No de-dup needed:
+order page at 31/50, not saturated — the older stop-stacking backlog has
+cleared.
+
+| Date | Ticker | Side | Shares/Notional | Entry | Stop | Target Weight | Ramp? | Note |
+|---|---|---|---|---|---|---|---|---|
+| 2026-08-03 | VOO   | buy | $498 / 0.7209 sh  | 690.76  | (sub-share incr; 13 sh already covered) | 23.8%   | yes | ramp top-up |
+| 2026-08-03 | SCHD  | buy | $498 / 14.7947 sh | 33.66   | 10% trail (+15 sh)  | 19.9%   | yes | ramp top-up |
+| 2026-08-03 | SPMO  | buy | $498 / 3.4952 sh  | 142.478 | 10% trail (+3 sh)   | 5.6%    | yes | ramp top-up |
+| 2026-08-03 | BRK.B | buy | $288 / 0.5561 sh  | 517.888 | 10% trail (+1 sh)   | 2.6%    | yes | ramp top-up (gap < cap) |
+| 2026-08-03 | BTC   | buy | $97 / 3.4966 sh   | 27.739  | 10% trail (+3 sh)   | 11.1%   | yes | ramp top-up (near target) |
+| 2026-08-03 | APLD  | buy | $82 / 2.9876 sh   | 27.4435 | 10% trail (+3 sh, first stop) | 0.2% | no | gap-fill (remnant → target) |
+| 2026-08-03 | IREN  | buy | $69 / 1.8716 sh   | 36.862  | 10% trail (+2 sh, first stop) | 0.2% | no | gap-fill (remnant → target) |
+| 2026-08-03 | CIFR  | buy | $43 / 1.9216 sh   | 22.372  | 10% trail (+2 sh, first stop) | 0.1222% | no | gap-fill (remnant → target) |
+| 2026-08-03 | GLXY  | buy | $40 / 1.9171 sh   | 20.86   | 10% trail (+1 sh)   | 0.1222% | no | gap-fill (remnant → target) |
+
+### Skipped this run
+| Ticker | Target | Reason |
+|---|---|---|
+| RIOT | 0.1222% | Remnant ($16.63) below target BUT unrealized -7.72% — past the -7% manual-cut line. Not adding to a name flagged for cutting. Flag for midday scan. |
+
+### Flag for midday scan
+- **RIOT -7.72% unrealized** ($16.63, 0.85 sh) — past -7% cut line;
+  evaluate for manual cut. Sub-1-share, so no trailing stop; governed by
+  manual-cut rule.
+- Remaining stopless fractionals (all sub-1sh, Alpaca rejects fractional
+  trailing stops): AMZN, META, NBIS, UNH — governed by -7% manual-cut
+  rule until they ramp past 1 share. All currently above the cut line.
