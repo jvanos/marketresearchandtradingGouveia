@@ -830,3 +830,39 @@ sub-1-share positions (AMZN, DRAM, META, NBIS, RIOT, UNH; ~$450) — Alpaca
 rejects fractional trailing stops, each governed by the -7% manual-cut rule
 until it ramps past 1 share. NBIS (+33.57%, 0.61sh) still the notable
 unprotected winner pending a >=1sh ramp.
+
+## 2026-08-04 — Market-Open Buildout
+
+Day-21 buildout. Core ramp continues: VOO/SPMO/SCHD each took the next 1%
+allowance ($500; equity $50,488.47 → 1% = $504.88), all still underweight
+vs targets 23.8%/5.6%/19.9%. SGOV topped to target ($52, remaining gap <
+cap). Two non-ramp remnants bought to full 0.12% target: DRAM ($46) and
+RIOT ($43) — both left over from prior stop triggers, now re-crossing 1
+whole share and getting their FIRST trailing-stop coverage (DRAM qty 1,
+RIOT qty 2). VOO increment sub-share vs coverage but crossed 14th whole
+share (+1 stop); SPMO +4 whole (18 sh), SCHD +15 whole (300 sh) — each got
+a fresh 10% GTC trail on net-new whole shares, no existing stop moved.
+SGOV increment sub-share (still 46 whole), no new stop. BRK.B and GLXY
+skipped on anomalous wide open-auction spreads (see below) — both trivial
+top-ups, retry next buildout.
+
+| Date | Ticker | Side | Shares/Notional | Entry | Stop | Target Weight | Ramp? | Note |
+|---|---|---|---|---|---|---|---|---|
+| 2026-08-04 | VOO  | buy | $500 / 0.7138 sh  | 700.44 | 10% trail (+1 sh)                 | 23.8%  | yes | ramp top-up |
+| 2026-08-04 | SPMO | buy | $500 / 3.3543 sh  | 149.06 | 10% trail (+4 sh)                 | 5.6%   | yes | ramp top-up |
+| 2026-08-04 | SCHD | buy | $500 / 15.0147 sh | 33.30  | 10% trail (+15 sh)                | 19.9%  | yes | ramp top-up |
+| 2026-08-04 | SGOV | buy | $52 / 0.5177 sh   | 100.43 | (incr sub-share; 46 whole, no new)| 9.3%   | yes | ramp top-up |
+| 2026-08-04 | DRAM | buy | $46 / 0.8527 sh   | 53.94  | 10% trail (qty 1, first coverage) | 0.12%  | no  | remnant top-up (re-cross 1 sh) |
+| 2026-08-04 | RIOT | buy | $43 / 1.9919 sh   | 21.58  | 10% trail (qty 2, first coverage) | 0.12%  | no  | remnant top-up (re-cross 2 sh) |
+
+### Skipped this run (anomalous wide spread at open — retry next buildout)
+| Ticker | Target | Reason |
+|---|---|---|
+| BRK.B | 2.6%  | ~10% spread (ap 537.68 / bp 485.13) — thin open snapshot, trivial +$38 gap deferred |
+| GLXY  | 0.12% | ~6% spread (ap 22.44 / bp 21.17) — trivial +$18 remnant deferred |
+
+**Notes:** 6 buys, ~$1,641 total (3× ramp $500, SGOV $52, DRAM $46, RIOT
+$43), all filled at/near mid. Stop coverage improved: DRAM and RIOT move
+off the stopless-sub-1-share list (now 4 stopless: AMZN, META, NBIS, UNH).
+Cash drawn ~$3,134 → ~$1,493. No daily-loss breaker (equity +0.42% vs prior
+close). No wrapper rejections.
