@@ -887,3 +887,79 @@ stop-coverage gap on the 14 unstopped positions. No daily-loss breaker
 BUILDOUT — VOO/SCHD/SPMO/BRK.B/BTC ramp continues; META buyback + WULF
 top-up; clear the 8-position stop-coverage gap. No daily-loss breaker
 (equity +0.27% vs prior close on pre-market marks, well within 10% limit).
+
+---
+
+## 2026-08-04 — Pre-market Drift Check
+
+### Account
+- Equity: $50,375.14 | Cash: $3,090.98 | Buying power: $53,315.72
+
+### Drift vs. Target
+| Ticker | Target % | Actual % | Gap | Ramp? | Today's Allowance Used |
+|---|---|---|---|---|---|
+| VOO | 23.80 | 19.06 | +4.75 | yes | no |
+| SCHD | 19.90 | 19.05 | +0.85 | yes | no |
+| BTC | 11.10 | 11.17 | -0.07 | yes | n/a |
+| SGOV | 9.30 | 9.22 | +0.08 | yes | no |
+| QQQM | 7.80 | 7.99 | -0.19 | yes | n/a |
+| SCHG | 7.40 | 7.55 | -0.15 | yes | n/a |
+| SPMO | 5.60 | 4.37 | +1.23 | yes | no |
+| VTV | 2.60 | 2.61 | -0.01 | yes | n/a |
+| BRK.B | 2.60 | 2.54 | +0.06 | yes | no |
+| MSFT | 1.70 | 2.09 | -0.39 | no | n/a |
+| VGT | 1.30 | 1.31 | -0.01 | no | n/a |
+| ETH | 1.20 | 1.26 | -0.06 | no | n/a |
+| GOOGL | 1.10 | 1.24 | -0.14 | no | n/a |
+| VXUS | 0.90 | 0.89 | +0.01 | no | n/a |
+| SOFI | 0.60 | 0.70 | -0.10 | no | n/a |
+| PLTR | 0.40 | 0.46 | -0.06 | no | n/a |
+| GXRP | 0.30 | 0.29 | +0.01 | no | n/a |
+| APLD | 0.20 | 0.22 | -0.02 | no | n/a |
+| IREN | 0.20 | 0.21 | -0.01 | no | n/a |
+| NBIS | 0.20 | 0.26 | -0.06 | no | n/a |
+| AMZN | 0.20 | 0.22 | -0.02 | no | n/a |
+| META | 0.20 | 0.21 | -0.01 | no | n/a |
+| IONQ | 0.12 | 0.15 | -0.02 | no | n/a |
+| RGTI | 0.12 | 0.14 | -0.02 | no | n/a |
+| QBTS | 0.12 | 0.15 | -0.02 | no | n/a |
+| UNH | 0.12 | 0.12 | +0.00 | no | n/a |
+| DRAM | 0.12 | 0.03 | +0.09 | no | no **remnant** |
+| WULF | 0.12 | 0.13 | -0.01 | no | n/a |
+| CIFR | 0.12 | 0.12 | -0.00 | no | n/a |
+| GLXY | 0.12 | 0.09 | +0.04 | no | no **remnant** |
+| RIOT | 0.12 | 0.04 | +0.09 | no | no **remnant** |
+
+(ADA target held as 0.3% cash until GADA lists — see TARGET-PORTFOLIO.json.)
+
+### Gaps Needing Attention
+- **Core ramp is the whole story.** VOO deeply underweight (+4.75% gap,
+  ~$2.39k) and SPMO (+1.23%, ~$618) — 1%/day ramp continues. SCHD now
+  nearly on target (+0.85%, ~$427, fillable in one buy). BRK.B +0.06%
+  (~$32), SGOV +0.08% (~$42) trivial. BTC on target (-0.07%). Cash 6.14%
+  vs 0.3% — still overweight, grinding down as ramp draws it.
+- **Three remnants (non-ramp, buy to full):** DRAM ($14.54, +0.09%, ~$47),
+  RIOT ($18.46, +0.09%, ~$43), GLXY ($42.70, +0.04% ~$19). Leftovers from
+  prior stop triggers, partially re-bought — top up to full target.
+- **No zero-position gaps.** All 31 target symbols hold a position; no
+  stop-loss buyback needed.
+- **Stop coverage: HEALTHY.** Every whole-share position carries a 10% GTC
+  trailing stop to its floor-of-qty (MSFT 5%, GOOGL/IONQ/QBTS/SOFI 7%,
+  rest 10%). Only stopless = 6 sub-1-share positions Alpaca can't cover
+  with a fractional trailing stop (AMZN, DRAM, META, NBIS, RIOT, UNH;
+  ~$482), each under the -7% manual-cut rule until it ramps past 1 share.
+  The prior log's "8 uncovered / 50-slot saturation" was cleared at
+  Monday's open — order page now at 37, no saturation.
+
+### Planned Action for Market-Open
+- Ramp (buy up to 1% equity ≈ $504, gap-capped): VOO ~$504, SPMO ~$504,
+  SCHD ~$427, BRK.B ~$32, SGOV ~$42.
+- Buy to full target (non-ramp remnants): DRAM ~$47, RIOT ~$43, GLXY ~$19.
+- Total ≈ $1.62k; cash $3.09k covers.
+- Attach a 10% GTC trailing stop to every new whole-share fill; sub-1-share
+  buys stay under the -7% manual rule.
+
+### Decision
+BUILDOUT — VOO/SPMO/SCHD/BRK.B/SGOV ramp continues; DRAM/RIOT/GLXY remnant
+top-ups. No daily-loss breaker (equity +0.19% vs prior close). Stop
+coverage healthy — no operational flag.
