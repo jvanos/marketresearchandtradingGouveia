@@ -38,9 +38,9 @@ STEP 0 — Safety check (before anything else):
 STEP 1 — Read memory for today's plan:
 - memory/TARGET-PORTFOLIO.json (the target weights and ramp flags)
 - memory/TRADING-STRATEGY.md
-- TODAY's entry in memory/RESEARCH-LOG.md (if missing, run pre-market
-  STEPS 1-3 inline)
-- tail of memory/TRADE-LOG.md (for context on existing positions)
+- python3 scripts/memory_log.py recent memory/RESEARCH-LOG.md --days 5
+  (use TODAY's entry; if missing, run pre-market STEPS 1-3 inline)
+- python3 scripts/memory_log.py recent memory/TRADE-LOG.md --days 5
 
 STEP 2 — Re-validate with live data:
   bash scripts/alpaca.sh account
@@ -89,6 +89,8 @@ stop order is the one state this system must never leave silently.
 STEP 6 — Append each trade to memory/TRADE-LOG.md (matching existing
 format): date, ticker, side, shares/notional, entry price, stop level,
 target weight, ramp?, note (buildout / ramp top-up / gap-fill).
+Then archive complete old entries without deleting or summarizing history:
+  python3 scripts/memory_log.py archive memory/TRADE-LOG.md --keep-days 5
 
 STEP 7 — Notification: only if a trade was placed (or a planned trade was
 rejected by the wrapper — that's worth a one-line note too).
@@ -96,7 +98,7 @@ rejected by the wrapper — that's worth a one-line note too).
 
 STEP 8 — COMMIT, PUSH A CLAUDE BRANCH, AND OPEN A PR (mandatory if any
 trades executed or rejected):
-  git add memory/TRADE-LOG.md
+  git add memory/TRADE-LOG.md memory/archive/
   git commit -m "market-open buildout $DATE"
   BRANCH="claude/routine-market-open-$(date -u +%Y%m%dT%H%M%SZ)"
   git switch -c "$BRANCH"
@@ -105,7 +107,7 @@ trades executed or rejected):
   GH_TOKEN="$GITHUB_TOKEN" gh pr create --base main --head "$BRANCH" \
     --title "market-open buildout $DATE" \
     --body "Automated state update from the market-open Claude routine."
-The trusted GitHub Action validates that only memory/TRADE-LOG.md changed,
-then squash-merges the PR to main. Skip commit and PR if nothing happened.
-Treat the run as failed if the push or PR creation fails. Never push
-directly to main. Never force-push.
+The trusted GitHub Action validates that only memory/TRADE-LOG.md and its
+year-partitioned archive changed, then squash-merges the PR to main. Skip
+commit and PR if nothing happened. Treat the run as failed if the push or
+PR creation fails. Never force-push.

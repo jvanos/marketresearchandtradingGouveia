@@ -36,9 +36,10 @@ STEP 0 — Safety check (before anything else):
 
 STEP 1 — Read memory for full week context:
 - memory/TARGET-PORTFOLIO.json (target weights)
-- memory/WEEKLY-REVIEW.md (match existing template exactly)
-- ALL this week's entries in memory/TRADE-LOG.md
-- ALL this week's entries in memory/RESEARCH-LOG.md
+- python3 scripts/memory_log.py recent memory/WEEKLY-REVIEW.md --days 2
+  (match its template exactly)
+- python3 scripts/memory_log.py week memory/TRADE-LOG.md
+- python3 scripts/memory_log.py week memory/RESEARCH-LOG.md
 - memory/TRADING-STRATEGY.md
 
 STEP 2 — Pull week-end state:
@@ -59,6 +60,8 @@ STEP 4 — Append full review section to memory/WEEKLY-REVIEW.md (match
 the template): stats table, drift table, stop-loss activity table, what
 worked / what didn't, adjustments for next week, qualitative drift-health
 status (On-track / Needs Rebalance / Alert).
+Then archive complete old entries without deleting or summarizing history:
+  python3 scripts/memory_log.py archive memory/WEEKLY-REVIEW.md --keep-days 2
 
 STEP 5 — If a rule needs to change (proven out for 2+ weeks, or failed
 badly), do NOT edit memory/TRADING-STRATEGY.md directly. Instead, append a
@@ -82,7 +85,7 @@ STEP 6 — Send ONE ClickUp message. <= 15 lines:
   Drift health: <status>"
 
 STEP 7 — COMMIT, PUSH A CLAUDE BRANCH, AND OPEN A PR (mandatory):
-  git add memory/WEEKLY-REVIEW.md
+  git add memory/WEEKLY-REVIEW.md memory/archive/
   git commit -m "weekly review $DATE"
   BRANCH="claude/routine-weekly-review-$(date -u +%Y%m%dT%H%M%SZ)"
   git switch -c "$BRANCH"
@@ -91,6 +94,7 @@ STEP 7 — COMMIT, PUSH A CLAUDE BRANCH, AND OPEN A PR (mandatory):
   GH_TOKEN="$GITHUB_TOKEN" gh pr create --base main --head "$BRANCH" \
     --title "weekly review $DATE" \
     --body "Automated state update from the weekly-review Claude routine."
-The trusted GitHub Action validates that only memory/WEEKLY-REVIEW.md
-changed, then squash-merges the PR to main. Treat the run as failed if the
-push or PR creation fails. Never push directly to main. Never force-push.
+The trusted GitHub Action validates that only memory/WEEKLY-REVIEW.md and
+its year-partitioned archive changed, then squash-merges the PR to main.
+Treat the run as failed if the push or PR creation fails. Never push
+directly to main. Never force-push.

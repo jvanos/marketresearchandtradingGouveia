@@ -43,8 +43,9 @@ STEP 0 — Safety check (hybrid — trading is gated, reporting is not):
 STEP 1 — Read memory:
 - memory/TARGET-PORTFOLIO.json (target weights, ramp flags)
 - memory/TRADING-STRATEGY.md
-- memory/REBALANCE-LOG.md (match existing template exactly)
-- tail of memory/TRADE-LOG.md
+- python3 scripts/memory_log.py recent memory/REBALANCE-LOG.md --days 2
+  (match its template exactly)
+- python3 scripts/memory_log.py recent memory/TRADE-LOG.md --days 5
 
 STEP 2 — Pull live state:
   bash scripts/alpaca.sh account
@@ -94,6 +95,9 @@ STEP 7 — Append the full entry to memory/REBALANCE-LOG.md (match the
 template): pre-rebalance weights, trims table, top-ups table, gap-fills
 table, post-rebalance weights, ramp-status summary (symbols still
 ramping, est. days remaining).
+Then archive complete old entries without deleting or summarizing history:
+  python3 scripts/memory_log.py archive memory/REBALANCE-LOG.md --keep-days 2
+  python3 scripts/memory_log.py archive memory/TRADE-LOG.md --keep-days 5
 
 STEP 8 — Notification. Always send one (this is a quarterly event, not a
 daily one — silence here is a bigger red flag than on a daily routine):
@@ -104,7 +108,7 @@ daily one — silence here is a bigger red flag than on a daily routine):
   Largest remaining drift: SYM ±X.X pp"
 
 STEP 9 — COMMIT, PUSH A CLAUDE BRANCH, AND OPEN A PR (mandatory):
-  git add memory/REBALANCE-LOG.md memory/TRADE-LOG.md
+  git add memory/REBALANCE-LOG.md memory/TRADE-LOG.md memory/archive/
   git commit -m "quarterly rebalance $DATE"
   BRANCH="claude/routine-rebalance-$(date -u +%Y%m%dT%H%M%SZ)"
   git switch -c "$BRANCH"
@@ -113,7 +117,7 @@ STEP 9 — COMMIT, PUSH A CLAUDE BRANCH, AND OPEN A PR (mandatory):
   GH_TOKEN="$GITHUB_TOKEN" gh pr create --base main --head "$BRANCH" \
     --title "quarterly rebalance $DATE" \
     --body "Automated state update from the rebalance Claude routine."
-The trusted GitHub Action validates that only memory/REBALANCE-LOG.md and
-memory/TRADE-LOG.md changed, then squash-merges the PR to main. Treat the
-run as failed if the push or PR creation fails. Never push directly to
-main. Never force-push.
+The trusted GitHub Action validates that only memory/REBALANCE-LOG.md,
+memory/TRADE-LOG.md, and their year-partitioned archives changed, then
+squash-merges the PR to main. Treat the run as failed if the push or PR
+creation fails. Never push directly to main. Never force-push.

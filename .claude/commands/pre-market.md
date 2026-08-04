@@ -15,8 +15,8 @@ want to check on a closed day).
 STEP 1 — Read memory for context:
 - memory/TARGET-PORTFOLIO.json (the target weights)
 - memory/TRADING-STRATEGY.md
-- tail of memory/TRADE-LOG.md
-- tail of memory/RESEARCH-LOG.md
+- python3 scripts/memory_log.py recent memory/TRADE-LOG.md --days 5
+- python3 scripts/memory_log.py recent memory/RESEARCH-LOG.md --days 5
 
 STEP 2 — Pull live account state:
   bash scripts/alpaca.sh account
@@ -33,6 +33,8 @@ missing stop) and needs outside context to describe.
 STEP 4 — Write a dated entry to memory/RESEARCH-LOG.md (match the
 template): account snapshot, drift table, gaps needing attention, planned
 action for market-open, decision (BUILDOUT / TOP-UP / HOLD).
+Then run:
+  python3 scripts/memory_log.py archive memory/RESEARCH-LOG.md --keep-days 5
 
 STEP 5 — Notification: silent unless urgent.
   bash scripts/clickup.sh "<one line>"

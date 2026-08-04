@@ -12,9 +12,10 @@ present or the market was closed today — note it in the review.
 
 STEP 1 — Read memory for full week context:
 - memory/TARGET-PORTFOLIO.json (target weights)
-- memory/WEEKLY-REVIEW.md (match existing template exactly)
-- ALL this week's entries in memory/TRADE-LOG.md
-- ALL this week's entries in memory/RESEARCH-LOG.md
+- python3 scripts/memory_log.py recent memory/WEEKLY-REVIEW.md --days 2
+  (match its template exactly)
+- python3 scripts/memory_log.py week memory/TRADE-LOG.md
+- python3 scripts/memory_log.py week memory/RESEARCH-LOG.md
 - memory/TRADING-STRATEGY.md
 
 STEP 2 — Pull week-end state:
@@ -32,6 +33,8 @@ STEP 4 — Append full review section to memory/WEEKLY-REVIEW.md: stats
 table, drift table, stop-loss activity, what worked / what didn't,
 adjustments for next week, qualitative drift-health status (On-track /
 Needs Rebalance / Alert).
+Then run:
+  python3 scripts/memory_log.py archive memory/WEEKLY-REVIEW.md --keep-days 2
 
 STEP 5 — If a rule needs to change, do NOT edit memory/TRADING-STRATEGY.md
 directly. Append a "### Proposed Strategy Changes" subsection instead.

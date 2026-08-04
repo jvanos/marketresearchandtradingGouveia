@@ -15,8 +15,9 @@ closed, tell the user; ask whether to just show the drift report anyway.
 STEP 1 — Read memory:
 - memory/TARGET-PORTFOLIO.json (target weights, ramp flags)
 - memory/TRADING-STRATEGY.md
-- memory/REBALANCE-LOG.md (match existing template exactly)
-- tail of memory/TRADE-LOG.md
+- python3 scripts/memory_log.py recent memory/REBALANCE-LOG.md --days 2
+  (match its template exactly)
+- python3 scripts/memory_log.py recent memory/TRADE-LOG.md --days 5
 
 STEP 2 — Pull live state:
   bash scripts/alpaca.sh account
@@ -43,6 +44,9 @@ STEP 6 — Re-pull state and compute post-rebalance drift.
 
 STEP 7 — Append the full entry to memory/REBALANCE-LOG.md: pre/post
 weights, trims, top-ups, gap-fills, ramp-status summary.
+Then run:
+  python3 scripts/memory_log.py archive memory/REBALANCE-LOG.md --keep-days 2
+  python3 scripts/memory_log.py archive memory/TRADE-LOG.md --keep-days 5
 
 STEP 8 — Notification (always send one — quarterly cadence, silence here
 is a bigger flag than on a daily routine):

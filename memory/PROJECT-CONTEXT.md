@@ -21,7 +21,6 @@
 - memory/PROJECT-CONTEXT.md (this file)
 - memory/TARGET-PORTFOLIO.json
 - memory/TRADING-STRATEGY.md
-- memory/TRADE-LOG.md
-- memory/RESEARCH-LOG.md
-- memory/WEEKLY-REVIEW.md
-- memory/REBALANCE-LOG.md
+- Bounded operational-log views from the commands in CLAUDE.md. Never
+  open the full TRADE, RESEARCH, WEEKLY-REVIEW, or REBALANCE log during
+  routine startup; `memory/archive/` is cold audit history only.

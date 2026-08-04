@@ -31,8 +31,9 @@ the full reference; this section covers only what's specific to this repo.
    permissions** and select **Read and write permissions**. Routines are
    restricted to `claude/`-prefixed branches, so each routine pushes a
    unique branch and opens a PR. The workflow validates its changed-file
-   allowlist and squash-merges it to `main` without checking out or
-   executing anything from the routine branch.
+   allowlist (the routine's hot log plus only its year-named cold archives)
+   and squash-merges it to `main` without checking out or executing anything
+   from the routine branch.
 3. Environment variables: in a routine's edit form, click the environment
    selector (the cloud icon below the Instructions box — shows "Default"
    or a named environment). Hover over the environment in the list and
@@ -77,3 +78,14 @@ This exists because five independently-scheduled cloud routines can't be
 paused in one place from the web UI — a shared file checked by all of them
 is the fastest way to stop a stuck or misbehaving run before it fires
 again.
+
+## Bounded memory logs
+
+Routine prompts must use `python3 scripts/memory_log.py recent ...` or
+`week ...`; never replace those commands with a full-file read. Normal reads
+keep five complete logged days. A 24,000-byte soft ceiling removes only the
+oldest whole day and never truncates the newest day. Every writer runs the
+helper's `archive` command before committing, which moves complete oldest days into
+`memory/archive/<LOG>-<YEAR>.md`. Archives preserve the original Markdown
+verbatim for audits but are not routine startup context. The hot log and any
+archive update are committed in the same `claude/routine-*` PR.

@@ -32,4 +32,6 @@ buys, shares for sells. If missing, ask.
    flow as market-open).
 6. Log to memory/TRADE-LOG.md: date, ticker, side, shares/notional, entry
    price, stop level, target weight, ramp?, note.
+   Then run `python3 scripts/memory_log.py archive memory/TRADE-LOG.md
+   --keep-days 5`.
 7. bash scripts/clickup.sh with trade details.
