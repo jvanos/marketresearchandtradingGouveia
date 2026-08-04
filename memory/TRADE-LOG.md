@@ -830,3 +830,28 @@ sub-1-share positions (AMZN, DRAM, META, NBIS, RIOT, UNH; ~$450) — Alpaca
 rejects fractional trailing stops, each governed by the -7% manual-cut rule
 until it ramps past 1 share. NBIS (+33.57%, 0.61sh) still the notable
 unprotected winner pending a >=1sh ramp.
+
+### 2026-08-04 — Midday stop-loss scan
+No cuts (worst opens: GXRP -3.85%, UNH -3.53%, CIFR -2.49% — all above the
+-7% line). **Tightened 6 winners** that crossed a stop-ladder tier,
+cancel-then-replace, each new stop verified > old (no stop moved down),
+none within 3% of price, all live post-placement:
+- PLTR +29.3% -> +20% tier -> 5% trail (was 10%); stop 146.55 -> 154.42
+- QBTS +26.2% -> +20% tier -> 5% (was 7%); stop 20.15 -> 20.53
+- IONQ +23.9% -> +20% tier -> 5% (was 7%); stop 38.88 -> 39.62
+- RGTI +22.7% -> +20% tier -> 5% (was 10%); stop 15.75 -> 16.63
+- SOFI +22.1% -> +20% tier -> 5% (was 7%); stop 17.25 -> 17.63
+- APLD +15.0% -> +15% tier -> 7% (was 10%); stop 28.46 -> 29.23
+(GOOGL already 7%, MSFT already 5% — no change.) Transient Alpaca 422s on
+cancel early in the run resolved on retry; all 6 replacements confirmed via
+post-placement order re-check.
+**STOP COVERAGE: solid.** Every position >=1 whole share carries a live
+trailing stop (re-verified 26 symbols; no whole-share gap). Remaining
+stopless = 5 sub-1-share positions (AMZN 0.41sh, CIFR 0.76sh, META 0.18sh,
+NBIS 0.61sh, UNH 0.14sh; ~$431 / 0.85% equity) — Alpaca rejects fractional
+trailing stops ("fractional orders must be DAY orders"), so each stays
+under the -7% manual-cut rule until it ramps past 1 share. **NBIS +38.7%
+(0.61sh) is the notable unprotected winner** — a 5% trail would apply the
+moment it reaches >=1 share. (Pre-existing duplicate stops persist on
+BRK.B/BTC/QQQM/SCHD/SCHG/SGOV/SPMO/VOO/VTV — coverage intact, not touched
+this scan; de-dup remains a housekeeping item.)
