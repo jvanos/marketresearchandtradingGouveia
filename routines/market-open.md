@@ -18,7 +18,8 @@ IMPORTANT — ENVIRONMENT VARIABLES:
   ClickUp alert naming the missing var, and exit.
 - Verify env vars BEFORE any wrapper call:
   for v in ALPACA_API_KEY ALPACA_SECRET_KEY \
-    CLICKUP_API_KEY CLICKUP_WORKSPACE_ID CLICKUP_CHANNEL_ID; do
+    CLICKUP_API_KEY CLICKUP_WORKSPACE_ID CLICKUP_CHANNEL_ID \
+    GITHUB_TOKEN; do
     [[ -n "${!v:-}" ]] && echo "$v: set" || echo "$v: MISSING"
   done
 
@@ -75,8 +76,8 @@ retry with a smaller size to route around a rejection unless the smaller
 order is itself fully compliant with every rule.
 Wait for fill confirmation before placing the stop.
 
-STEP 5 — Immediately place 10% trailing stop GTC for each new position:
-  bash scripts/alpaca.sh order '{"symbol":"SYM","qty":"N","side":"sell","type":"trailing_stop","trail_percent":"10","time_in_force":"gtc"}'
+STEP 5 — Immediately place 7% trailing stop GTC for each new position:
+  bash scripts/alpaca.sh order '{"symbol":"SYM","qty":"N","side":"sell","type":"trailing_stop","trail_percent":"7","time_in_force":"gtc"}'
 (Stops still use qty, not notional — Alpaca doesn't support notional for
 trailing-stop orders; use the filled qty from STEP 4's fill confirmation.)
 If Alpaca rejects this, fall back to a fixed stop 10% below entry:
@@ -93,9 +94,18 @@ STEP 7 — Notification: only if a trade was placed (or a planned trade was
 rejected by the wrapper — that's worth a one-line note too).
   bash scripts/clickup.sh "<tickers, amounts, fill prices, one-line why>"
 
-STEP 8 — COMMIT AND PUSH (mandatory if any trades executed or rejected):
+STEP 8 — COMMIT, PUSH A CLAUDE BRANCH, AND OPEN A PR (mandatory if any
+trades executed or rejected):
   git add memory/TRADE-LOG.md
   git commit -m "market-open buildout $DATE"
+  BRANCH="claude/routine-market-open-$(date -u +%Y%m%dT%H%M%SZ)"
+  git switch -c "$BRANCH"
   git remote set-url origin "https://x-access-token:${GITHUB_TOKEN}@github.com/jvanos/marketresearchandtradingGouveia.git"
-  git push origin main
-Skip commit if nothing happened. On push failure: rebase and retry.
+  git push origin "HEAD:refs/heads/$BRANCH"
+  GH_TOKEN="$GITHUB_TOKEN" gh pr create --base main --head "$BRANCH" \
+    --title "market-open buildout $DATE" \
+    --body "Automated state update from the market-open Claude routine."
+The trusted GitHub Action validates that only memory/TRADE-LOG.md changed,
+then squash-merges the PR to main. Skip commit and PR if nothing happened.
+Treat the run as failed if the push or PR creation fails. Never push
+directly to main. Never force-push.

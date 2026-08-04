@@ -1,0 +1,102 @@
+name: Merge Claude routine state
+
+on:
+  pull_request_target:
+    types: [opened, synchronize, reopened, ready_for_review]
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: merge-claude-routine-main
+  cancel-in-progress: false
+
+jobs:
+  validate-and-merge:
+    if: >-
+      github.event.pull_request.draft == false &&
+      github.event.pull_request.base.ref == 'main' &&
+      github.event.pull_request.head.repo.full_name == github.repository &&
+      startsWith(github.event.pull_request.head.ref, 'claude/routine-')
+    runs-on: ubuntu-latest
+    env:
+      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      PR_NUMBER: ${{ github.event.pull_request.number }}
+      HEAD_BRANCH: ${{ github.event.pull_request.head.ref }}
+      HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+    steps:
+      - name: Validate changed files
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          case "$HEAD_BRANCH" in
+            claude/routine-pre-market-*)
+              allowed_files=("memory/RESEARCH-LOG.md")
+              ;;
+            claude/routine-market-open-*|claude/routine-midday-*|claude/routine-daily-summary-*)
+              allowed_files=("memory/TRADE-LOG.md")
+              ;;
+            claude/routine-weekly-review-*)
+              allowed_files=("memory/WEEKLY-REVIEW.md")
+              ;;
+            claude/routine-rebalance-*)
+              allowed_files=("memory/REBALANCE-LOG.md" "memory/TRADE-LOG.md")
+              ;;
+            *)
+              echo "Unrecognized routine branch: $HEAD_BRANCH" >&2
+              exit 1
+              ;;
+          esac
+
+          mapfile -t changes < <(
+            gh api --paginate \
+              "repos/$GITHUB_REPOSITORY/pulls/$PR_NUMBER/files" \
+              --jq '.[] | [.filename, .status] | @tsv'
+          )
+
+          if (( ${#changes[@]} == 0 )); then
+            echo "PR contains no changed files" >&2
+            exit 1
+          fi
+
+          for change in "${changes[@]}"; do
+            IFS=$'\t' read -r filename status <<< "$change"
+
+            if [[ "$status" != "modified" ]]; then
+              echo "Only modifications to existing state files are allowed: $filename ($status)" >&2
+              exit 1
+            fi
+
+            permitted=false
+            for allowed in "${allowed_files[@]}"; do
+              if [[ "$filename" == "$allowed" ]]; then
+                permitted=true
+                break
+              fi
+            done
+
+            if [[ "$permitted" != "true" ]]; then
+              echo "Unexpected file for $HEAD_BRANCH: $filename" >&2
+              exit 1
+            fi
+          done
+
+      # Deliberately do not check out or execute code from the PR branch.
+      - name: Squash merge validated state update
+        shell: bash
+        run: |
+          set -euo pipefail
+          merged="$({
+            gh api --method PUT \
+              "repos/$GITHUB_REPOSITORY/pulls/$PR_NUMBER/merge" \
+              -f merge_method=squash \
+              -f sha="$HEAD_SHA" \
+              --jq '.merged'
+          })"
+
+          if [[ "$merged" != "true" ]]; then
+            echo "GitHub did not merge PR #$PR_NUMBER" >&2
+            exit 1
+          fi

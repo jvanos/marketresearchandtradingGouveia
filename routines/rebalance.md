@@ -20,7 +20,8 @@ IMPORTANT — ENVIRONMENT VARIABLES:
   ClickUp alert naming the missing var, and exit.
 - Verify env vars BEFORE any wrapper call:
   for v in ALPACA_API_KEY ALPACA_SECRET_KEY \
-    CLICKUP_API_KEY CLICKUP_WORKSPACE_ID CLICKUP_CHANNEL_ID; do
+    CLICKUP_API_KEY CLICKUP_WORKSPACE_ID CLICKUP_CHANNEL_ID \
+    GITHUB_TOKEN; do
     [[ -n "${!v:-}" ]] && echo "$v: set" || echo "$v: MISSING"
   done
 
@@ -102,10 +103,17 @@ daily one — silence here is a bigger red flag than on a daily routine):
   Still ramping: N symbols
   Largest remaining drift: SYM ±X.X pp"
 
-STEP 9 — COMMIT AND PUSH (mandatory):
+STEP 9 — COMMIT, PUSH A CLAUDE BRANCH, AND OPEN A PR (mandatory):
   git add memory/REBALANCE-LOG.md memory/TRADE-LOG.md
   git commit -m "quarterly rebalance $DATE"
+  BRANCH="claude/routine-rebalance-$(date -u +%Y%m%dT%H%M%SZ)"
+  git switch -c "$BRANCH"
   git remote set-url origin "https://x-access-token:${GITHUB_TOKEN}@github.com/jvanos/marketresearchandtradingGouveia.git"
-  git push origin main
-On push failure: git pull --rebase origin main, then push again. Never
-force-push.
+  git push origin "HEAD:refs/heads/$BRANCH"
+  GH_TOKEN="$GITHUB_TOKEN" gh pr create --base main --head "$BRANCH" \
+    --title "quarterly rebalance $DATE" \
+    --body "Automated state update from the rebalance Claude routine."
+The trusted GitHub Action validates that only memory/REBALANCE-LOG.md and
+memory/TRADE-LOG.md changed, then squash-merges the PR to main. Treat the
+run as failed if the push or PR creation fails. Never push directly to
+main. Never force-push.

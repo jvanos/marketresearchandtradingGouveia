@@ -18,7 +18,8 @@ IMPORTANT — ENVIRONMENT VARIABLES:
   ClickUp alert naming the missing var, and exit.
 - Verify env vars BEFORE any wrapper call:
   for v in ALPACA_API_KEY ALPACA_SECRET_KEY \
-    CLICKUP_API_KEY CLICKUP_WORKSPACE_ID CLICKUP_CHANNEL_ID; do
+    CLICKUP_API_KEY CLICKUP_WORKSPACE_ID CLICKUP_CHANNEL_ID \
+    GITHUB_TOKEN; do
     [[ -n "${!v:-}" ]] && echo "$v: set" || echo "$v: MISSING"
   done
 
@@ -73,9 +74,17 @@ break intraday; only the stop-loss ladder and the -7% rule govern exits.
 STEP 6 — Notification: only if action was taken.
   bash scripts/clickup.sh "<action summary>"
 
-STEP 7 — COMMIT AND PUSH (if any memory files changed):
+STEP 7 — COMMIT, PUSH A CLAUDE BRANCH, AND OPEN A PR (if memory changed):
   git add memory/TRADE-LOG.md
   git commit -m "midday stop-loss scan $DATE"
+  BRANCH="claude/routine-midday-$(date -u +%Y%m%dT%H%M%SZ)"
+  git switch -c "$BRANCH"
   git remote set-url origin "https://x-access-token:${GITHUB_TOKEN}@github.com/jvanos/marketresearchandtradingGouveia.git"
-  git push origin main
-Skip commit if no-op. On push failure: rebase and retry.
+  git push origin "HEAD:refs/heads/$BRANCH"
+  GH_TOKEN="$GITHUB_TOKEN" gh pr create --base main --head "$BRANCH" \
+    --title "midday stop-loss scan $DATE" \
+    --body "Automated state update from the midday Claude routine."
+The trusted GitHub Action validates that only memory/TRADE-LOG.md changed,
+then squash-merges the PR to main. Skip commit and PR if no-op. Treat the
+run as failed if the push or PR creation fails. Never push directly to
+main. Never force-push.

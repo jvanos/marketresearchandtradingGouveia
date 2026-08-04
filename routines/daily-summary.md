@@ -17,7 +17,7 @@ IMPORTANT — ENVIRONMENT VARIABLES:
   ClickUp alert naming the missing var, and exit.
 - Verify env vars BEFORE any wrapper call:
   for v in ALPACA_API_KEY ALPACA_SECRET_KEY CLICKUP_API_KEY \
-    CLICKUP_WORKSPACE_ID CLICKUP_CHANNEL_ID; do
+    CLICKUP_WORKSPACE_ID CLICKUP_CHANNEL_ID GITHUB_TOKEN; do
     [[ -n "${!v:-}" ]] && echo "$v: set" || echo "$v: MISSING"
   done
 
@@ -75,10 +75,18 @@ closed days — silence must never be the only signal something is wrong).
     SYM ±X.X% (stop \$X.XX)
   Tomorrow: <one-line plan>"
 
-STEP 6 — COMMIT AND PUSH (mandatory — tomorrow's Day P&L label depends on
-this, though nothing safety-critical does):
+STEP 6 — COMMIT, PUSH A CLAUDE BRANCH, AND OPEN A PR (mandatory —
+tomorrow's Day P&L label depends on this, though nothing safety-critical
+does):
   git add memory/TRADE-LOG.md
   git commit -m "EOD snapshot $DATE"
+  BRANCH="claude/routine-daily-summary-$(date -u +%Y%m%dT%H%M%SZ)"
+  git switch -c "$BRANCH"
   git remote set-url origin "https://x-access-token:${GITHUB_TOKEN}@github.com/jvanos/marketresearchandtradingGouveia.git"
-  git push origin main
-On push failure: rebase and retry.
+  git push origin "HEAD:refs/heads/$BRANCH"
+  GH_TOKEN="$GITHUB_TOKEN" gh pr create --base main --head "$BRANCH" \
+    --title "EOD snapshot $DATE" \
+    --body "Automated state update from the daily-summary Claude routine."
+The trusted GitHub Action validates that only memory/TRADE-LOG.md changed,
+then squash-merges the PR to main. Treat the run as failed if the push or
+PR creation fails. Never push directly to main. Never force-push.

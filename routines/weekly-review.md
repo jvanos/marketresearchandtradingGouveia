@@ -19,7 +19,8 @@ IMPORTANT — ENVIRONMENT VARIABLES:
   ClickUp alert naming the missing var, and exit.
 - Verify env vars BEFORE any wrapper call:
   for v in ALPACA_API_KEY ALPACA_SECRET_KEY \
-    CLICKUP_API_KEY CLICKUP_WORKSPACE_ID CLICKUP_CHANNEL_ID; do
+    CLICKUP_API_KEY CLICKUP_WORKSPACE_ID CLICKUP_CHANNEL_ID \
+    GITHUB_TOKEN; do
     [[ -n "${!v:-}" ]] && echo "$v: set" || echo "$v: MISSING"
   done
 
@@ -80,9 +81,16 @@ STEP 6 — Send ONE ClickUp message. <= 15 lines:
   Largest drift: SYM ±X.X pp
   Drift health: <status>"
 
-STEP 7 — COMMIT AND PUSH (mandatory):
+STEP 7 — COMMIT, PUSH A CLAUDE BRANCH, AND OPEN A PR (mandatory):
   git add memory/WEEKLY-REVIEW.md
   git commit -m "weekly review $DATE"
+  BRANCH="claude/routine-weekly-review-$(date -u +%Y%m%dT%H%M%SZ)"
+  git switch -c "$BRANCH"
   git remote set-url origin "https://x-access-token:${GITHUB_TOKEN}@github.com/jvanos/marketresearchandtradingGouveia.git"
-  git push origin main
-On push failure: rebase and retry.
+  git push origin "HEAD:refs/heads/$BRANCH"
+  GH_TOKEN="$GITHUB_TOKEN" gh pr create --base main --head "$BRANCH" \
+    --title "weekly review $DATE" \
+    --body "Automated state update from the weekly-review Claude routine."
+The trusted GitHub Action validates that only memory/WEEKLY-REVIEW.md
+changed, then squash-merges the PR to main. Treat the run as failed if the
+push or PR creation fails. Never push directly to main. Never force-push.

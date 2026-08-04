@@ -26,13 +26,13 @@ the full reference; this section covers only what's specific to this repo.
    can clone and push to this repo. The Claude GitHub App install is only
    needed for GitHub-*event* triggers — these six routines are all
    schedule-triggered, so it's not required here.
-2. **Per routine**, after creating it: open it for editing (pencil icon),
-   go to the **Permissions** tab, and enable **"Allow unrestricted branch
-   pushes"** for this repository. Without this, Claude can only push to
-   auto-generated `claude/`-prefixed branches — `git push origin main` in
-   the routine's Step 8/9 gets silently redirected instead of landing on
-   `main`. This is the fix for a routine that appears to run successfully
-   but never actually updates `main`.
+2. Commit `.github/workflows/merge-claude-routine.yml` to `main`. In the
+   repository's GitHub settings, open **Actions > General > Workflow
+   permissions** and select **Read and write permissions**. Routines are
+   restricted to `claude/`-prefixed branches, so each routine pushes a
+   unique branch and opens a PR. The workflow validates its changed-file
+   allowlist and squash-merges it to `main` without checking out or
+   executing anything from the routine branch.
 3. Environment variables: in a routine's edit form, click the environment
    selector (the cloud icon below the Instructions box — shows "Default"
    or a named environment). Hover over the environment in the list and
@@ -42,6 +42,9 @@ the full reference; this section covers only what's specific to this repo.
    `ALPACA_DATA_ENDPOINT`, `MAX_DAILY_LOSS_PCT`, `PERPLEXITY_API_KEY`,
    `PERPLEXITY_MODEL`, `CLICKUP_API_KEY`, `CLICKUP_WORKSPACE_ID`,
    `CLICKUP_CHANNEL_ID`, `GITHUB_TOKEN`.
+   `GITHUB_TOKEN` must be a fine-grained token scoped to this repository
+   with **Contents: Read and write** and **Pull requests: Read and write**
+   permissions. It is used to push the routine branch and open its PR.
    Use the *same* named environment across all six routines (not each
    left on its own separate "Default") so they all inherit the same
    variables from one place.
@@ -53,9 +56,10 @@ the full reference; this section covers only what's specific to this repo.
    quarterly rebalance in particular doesn't fit any preset), pick the
    closest preset when creating the routine, then run `/schedule update`
    in the CLI afterward to set the precise cron expression.
-5. Click **"Run now"** once per routine and confirm in the run's session
-   that a commit actually landed on `main` (not a `claude/...` branch)
-   before trusting the schedule.
+5. Click **"Run now"** once per routine and confirm that it opens a PR,
+   the **Merge Claude routine state** workflow passes, and its squash
+   commit lands on `main` before trusting the schedule. A failed or open
+   PR is a persistence failure even if the routine itself finished.
 
 ## The HALT kill switch
 

@@ -19,7 +19,8 @@ IMPORTANT — ENVIRONMENT VARIABLES:
   ClickUp alert naming the missing var, and exit.
 - Verify env vars BEFORE any wrapper call:
   for v in ALPACA_API_KEY ALPACA_SECRET_KEY \
-    CLICKUP_API_KEY CLICKUP_WORKSPACE_ID CLICKUP_CHANNEL_ID; do
+    CLICKUP_API_KEY CLICKUP_WORKSPACE_ID CLICKUP_CHANNEL_ID \
+    GITHUB_TOKEN; do
     [[ -n "${!v:-}" ]] && echo "$v: set" || echo "$v: MISSING"
   done
 
@@ -75,10 +76,16 @@ STEP 5 — Notification: silent unless urgent (e.g. a stop-loss gap needs
 buyback, or a symbol looks halted/illiquid).
   bash scripts/clickup.sh "<one line>"
 
-STEP 6 — COMMIT AND PUSH (mandatory):
+STEP 6 — COMMIT, PUSH A CLAUDE BRANCH, AND OPEN A PR (mandatory):
   git add memory/RESEARCH-LOG.md
   git commit -m "pre-market drift check $DATE"
+  BRANCH="claude/routine-pre-market-$(date -u +%Y%m%dT%H%M%SZ)"
+  git switch -c "$BRANCH"
   git remote set-url origin "https://x-access-token:${GITHUB_TOKEN}@github.com/jvanos/marketresearchandtradingGouveia.git"
-  git push origin main
-On push failure: git pull --rebase origin main, then push again.
-Never force-push.
+  git push origin "HEAD:refs/heads/$BRANCH"
+  GH_TOKEN="$GITHUB_TOKEN" gh pr create --base main --head "$BRANCH" \
+    --title "pre-market drift check $DATE" \
+    --body "Automated state update from the pre-market Claude routine."
+The trusted GitHub Action validates that only memory/RESEARCH-LOG.md
+changed, then squash-merges the PR to main. Treat the run as failed if the
+push or PR creation fails. Never push directly to main. Never force-push.
