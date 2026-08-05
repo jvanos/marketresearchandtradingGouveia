@@ -37,7 +37,12 @@ STEP 0 — Safety check (before anything else):
 STEP 1 — Read memory so you know what's open and why:
 - memory/TARGET-PORTFOLIO.json (target weights)
 - memory/TRADING-STRATEGY.md (exit rules)
-- tail of memory/TRADE-LOG.md (entries, stops)
+- Last 5 complete logged trade days:
+  python3 scripts/memory_log.py recent memory/TRADE-LOG.md --days 5
+- Most recent complete drift-check day:
+  python3 scripts/memory_log.py recent memory/RESEARCH-LOG.md --days 1
+  Confirm its heading is today's date; if not, note that today's
+  pre-market drift check is missing.
 
 STEP 2 — Pull current state:
   bash scripts/alpaca.sh positions
@@ -74,8 +79,12 @@ break intraday; only the stop-loss ladder and the -7% rule govern exits.
 STEP 6 — Notification: only if action was taken.
   bash scripts/clickup.sh "<action summary>"
 
+After appending any action, archive complete old entries without deleting
+or summarizing history:
+  python3 scripts/memory_log.py archive memory/TRADE-LOG.md --keep-days 5
+
 STEP 7 — COMMIT, PUSH A CLAUDE BRANCH, AND OPEN A PR (if memory changed):
-  git add memory/TRADE-LOG.md
+  git add memory/TRADE-LOG.md memory/archive/
   git commit -m "midday stop-loss scan $DATE"
   BRANCH="claude/routine-midday-$(date -u +%Y%m%dT%H%M%SZ)"
   git switch -c "$BRANCH"
@@ -84,7 +93,7 @@ STEP 7 — COMMIT, PUSH A CLAUDE BRANCH, AND OPEN A PR (if memory changed):
   GH_TOKEN="$GITHUB_TOKEN" gh pr create --base main --head "$BRANCH" \
     --title "midday stop-loss scan $DATE" \
     --body "Automated state update from the midday Claude routine."
-The trusted GitHub Action validates that only memory/TRADE-LOG.md changed,
-then squash-merges the PR to main. Skip commit and PR if no-op. Treat the
-run as failed if the push or PR creation fails. Never push directly to
-main. Never force-push.
+The trusted GitHub Action validates that only memory/TRADE-LOG.md and its
+year-partitioned archive changed, then squash-merges the PR to main. Skip
+commit and PR if no-op. Treat the run as failed if the push or PR creation
+fails. Never push directly to main. Never force-push.

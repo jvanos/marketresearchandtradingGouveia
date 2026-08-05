@@ -13,9 +13,9 @@ closed today, tell the user and stop (no trading on a closed market).
 STEP 1 — Read memory for today's plan:
 - memory/TARGET-PORTFOLIO.json (target weights and ramp flags)
 - memory/TRADING-STRATEGY.md
-- TODAY's entry in memory/RESEARCH-LOG.md (if missing, run pre-market
-  STEPS 1-3 inline)
-- tail of memory/TRADE-LOG.md
+- python3 scripts/memory_log.py recent memory/RESEARCH-LOG.md --days 5
+  (use TODAY's entry; if missing, run pre-market STEPS 1-3 inline)
+- python3 scripts/memory_log.py recent memory/TRADE-LOG.md --days 5
 
 STEP 2 — Re-validate with live data:
   bash scripts/alpaca.sh account
@@ -48,6 +48,8 @@ flag it loudly — a filled position with no stop must never pass silently.
 STEP 6 — Append each trade to memory/TRADE-LOG.md: date, ticker, side,
 shares/notional, entry price, stop level, target weight, ramp?, note
 (buildout / ramp top-up / gap-fill).
+Then run:
+  python3 scripts/memory_log.py archive memory/TRADE-LOG.md --keep-days 5
 
 STEP 7 — Notification: only if a trade was placed or rejected.
   bash scripts/clickup.sh "<tickers, amounts, fill prices, one-line why>"

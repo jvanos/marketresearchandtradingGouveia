@@ -74,5 +74,13 @@ scripts/             alpaca.sh / perplexity.sh / clickup.sh wrappers —
                       the only way this repo touches the outside world
 memory/              The bot's persistent state, committed to main,
                       including TARGET-PORTFOLIO.json (the target weights)
-                      and REBALANCE-LOG.md (quarterly rebalance history)
+                      and bounded hot operational logs
+memory/archive/      Year-partitioned cold log history for audit lookup;
+                      scheduled routines never load it at startup
 ```
+
+Operational logs are read through `scripts/memory_log.py`, which keeps five
+complete logged days and uses 24,000 bytes as a soft ceiling without splitting
+a day. After an append, the same helper moves complete old days into
+`memory/archive/` losslessly; both hot-log and archive changes travel through
+the existing validated routine PR workflow.

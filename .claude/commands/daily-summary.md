@@ -10,7 +10,8 @@ present or the market was closed — note it in the message. Silence should
 never be the only signal something is wrong.
 
 STEP 1 — Read memory for continuity:
-- tail of memory/TRADE-LOG.md (most recent EOD snapshot -> yesterday's
+- python3 scripts/memory_log.py recent memory/TRADE-LOG.md --days 5
+  (most recent EOD snapshot -> yesterday's
   equity, needed for Day P&L — a cosmetic display number only)
 - Count TRADE-LOG entries dated today
 - Count trades Mon-today this week
@@ -22,8 +23,8 @@ STEP 2 — Pull final state of the day:
 
 STEP 3 — Compute metrics:
 - Day P&L ($ and %) = today_equity - yesterday_equity
-- Phase cumulative P&L ($ and %) = today_equity - starting_equity (Day 0
-  baseline in TRADE-LOG.md)
+- Phase cumulative P&L ($ and %) = today_equity - the fixed $50,000
+  starting capital in memory/PROJECT-CONTEXT.md
 - Trades today (list or "none")
 - Trades this week (running total)
 
@@ -32,6 +33,8 @@ STEP 4 — Append EOD snapshot to memory/TRADE-LOG.md:
 **Portfolio:** $X | **Cash:** $X (X%) | **Day P&L:** ±$X (±X%) | **Phase P&L:** ±$X (±X%)
 | Ticker | Shares | Entry | Close | Day Chg | Unrealized P&L | Stop |
 **Notes:** one-paragraph plain-english summary.
+Then run:
+  python3 scripts/memory_log.py archive memory/TRADE-LOG.md --keep-days 5
 
 STEP 5 — Send ONE ClickUp message (always, even on no-trade days). <= 15
 lines:

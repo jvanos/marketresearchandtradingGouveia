@@ -37,7 +37,8 @@ STEP 0 — Safety check (before anything else):
   is indistinguishable from a crash.
 
 STEP 1 — Read memory for continuity:
-- tail of memory/TRADE-LOG.md (find most recent EOD snapshot -> yesterday's
+- python3 scripts/memory_log.py recent memory/TRADE-LOG.md --days 5
+  (find most recent EOD snapshot -> yesterday's
   equity, needed for Day P&L — this is a cosmetic display number only; if
   a prior push was missed and this is stale, the comparison window is
   simply wider for one day and self-corrects on the next successful push)
@@ -53,8 +54,8 @@ STEP 2 — Pull final state of the day:
 
 STEP 3 — Compute metrics:
 - Day P&L ($ and %) = today_equity - yesterday_equity (from STEP 1)
-- Phase cumulative P&L ($ and %) = today_equity - starting_equity (Day 0
-  baseline in TRADE-LOG.md — fixed, not subject to the above caveat)
+- Phase cumulative P&L ($ and %) = today_equity - the fixed $50,000
+  starting capital in memory/PROJECT-CONTEXT.md
 - Trades today (list or "none")
 - Trades this week (running total)
 
@@ -63,6 +64,8 @@ STEP 4 — Append EOD snapshot to memory/TRADE-LOG.md:
 **Portfolio:** $X | **Cash:** $X (X%) | **Day P&L:** ±$X (±X%) | **Phase P&L:** ±$X (±X%)
 | Ticker | Shares | Entry | Close | Day Chg | Unrealized P&L | Stop |
 **Notes:** one-paragraph plain-english summary.
+Then archive complete old entries without deleting or summarizing history:
+  python3 scripts/memory_log.py archive memory/TRADE-LOG.md --keep-days 5
 
 STEP 5 — Send ONE ClickUp message (always, even on no-trade or halted/
 closed days — silence must never be the only signal something is wrong).
@@ -78,7 +81,7 @@ closed days — silence must never be the only signal something is wrong).
 STEP 6 — COMMIT, PUSH A CLAUDE BRANCH, AND OPEN A PR (mandatory —
 tomorrow's Day P&L label depends on this, though nothing safety-critical
 does):
-  git add memory/TRADE-LOG.md
+  git add memory/TRADE-LOG.md memory/archive/
   git commit -m "EOD snapshot $DATE"
   BRANCH="claude/routine-daily-summary-$(date -u +%Y%m%dT%H%M%SZ)"
   git switch -c "$BRANCH"
@@ -87,6 +90,6 @@ does):
   GH_TOKEN="$GITHUB_TOKEN" gh pr create --base main --head "$BRANCH" \
     --title "EOD snapshot $DATE" \
     --body "Automated state update from the daily-summary Claude routine."
-The trusted GitHub Action validates that only memory/TRADE-LOG.md changed,
-then squash-merges the PR to main. Treat the run as failed if the push or
-PR creation fails. Never push directly to main. Never force-push.
+The trusted GitHub Action validates that only memory/TRADE-LOG.md and its
+year-partitioned archive changed, then squash-merges the PR to main. Treat
+the run as failed if the push or PR creation fails.  Never force-push.

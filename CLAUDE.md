@@ -18,11 +18,30 @@ Open these in order before doing anything:
 - memory/TARGET-PORTFOLIO.json — The target weights. Source of truth for
   what's approved to hold and at what weight.
 - memory/TRADING-STRATEGY.md — Your rulebook. Never violate.
-- memory/TRADE-LOG.md — Tail for open positions, entries, stops.
-- memory/RESEARCH-LOG.md — Today's drift check before any trade.
+- `python3 scripts/memory_log.py recent memory/TRADE-LOG.md --days 5`
+  — bounded recent positions, entries, stops. Never open the whole log.
+- `python3 scripts/memory_log.py recent memory/RESEARCH-LOG.md --days 5`
+  — bounded recent drift checks. Never open the whole log.
 - memory/PROJECT-CONTEXT.md — Overall mission and context.
-- memory/WEEKLY-REVIEW.md — Friday afternoons; template for new entries.
-- memory/REBALANCE-LOG.md — Quarterly; template for new entries.
+- `python3 scripts/memory_log.py recent memory/WEEKLY-REVIEW.md --days 2`
+  — template plus recent weekly reviews.
+- `python3 scripts/memory_log.py recent memory/REBALANCE-LOG.md --days 2`
+  — template plus recent quarterly reviews.
+
+## Memory Log Bounds
+
+- Never `cat` or otherwise open an entire operational log. Use
+  `scripts/memory_log.py recent` for recent context and
+  `scripts/memory_log.py week` for the current week's entries. Reads keep
+  complete logged days and use 24,000 UTF-8 bytes as a soft ceiling: they
+  discard only the oldest whole day and never truncate the newest day.
+- After appending to an operational log, run
+  `python3 scripts/memory_log.py archive <log> --keep-days 5` before
+  committing. It moves complete oldest days to the corresponding
+  year-partitioned file under `memory/archive/`; it never summarizes or
+  deletes history.
+- Archive files are cold audit history. Read one only for a specific
+  historical investigation, never as routine startup context.
 
 ## Safety Mechanisms (read this before placing any order)
 

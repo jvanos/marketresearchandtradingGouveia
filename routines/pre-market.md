@@ -40,8 +40,8 @@ STEP 0 — Safety check (before anything else):
 STEP 1 — Read memory for context:
 - memory/TARGET-PORTFOLIO.json (the target weights)
 - memory/TRADING-STRATEGY.md
-- tail of memory/TRADE-LOG.md
-- tail of memory/RESEARCH-LOG.md
+- python3 scripts/memory_log.py recent memory/TRADE-LOG.md --days 5
+- python3 scripts/memory_log.py recent memory/RESEARCH-LOG.md --days 5
 
 STEP 2 — Pull live account state:
   bash scripts/alpaca.sh account
@@ -71,13 +71,15 @@ template at the top of that file):
 - Gaps needing attention
 - Planned action for market-open (which symbols to buy today and how much)
 - Decision: BUILDOUT / TOP-UP / HOLD
+Then archive complete old entries without deleting or summarizing history:
+  python3 scripts/memory_log.py archive memory/RESEARCH-LOG.md --keep-days 5
 
 STEP 5 — Notification: silent unless urgent (e.g. a stop-loss gap needs
 buyback, or a symbol looks halted/illiquid).
   bash scripts/clickup.sh "<one line>"
 
 STEP 6 — COMMIT, PUSH A CLAUDE BRANCH, AND OPEN A PR (mandatory):
-  git add memory/RESEARCH-LOG.md
+  git add memory/RESEARCH-LOG.md memory/archive/
   git commit -m "pre-market drift check $DATE"
   BRANCH="claude/routine-pre-market-$(date -u +%Y%m%dT%H%M%SZ)"
   git switch -c "$BRANCH"
@@ -86,6 +88,7 @@ STEP 6 — COMMIT, PUSH A CLAUDE BRANCH, AND OPEN A PR (mandatory):
   GH_TOKEN="$GITHUB_TOKEN" gh pr create --base main --head "$BRANCH" \
     --title "pre-market drift check $DATE" \
     --body "Automated state update from the pre-market Claude routine."
-The trusted GitHub Action validates that only memory/RESEARCH-LOG.md
-changed, then squash-merges the PR to main. Treat the run as failed if the
-push or PR creation fails. Never push directly to main. Never force-push.
+The trusted GitHub Action validates that only memory/RESEARCH-LOG.md and
+its year-partitioned archive changed, then squash-merges the PR to main.
+Treat the run as failed if the push or PR creation fails. Never push
+directly to main. Never force-push.

@@ -14,7 +14,7 @@ market is closed, tell the user and stop.
 STEP 1 — Read memory:
 - memory/TARGET-PORTFOLIO.json (target weights)
 - memory/TRADING-STRATEGY.md (exit rules)
-- tail of memory/TRADE-LOG.md (entries, stops)
+- python3 scripts/memory_log.py recent memory/TRADE-LOG.md --days 5
 
 STEP 2 — Pull current state:
   bash scripts/alpaca.sh positions
@@ -41,3 +41,6 @@ no discretionary thesis to break intraday.
 
 STEP 6 — Notification: only if action was taken.
   bash scripts/clickup.sh "<action summary>"
+
+After appending any action, run:
+  python3 scripts/memory_log.py archive memory/TRADE-LOG.md --keep-days 5
