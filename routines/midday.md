@@ -37,7 +37,12 @@ STEP 0 — Safety check (before anything else):
 STEP 1 — Read memory so you know what's open and why:
 - memory/TARGET-PORTFOLIO.json (target weights)
 - memory/TRADING-STRATEGY.md (exit rules)
-- python3 scripts/memory_log.py recent memory/TRADE-LOG.md --days 5
+- Last 5 complete logged trade days:
+  python3 scripts/memory_log.py recent memory/TRADE-LOG.md --days 5
+- Most recent complete drift-check day:
+  python3 scripts/memory_log.py recent memory/RESEARCH-LOG.md --days 1
+  Confirm its heading is today's date; if not, note that today's
+  pre-market drift check is missing.
 
 STEP 2 — Pull current state:
   bash scripts/alpaca.sh positions
